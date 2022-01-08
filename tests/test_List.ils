@@ -1,0 +1,59 @@
+qtest::runSuites(
+  ; ensure
+  qtest::TestSuite(
+    qtest::TestCase(test_ensure_alreadyList
+      qtest::assertEqual(List->ensure('(1 2 3)) '(1 2 3)))
+    qtest::TestCase(test_ensure_notAlreadyListString
+      qtest::assertEqual(List->ensure("testing false") '("testing false")))
+    qtest::TestCase(test_ensure_notAlreadyListInt
+      qtest::assertEqual(List->ensure(1) '(1)))
+    qtest::TestCase(test_ensure_empty
+      qtest::assertEqual(List->ensure('()) 
+                         '()))
+  )
+  ; setDiff
+  qtest::TestSuite(
+    qtest::TestCase(test_setDiff_integers
+      qtest::assertEqual(List->ensure('(1 2 3) '(2 3))
+                         '(1)))
+    qtest::TestCase(test_setDiff_integersEmptyOutput
+      qtest::assertEqual(List->ensure('(1 2 3) '(1 2 3))
+                         '()))
+    qtest::TestCase(test_setDiff_strings
+      qtest::assertEqual(List->ensure('("A" "B" "CD" "E") '("A" "CD"))
+                         '("B" "E")))
+    qtest::TestCase(test_setDiff_stringsEmptyOutput
+      qtest::assertEqual(List->ensure('("A" "B" "CD" "E") '("A" "CD"))
+                         '("B" "E")))
+  )
+  ; unique
+  qtest::TestSuite(
+    qtest::TestCase(test_unique_integers
+      qtest::assertEqual(List->unique('(1 2 3 2 3)) 
+					     '(1 2 3)))
+    qtest::TestCase(test_setDiff_integersEmptyOutput
+      qtest::assertEqual(List->unique('(1 2 3) '(1 2 3))
+                         '()))
+    qtest::TestCase(test_setDiff_strings
+      qtest::assertEqual(List->ensure('("A" "B" "CD" "E") '("A" "CD"))
+                         '("B" "E")))
+    qtest::TestCase(test_setDiff_stringsEmptyOutput
+      qtest::assertEqual(List->ensure('("A" "B" "CD" "E") '("A" "CD"))
+                         '("B" "E")))
+  )
+  ; getSlot
+  qtest::TestSuite(
+    qtest::TestCase(test_unique_integers
+      qtest::assertEqual(List->unique('(1 2 3 2 3)) 
+					     '(1 2 3)))
+    qtest::TestCase(test_setDiff_integersEmptyOutput
+      qtest::assertEqual(List->unique('(1 2 3) '(1 2 3))
+                         '()))
+    qtest::TestCase(test_setDiff_strings
+      qtest::assertEqual(List->ensure('("A" "B" "CD" "E") '("A" "CD"))
+                         '("B" "E")))
+    qtest::TestCase(test_setDiff_stringsEmptyOutput
+      qtest::assertEqual(List->ensure('("A" "B" "CD" "E") '("A" "CD"))
+                         '("B" "E")))
+  )
+)

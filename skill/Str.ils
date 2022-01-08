@@ -1,0 +1,124 @@
+/*****************************************************************
+ *                                                               *
+ *                      skyStr                                   *
+ *                                                               *
+ *   A package for string manipulation                           *
+ *                                                               *
+ *****************************************************************/
+
+Str = let(()
+
+;Checks if a string is an empty string ("")
+procedure(emptyp(in)
+	stringp(in) && strlen(in) == 0)
+
+;split
+; Similar to parseString, except multiple delim are not ignored.  Empty delimiter fields are returned as empty strings. ("")
+procedure(split(in delim) let((out inTmp nextC)
+	out = '()
+	inTmp=in
+	while(nextC = nindex(inTmp,delim)
+		out = append1(out substring(inTmp 1 nextC-1))
+		inTmp = substring(index(inTmp delim) 2)
+	)
+	append1(out inTmp)
+))
+
+;unique
+;  Returns a list of strings of the unique elements from the input list of strings
+procedure(unique(in) let((out noAdd)
+	out = '()
+	foreach(str in
+		noAdd = member(str out)
+		unless(noAdd
+			out = append(out list(str))
+		) 
+	)
+out
+))
+
+; Trims both leading and trailing whitespace from the input string
+procedure(trimWhiteSpace(in "S")
+let((pcreLeadingWhiteSpace pcreTrailingWhiteSpace)
+	pcreLeadingWhiteSpace = pcreCompile( "\\A\\s+" )
+	pcreTrailingWhiteSpace = pcreCompile( "\\s+\\Z" )
+	in = pcreReplace(pcreLeadingWhiteSpace in "" 0 )
+	pcreReplace(pcreTrailingWhiteSpace in "" 0 )
+))
+
+; Converts a string to a floating point number if it contains only numbers and a decimal point
+; Converts a string to an integer if it only contains numbers
+; Otherwise if it is non-numeric it returns the original string.
+procedure(convertNumber(in) let((splitString)
+	splitString = parseString(in ".")
+	if(((length(splitString) == 2) && atoi(car(splitString)) && atoi(cadr(splitString))) then
+		atof(in)
+	else if(((length(splitString) == 1) && atoi(in)) then
+		atoi(in)
+	else 
+		in
+	))	
+))
+
+; Converts string integers, floating point numbers, or boolean values to their SKILL equivalent.
+;  Possible case-insensitive boolean values can be "TRUE" or "FALSE" 
+;  Same as converNumber except it also handles boolean strings.
+procedure(convert(in) let((val)
+	val = convertNumber(in)
+	str2bool(val)
+))
+
+; Converts string integers, floating point numbers, or boolean values to their SKILL equivalent.
+;  Possible case-insensitive boolean values can be "TRUE" or "FALSE" 
+;  Same as converNumber except it also handles boolean strings.
+procedure(str2bool(in) let((val)
+	when(stringp(val) && upperCase(val) == "TRUE" 
+		val = 't)
+	when(stringp(val) && upperCase(val) == "FALSE" 
+		val = nil)
+	val
+))
+
+; Converts a number to a string.  The number can be an integer
+; or a floating point number.  Returns the input unchanged 
+; if it is not an number.
+procedure(num2str(number)
+	cond(
+		(integerp(number) sprintf(nil "%d" number))
+		(floatp(number) sprintf(nil "%f" number))
+		(t	number))
+)
+
+; Converts a boolean to a string.  If the input is nil, it 
+;  returns "FALSE", anything else returns "TRUE"
+; if it is not an number.
+procedure(bool2str(in)
+	if(in then
+		"TRUE"
+	else
+		"FALSE")
+)
+
+; Checks if the input string ends with the given suffix string
+procedure(endsWith(string suffix)
+	if(length(suffix) > length(string) then
+		nil
+	else
+		substring(string -length(suffix) length(suffix)) == suffix
+	)
+)
+
+list(nil 
+	'emptyp emptyp
+	'split split 
+	'unique unique
+	'trimWhiteSpace trimWhiteSpace
+	'convertNumber convertNumber
+	'convert convert
+	'str2bool str2bool
+	'num2str num2str
+	'bool2str bool2str
+	'endsWith endsWith
+))
+
+skyStr = Str

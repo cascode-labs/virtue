@@ -1,0 +1,71 @@
+/*****************************************************************
+ *                                                               *
+ *                     SkyList                                   *
+ *                                                               *
+ *   Functions for handling lists                                *
+ *                                                               *
+ *****************************************************************/
+
+List = let(()
+
+; Returns the input as a list if it isn't one already
+; Ensures it is a list
+procedure(ensure(val)
+	unless(listp(val)
+		val = list(val))
+val)
+
+; Returns plusList with the items in minusList removed
+procedure(setDiff(plusList minusList) let(()
+	foreach(item minusList
+		plusList = remove(item plusList)
+	)
+	plusList
+))
+
+;unique
+;  Returns a list of items of the unique elements from the input list
+procedure(unique(in) let((out noAdd)
+	out = '()
+	foreach(item in
+		noAdd = member(item out)
+		unless(noAdd
+			out = append(out list(item))
+		) 
+	)
+out
+))
+
+;;;;;;;;;;;;;;;;;;;;;;
+; Obj Instance Lists ;
+;;;;;;;;;;;;;;;;;;;;;;
+; A list of skill++ instances
+
+; Returns a list of the value of the given slot of each instance in the list
+; objList: A list of skill++ instances
+; slotName: A symbol of the slot name
+procedure(getSlot(objList slotName) let((obj out)
+	foreach(obj objList
+		out = tconc(out slotValue(obj slotName))
+	)
+	car(out)
+))
+
+;;;;;;;;;;;;;;;;;;;;;
+; Association Lists ;
+;;;;;;;;;;;;;;;;;;;;;
+
+; Returns all the keys in the specified association list
+procedure(assocKeys(assocList) let(((out nil))
+	foreach(item assocList
+		out = tconc(out car(item)))
+	out
+))
+
+list(nil
+	 'ensure ensure
+	 'setDiff setDiff
+     'unique unique
+	 'getSlot getSlot
+	 'assocKeys assocKeys
+))

@@ -1,0 +1,262 @@
+ /*****************************************************************
+  *                                                               *
+  *             Layout Geometry Package                           *
+  *                                                               *
+  *   Handles layout geometries such as shapes, points, and       *
+  *    bounding boxes                                             *
+  *                                                               *
+  *   * Points are handled by functions starting with pt          *
+  *   * Bounding boxes are handled by functions starting with     *
+  *      bBox                                                     *
+  *   * Figures are handled by functions starting with fig        *
+  *   * Mosaics are handled by functions starting with mos        *
+  *                                                               *
+  *****************************************************************/
+
+Geo = let(()
+
+;;;;;;;;;;
+; Points ;
+;;;;;;;;;;
+; Built-in Functions:
+;  * isLocation
+;  * xCoord
+;  * yCoord
+;  * dbTransformPoint
+;  * dbTransformPointList
+;  * dbConcatTransform
+
+
+; Offset the given point
+;  Same as summing 2 points if the offset is considered the second pt.
+procedure(ptOffset(P offset)
+	list(xCoord(P)+xCoord(offset)
+	     yCoord(P)+yCoord(offset)))
+
+; Negates both the x and Y of the given point
+procedure(ptNeg(P)
+	list(-xCoord(P) -yCoord(P)))
+
+; Multiplys the point, P, by the given Multiplier
+;  Args:
+;   P: The point as a (X,Y) list
+;   Multiplier: Either a scalar to multiply with both the X and Y or 
+;     an (X,Y) list containing seperate multipliers for each coordinate
+procedure(ptProduct(P Multiplier)
+	cond(
+		(floatp(Multiplier) || skyMath->intp(Multiplier)
+			ptProductScalar(P Multiplier))
+		(isLocation(Multiplier)
+			ptProductVector(P Multiplier))
+		(else
+			error("Multiplier type is not supported"))))
+
+; Multiplys the point, P, by the given scalar Multiplier
+;  Args:
+;   P: The point as a (X,Y) list
+;   Multiplier: A scalar to multiply with both the X and Y
+procedure(ptProductScalar(P Multiplier)
+	list(xCoord(P)*Multiplier yCoord(P)*Multiplier))
+
+; Multiplys the point, P, by the given vector Multiplier
+;  Args:
+;   P: The point as a (X,Y) list
+;   Multiplier: An (X,Y) list containing seperate multipliers for each coordinate
+procedure(ptProductVector(P Multiplier)
+	list(xCoord(P)*xCoord(Multiplier) yCoord(P)*yCoord(Multiplier)))
+
+; Calculates the distance between 2 points.
+procedure(ptDistance(P1 P2)
+	sqrt(expt(xCoord(P2) - xCoord(P1) 2) + expt(yCoord(P2) - yCoord(P1) 2)))
+
+; Checks if the point is inside the bounding box or on the box edge.  This is a predicate function
+;  Return: t/nil
+procedure( ptInBoxp( point box )
+	xCoord(point) >= leftEdge(box)&& 
+	xCoord(point) <= rightEdge(box) && 
+	yCoord(point) >= bottomEdge(box) && 
+	yCoord(point) <= topEdge(box)
+)
+
+; Returns a string indicating the nearest side of the box
+;  to the reference point
+;  Returns: "left", "right", "top", or "bottom"
+procedure( ptNearestBoxSide(point box)
+	let( (x1 y1 x2 y2 x y d1 d2 d3 d4 minDist side)
+
+	x1 = caar( box )
+	y1 = cadar( box )
+	x2 = caadr( box )
+	y2 = cadadr( box )
+
+	x = xCoord( point )
+	y = yCoord( point )
+
+	if( skyGeo->ptInBoxp(point box) then
+		d1 = x - x1 ; left distance
+		d2 = y - y1 ; bottom distance
+		d3 = x2 - x ; right distance
+		d4 = y2 - y ; top distance
+
+		minDist = min( d1 d2 d3 d4 )
+		cond(
+			( minDist == d1 side = "left")
+			( minDist == d2 side = "bottom")
+			( minDist == d3 side = "right")
+			( minDist == d4 side = "top")
+		)
+	else
+		; point is outside the box. 
+		;  A diagnol line between each corner and the center splits the sides
+		cond(
+			( x > max(x1 x2) ; To the right of the box
+				side = "right"
+				cond(
+					( y > max(y1 y2) && 
+					 (y - max(y1 y2)) > (x - max(x1 x2))
+						side = "top"
+					)
+					( y < min(y1 y2) &&
+					 (min(y1 y2) - y) > (x - max(x1 x2))
+						side = "bottom"
+					)
+				)
+            )
+			( x < min(x1 x2) ; To the left of the box
+				side = "left"
+				cond(
+					( y > max(y1 y2) &&
+					 (y - max(y1 y2)) > (min(x1 x2) - x)
+						side = "top"
+            			)
+					( y < min(y1 y2) &&
+					 (min(y1 y2) - y) > (min(x1 x2) - x)
+                			side = "bottom"
+					)
+				)
+			)
+			( t ; straight above or below the box
+				cond(
+					( y > max(y1 y2) side = "top" )
+					( y < min(y1 y2) side = "bottom" )
+				)
+			)
+		)
+    )
+    side
+))
+
+; Snap point to grid
+procedure(ptSnapToGrid( pt grid @optional noLarger)
+	numSnapToGrid(xCoord(pt) grid noLarger):
+	numSnapToGrid(yCoord(pt) grid noLarger))
+
+; Snap a number to grid
+procedure(numSnapToGrid( number grid @optional noLarger)
+  let((out)
+    if( noLarger then
+      out = fix(abs(number)/grid) * grid
+    else
+      out = round(abs(number)/grid) * grid
+    )
+	when(negativep(number)  ; negative number
+      out = -out
+    )
+))
+
+
+;;;;;;;;;;;;;;;;;;
+; Bounding Boxes ;
+;;;;;;;;;;;;;;;;;;
+; Built-in Functions:
+;  * isBBox
+;  * dbTransformBBox
+;  * lowerLeft
+;  * upperRight
+;  * centerBox
+;  * leftEdge
+;  * rightEdge
+;  * bottomEdge
+;  * topEdge
+
+; Offset the given bounding box
+procedure(bBoxOffset(box offset)
+	list(ptOffset(lowerLeft(box) offset)
+	     ptOffset(upperRight(box) offset)))
+
+; snap box to grid
+procedure(bBoxSnapToGrid(box grid)
+	list(ptSnapToGrid(lowerLeft(box) grid)
+	     ptSnapToGrid(upperRight(box) grid))
+)
+
+; Returns the bounding box with the origin at the center from the size of the bounding box.
+; Args:
+; size: A (x,y) list of the size of the bounding box.
+procedure(bBoxFromSize(size)
+	list(list(-xCoord(size)/2 -yCoord(size)/2)
+		 list( xCoord(size)/2  yCoord(size)/2)))
+
+; Calculates the Size of the box
+; Args:
+;  box: A bounding box
+; Returns: Size of the bounding box as a (x,y) list
+procedure(bBoxSize(box)
+	list(rightEdge(box)-leftEdge(box)
+		 topEdge(box)-bottomEdge(box)))
+;;;;;;;;;;;;;;;;;;;
+; Figure Overlaps ;
+;;;;;;;;;;;;;;;;;;;
+; Built-in Functions:
+;  * dbProduceOverlap
+;  * dbGetOverlaps
+;  * dbGetTrueOverlaps
+
+; Flattens a hierarchial list of dbObjects returned by the 
+;  figure overlap functions i.e. dbGetOverlaps, etc
+; Args:
+;  obj: A hierarchial list of obects returned by dbGetOverlaps
+procedure(figFlattenOverlaps(obj) let((out)
+	if( atom(obj) && dbobjectp(obj) then
+		ncons(obj)
+	else
+		;mapcan( 'figFlattenOverlaps obj )
+		out = list()
+		foreach(singleObj obj
+			out=append(out figFlattenOverlaps(singleObj))
+		)
+		out
+    )
+))
+
+;;;;;;;;;;;
+; Mosaics ;
+;;;;;;;;;;;
+
+; Flattens all the mosaics up to 5 levels deep in the cell's hierarchy
+; Args:
+;  cv: cellview object
+; return: 't
+procedure(mosFlatten(cv) let(()
+	foreach( inst cv~>mosaics
+		leFlattenInst(inst 5)
+	)
+	't
+))
+
+list(nil 
+	'ptOffset ptOffset
+	'ptNeg ptNeg
+	'ptProduct ptProduct
+	'ptDistance ptDistance
+	'ptInBoxp ptInBoxp
+	'ptNearestBoxSide ptNearestBoxSide
+	'ptSnapToGrid ptSnapToGrid
+	'bBoxOffset bBoxOffset
+	'bBoxSnapToGrid bBoxSnapToGrid
+	'bBoxFromSize bBoxFromSize
+	'bBoxSize bBoxSize
+	'figFlattenOverlaps figFlattenOverlaps
+	'mosFlatten mosFlatten
+))
+skyGeo = Geo 
