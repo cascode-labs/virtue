@@ -1,0 +1,14 @@
+name: virtue-dev
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python = 3.8
+  # - viper # Make editable using pip install --no-deps -e /path/to/viper_repo
+  # docs
+  - sphinx=3.5
+  - recommonmark=0.6
+  - sphinx-panels=0.5
+  - sphinx-autobuild=0.7
+  - sphinx-copybutton=0.3
+  - sphinx_rtd_theme

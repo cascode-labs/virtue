@@ -1,0 +1,9 @@
+# Environment for running Cadence Virtuoso
+name: virtuoso
+channels:
+  - defaults
+  - conda-forge
+
+dependencies:
+  - viper
+  - virtue
