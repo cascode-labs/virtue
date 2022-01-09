@@ -1,0 +1,41 @@
+printf("Initializing IDS library manager environment\n")
+printf("  conda environment prefix:\n  %s\n" getShellEnvVar("CONDA_PREFIX"))
+
+let((prefix path_skill IDS_libs file skillPkgs prj)
+	; Load all the init files from a directory
+	procedure(loadInitFromDir(dir) let((files file)
+		files = getDirFiles(dir)
+		files = remove("IDS.lmgrinit" files) 
+		when(files
+			foreach(file files
+				cond(
+					((substring(file -9 9) == ".lmgrinit")
+						loadi(strcat(dir "/" file)))
+				)
+			)
+		)
+	))
+
+	; Paths
+	prefix = getShellEnvVar("CONDA_PREFIX")
+	path_skill = strcat(prefix "/lib/skill")
+	printf("Loading SKILL packages from:\n %s\n" path_skill)
+
+	; Load IDS SKILL lib
+	loadInitFromDir(strcat(path_skill "/IDS-skill"))
+	printf("  Loaded IDS SKILL library\n")
+	; Load init files directly from conda env skill lib
+	loadInitFromDir(path_skill)
+
+	; Load projects from directories in conda env skill lib
+	skillPkgs = getDirFiles(path_skill)
+	skillPkgs = remove("IDS-skill" skillPkgs)
+	when(skillPkgs
+		printf("  Loading projects from %s: \n" path_skill)
+		foreach(prj skillPkgs
+			when(isDir(strcat(strcat(path_skill "/" prj)))
+				loadInitFromDir(strcat(path_skill "/" prj))))
+	)
+)
+
+printf("  Done, initialized IDS library manager environment\n")
