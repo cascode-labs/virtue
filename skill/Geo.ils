@@ -26,62 +26,66 @@ Geo = let(()
 ;  * dbTransformPointList
 ;  * dbConcatTransform
 
+procedure(ptOffset(P offset "ll")
+  "Offset a point or sum 2 points"
+  list(xCoord(P)+xCoord(offset)
+    yCoord(P)+yCoord(offset))
+)
 
-; Offset the given point
-;  Same as summing 2 points if the offset is considered the second pt.
-procedure(ptOffset(P offset)
-	list(xCoord(P)+xCoord(offset)
-	     yCoord(P)+yCoord(offset)))
+procedure(ptNeg(P "l")
+  "Negates both the x and Y of the given point"
+  list(-xCoord(P) -yCoord(P))
+)
 
-; Negates both the x and Y of the given point
-procedure(ptNeg(P)
-	list(-xCoord(P) -yCoord(P)))
+procedure(ptProduct(P Multiplier "lg")
+  "Multiplies the point, P, by the given Multiplier
+  
+  @param P The point as a (X,Y) list
+  @param Multiplier Either a scalar to multiply with both the X and Y or 
+  an (X,Y) list containing seperate multipliers for each coordinate"
+  cond(
+    (floatp(Multiplier) || skyMath->intp(Multiplier)
+      ptProductScalar(P Multiplier))
+    (isLocation(Multiplier)
+      ptProductVector(P Multiplier))
+    (else
+      error("Multiplier type is not supported")))
+)
 
-; Multiplys the point, P, by the given Multiplier
-;  Args:
-;   P: The point as a (X,Y) list
-;   Multiplier: Either a scalar to multiply with both the X and Y or 
-;     an (X,Y) list containing seperate multipliers for each coordinate
-procedure(ptProduct(P Multiplier)
-	cond(
-		(floatp(Multiplier) || skyMath->intp(Multiplier)
-			ptProductScalar(P Multiplier))
-		(isLocation(Multiplier)
-			ptProductVector(P Multiplier))
-		(else
-			error("Multiplier type is not supported"))))
+procedure(ptProductScalar(P Multiplier "ln")
+	"Multiplys the point, P, by the given scalar Multiplier
+	  
+  @param P The point as a (X,Y) list
+  @param Multiplier A scalar to multiply with both the X and Y"
+	list(xCoord(P)*Multiplier yCoord(P)*Multiplier)
+)
 
-; Multiplys the point, P, by the given scalar Multiplier
-;  Args:
-;   P: The point as a (X,Y) list
-;   Multiplier: A scalar to multiply with both the X and Y
-procedure(ptProductScalar(P Multiplier)
-	list(xCoord(P)*Multiplier yCoord(P)*Multiplier))
+procedure(ptProductVector(P Multiplier "ll")
+  "Multiplys the point, P, by the given scalar Multiplier
+	  
+  @param P The point as a (X,Y) list
+  @param Multiplier An (X,Y) list containing seperate multipliers for each 
+	coordinate"
+	list(xCoord(P)*xCoord(Multiplier) yCoord(P)*yCoord(Multiplier))
+)
 
-; Multiplys the point, P, by the given vector Multiplier
-;  Args:
-;   P: The point as a (X,Y) list
-;   Multiplier: An (X,Y) list containing seperate multipliers for each coordinate
-procedure(ptProductVector(P Multiplier)
-	list(xCoord(P)*xCoord(Multiplier) yCoord(P)*yCoord(Multiplier)))
+procedure(ptDistance(P1 P2 "ll")
+  "Calculates the distance between 2 points."
+  sqrt(expt(xCoord(P2) - xCoord(P1) 2) + expt(yCoord(P2) - yCoord(P1) 2)))
 
-; Calculates the distance between 2 points.
-procedure(ptDistance(P1 P2)
-	sqrt(expt(xCoord(P2) - xCoord(P1) 2) + expt(yCoord(P2) - yCoord(P1) 2)))
-
-; Checks if the point is inside the bounding box or on the box edge.  This is a predicate function
-;  Return: t/nil
-procedure( ptInBoxp( point box )
+procedure( ptInBoxp( point box "ll")
+  "Checks if the point is inside the bounding box or on the box edge.
+	
+	@return inside_box a boolean"
 	xCoord(point) >= leftEdge(box)&& 
 	xCoord(point) <= rightEdge(box) && 
 	yCoord(point) >= bottomEdge(box) && 
 	yCoord(point) <= topEdge(box)
 )
 
-; Returns a string indicating the nearest side of the box
-;  to the reference point
-;  Returns: "left", "right", "top", or "bottom"
-procedure( ptNearestBoxSide(point box)
+procedure( ptNearestBoxSide(point box "ll")
+  "Finds the nearest side of the box to the reference point
+	@return side A string, 'left', 'right', 'top', or 'bottom'"
 	let( (x1 y1 x2 y2 x y d1 d2 d3 d4 minDist side)
 
 	x1 = caar( box )
@@ -146,13 +150,15 @@ procedure( ptNearestBoxSide(point box)
     side
 ))
 
-; Snap point to grid
 procedure(ptSnapToGrid( pt grid @optional noLarger)
+	"Snap the point to the grid"
 	numSnapToGrid(xCoord(pt) grid noLarger):
-	numSnapToGrid(yCoord(pt) grid noLarger))
+	numSnapToGrid(yCoord(pt) grid noLarger)
+)
 
-; Snap a number to grid
+
 procedure(numSnapToGrid( number grid @optional noLarger)
+  "Snap a number to the grid"
   let((out)
     if( noLarger then
       out = fix(abs(number)/grid) * grid
@@ -179,31 +185,34 @@ procedure(numSnapToGrid( number grid @optional noLarger)
 ;  * bottomEdge
 ;  * topEdge
 
-; Offset the given bounding box
 procedure(bBoxOffset(box offset)
+  "Offset the given bounding box"
 	list(ptOffset(lowerLeft(box) offset)
-	     ptOffset(upperRight(box) offset)))
+	     ptOffset(upperRight(box) offset))
+)
 
-; snap box to grid
 procedure(bBoxSnapToGrid(box grid)
+  "Snap the bBox to the grid"
 	list(ptSnapToGrid(lowerLeft(box) grid)
 	     ptSnapToGrid(upperRight(box) grid))
 )
 
-; Returns the bounding box with the origin at the center from the size of the bounding box.
-; Args:
-; size: A (x,y) list of the size of the bounding box.
-procedure(bBoxFromSize(size)
+procedure(bBoxFromSize(size "l")
+  "Returns the bounding box with the origin at the center from the size 
+	 of the bounding box.
+	@param size: A (x,y) list of the size of the bounding box."
 	list(list(-xCoord(size)/2 -yCoord(size)/2)
-		 list( xCoord(size)/2  yCoord(size)/2)))
+		 list( xCoord(size)/2  yCoord(size)/2))
+)
 
-; Calculates the Size of the box
-; Args:
-;  box: A bounding box
-; Returns: Size of the bounding box as a (x,y) list
-procedure(bBoxSize(box)
+procedure(bBoxSize(box "l")
+  "Calculate the Size of the bounding box
+	@param box A bounding box list
+	@return size Size of the bounding box as a (x,y) list"
 	list(rightEdge(box)-leftEdge(box)
-		 topEdge(box)-bottomEdge(box)))
+		 topEdge(box)-bottomEdge(box))
+)
+
 ;;;;;;;;;;;;;;;;;;;
 ; Figure Overlaps ;
 ;;;;;;;;;;;;;;;;;;;
@@ -212,11 +221,11 @@ procedure(bBoxSize(box)
 ;  * dbGetOverlaps
 ;  * dbGetTrueOverlaps
 
-; Flattens a hierarchial list of dbObjects returned by the 
-;  figure overlap functions i.e. dbGetOverlaps, etc
-; Args:
-;  obj: A hierarchial list of obects returned by dbGetOverlaps
-procedure(figFlattenOverlaps(obj) let((out)
+procedure(figFlattenOverlaps(obj "R")
+  "Flattens a hierarchial list of dbObjects returned by the figure overlap 
+	 functions i.e. dbGetOverlaps, etc
+	@param obj A hierarchial list of obects returned by dbGetOverlaps"
+	let((out)
 	if( atom(obj) && dbobjectp(obj) then
 		ncons(obj)
 	else
@@ -233,16 +242,15 @@ procedure(figFlattenOverlaps(obj) let((out)
 ; Mosaics ;
 ;;;;;;;;;;;
 
-; Flattens all the mosaics up to 5 levels deep in the cell's hierarchy
-; Args:
-;  cv: cellview object
-; return: 't
-procedure(mosFlatten(cv) let(()
+procedure(mosFlatten(cv) 
+	"Flattens all the mosaics up to 5 levels deep in the cell's hierarchy
+	@param cv Cellview object
+	@return 't"
 	foreach( inst cv~>mosaics
 		leFlattenInst(inst 5)
 	)
 	't
-))
+)
 
 list(nil 
 	'ptOffset ptOffset
@@ -259,4 +267,3 @@ list(nil
 	'figFlattenOverlaps figFlattenOverlaps
 	'mosFlatten mosFlatten
 ))
-skyGeo = Geo 

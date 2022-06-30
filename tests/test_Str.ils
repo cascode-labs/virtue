@@ -1,0 +1,102 @@
+procedure(Test_Str_emptyp()
+    assert(Str->emptyp(""))
+    assert(!Str->emptyp("test"))
+)
+
+procedure(Test_Str_split()
+    assert(Str->split("Hi,how,,you" ",") == '("Hi" "how" "" "you"))
+    assert(Str->split("Hi,how,are,you" ",") == '("Hi" "how" "are" "you"))
+    assert(Str->split("Hi how  you" " ") == '("Hi" "how" "" "you"))
+    assert(Str->split("Hi how are you" " ") == '("Hi" "how" "are" "you"))
+)
+
+procedure(Test_Str_trimWhiteSpace()
+    assert(Str->trimWhiteSpace("  Hi everyone") == "Hi everyone")
+    assert(Str->trimWhiteSpace("  Hi everyone  ") == "Hi everyone")
+    assert(Str->trimWhiteSpace("Hi everyone  ") == "Hi everyone")
+    assert(Str->trimWhiteSpace("Hi everyone") == "Hi everyone")
+    assert(!("Hi everyone  " == "Hi everyone"))
+)
+
+procedure(Test_Str_str2bool()
+    assert(Str->str2bool("true"))
+    assert(Str->str2bool("True"))
+    assert(Str->str2bool("TRUE"))
+    assert(!Str->str2bool("false"))
+    assert(!Str->str2bool("False"))
+    assert(!Str->str2bool("FALSE"))
+)
+
+procedure(Test_Str_str2bool_error()
+    assert(!(errset(Str->str2bool("Nothing"))))
+)
+
+procedure(Test_Str_convertNumber()
+    assert(Str->convertNumber("5.0") == 5.0)    
+    assert(Str->convertNumber("5") == 5)
+    assert(floatp(Str->convertNumber("5.0")))
+    assert(integerp(Str->convertNumber("5")))
+)
+
+procedure(Test_Str_convert()
+    assert(Str->convert("true"))
+    assert(!Str->convert("false"))
+    assert(Str->convert("5") == 5)
+    assert(integerp(Str->convert("5")))
+    assert(floatp(Str->convert("5.0")))
+    assert(Str->convert("5.0") == 5)
+    assert(Str->convert("5") == 5.0)
+)
+
+procedure(Test_Str_num2str()
+    assert(Str->num2str(5) == "5")
+    assert(Str->num2str(5.0) == "5.000000")
+    assert(Str->num2str(4.5) == "4.500000")
+    assert(Str->num2str(10) == "10")
+)
+
+procedure(Test_Str_bool2str()
+    assert(Str->bool2str('t) == "TRUE")
+    assert(Str->bool2str(nil) == "FALSE")
+    assert(Str->bool2str("test") == "TRUE")
+    assert(!(Str->bool2str('("test")) == "FALSE"))
+)
+
+procedure(Test_Str_startsWith()
+    assert(Str->startsWith("HiMan" "Hi"))
+    assert(Str->startsWith("HiMan" "Hi") == "Hi")
+    assert(!Str->startsWith("HiMan" "Man"))
+    assert(!Str->startsWith("HiManly" "High"))
+    assert(!Str->startsWith("HiManly" "H"))
+)
+
+procedure(Test_Str_endsWith()
+    assert(Str->endsWith("HiMan" "Man"))
+    assert(Str->endsWith("HiMan" "Man") == "Hi")
+    assert(!Str->endsWith("HiManly" "Man"))
+    assert(!Str->endsWith("HiManly" "Hi"))
+)
+
+procedure(Test_prefixp()
+    assert(Str->prefixp("preFix" "pre"))
+    assert(!Str->prefixp("notpreFix" "pre"))
+    assert(!Str->prefixp("no" "pre"))
+)
+
+))
+
+
+Test->run(list(
+  Test_Str_emptyp
+  Test_Str_split
+  Test_Str_trimWhiteSpace
+  Test_Str_str2bool
+  Test_Str_str2bool_error
+  Test_Str_convertNumber
+  Test_Str_convert
+  Test_Str_num2str
+  Test_Str_bool2str
+  Test_Str_startsWith
+  Test_Str_endsWith
+  Test_prefixp
+))

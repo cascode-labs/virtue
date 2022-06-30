@@ -1,59 +1,41 @@
-qtest::runSuites(
-  ; ensure
-  qtest::TestSuite(
-    qtest::TestCase(test_ensure_alreadyList
-      qtest::assertEqual(List->ensure('(1 2 3)) '(1 2 3)))
-    qtest::TestCase(test_ensure_notAlreadyListString
-      qtest::assertEqual(List->ensure("testing false") '("testing false")))
-    qtest::TestCase(test_ensure_notAlreadyListInt
-      qtest::assertEqual(List->ensure(1) '(1)))
-    qtest::TestCase(test_ensure_empty
-      qtest::assertEqual(List->ensure('()) 
-                         '()))
-  )
-  ; setDiff
-  qtest::TestSuite(
-    qtest::TestCase(test_setDiff_integers
-      qtest::assertEqual(List->ensure('(1 2 3) '(2 3))
-                         '(1)))
-    qtest::TestCase(test_setDiff_integersEmptyOutput
-      qtest::assertEqual(List->ensure('(1 2 3) '(1 2 3))
-                         '()))
-    qtest::TestCase(test_setDiff_strings
-      qtest::assertEqual(List->ensure('("A" "B" "CD" "E") '("A" "CD"))
-                         '("B" "E")))
-    qtest::TestCase(test_setDiff_stringsEmptyOutput
-      qtest::assertEqual(List->ensure('("A" "B" "CD" "E") '("A" "CD"))
-                         '("B" "E")))
-  )
-  ; unique
-  qtest::TestSuite(
-    qtest::TestCase(test_unique_integers
-      qtest::assertEqual(List->unique('(1 2 3 2 3)) 
-					     '(1 2 3)))
-    qtest::TestCase(test_setDiff_integersEmptyOutput
-      qtest::assertEqual(List->unique('(1 2 3) '(1 2 3))
-                         '()))
-    qtest::TestCase(test_setDiff_strings
-      qtest::assertEqual(List->ensure('("A" "B" "CD" "E") '("A" "CD"))
-                         '("B" "E")))
-    qtest::TestCase(test_setDiff_stringsEmptyOutput
-      qtest::assertEqual(List->ensure('("A" "B" "CD" "E") '("A" "CD"))
-                         '("B" "E")))
-  )
-  ; getSlot
-  qtest::TestSuite(
-    qtest::TestCase(test_unique_integers
-      qtest::assertEqual(List->unique('(1 2 3 2 3)) 
-					     '(1 2 3)))
-    qtest::TestCase(test_setDiff_integersEmptyOutput
-      qtest::assertEqual(List->unique('(1 2 3) '(1 2 3))
-                         '()))
-    qtest::TestCase(test_setDiff_strings
-      qtest::assertEqual(List->ensure('("A" "B" "CD" "E") '("A" "CD"))
-                         '("B" "E")))
-    qtest::TestCase(test_setDiff_stringsEmptyOutput
-      qtest::assertEqual(List->ensure('("A" "B" "CD" "E") '("A" "CD"))
-                         '("B" "E")))
-  )
+
+procedure(Test_List_ensure()
+  assert(List->ensure('(1 2 3)) == '(1 2 3)) ; already a list
+  assert(List->ensure("testing false") == '("testing false")) ; a string
+  assert(List->ensure(1) == '(1)) ; an integer
+  assert(List->ensure('()) == '()) ; empty list
 )
+
+procedure(Test_List_setDiff()
+  assert(List->setDiff('(1 2 3) '(2 3)) == '(1)) ; integers
+  assert(List->setDiff('(1 2 3) '(1 2 3)) == '()) 
+  assert(List->setDiff('("A" "B" "CD" "E") '("A" "CD")) == '("B" "E")) ; strings
+  assert(List->setDiff('("A" "B" "CD" "E") '("A" "B" "CD" "E")) == '())
+)
+
+procedure(Test_List_uniqueList()
+  assert(List->uniqueList('(1 2 3 2 3)) == '(3 2 1)) ; integers
+  assert(List->uniqueList('(1 2 3)) == '(3 2 1))
+  assert(List->uniqueList('("A" "B" "CD" "E" "A" "CD")) == '("B" "CD" "E" "A")) ; strings
+  assert(List->uniqueList('("hi" "hello" "hello")) == '("hi" "hello"))
+  assert(List->uniqueList('("hi" "hello")) == '("hi" "hello"))
+  assert(List->uniqueList('("hi" "hi" "hello" "hello")) == '("hi" "hello"))
+  assert(List->uniqueList('("hi" "hi" "hello" "hello" "" "")) == '("hi" "" "hello")) ; multiple empty strings
+)
+
+procedure(Test_List_uniqueListOrdered()
+  assert(List->uniqueListOrdered('(1 2 3 2 3)) == '(1 2 3)) ; integers
+  assert(List->uniqueListOrdered('(1 2 3)) == '(1 2 3))
+  assert(List->uniqueListOrdered('("A" "B" "CD" "E" "A" "CD")) == '("A" "B" "CD" "E")) ; strings
+  assert(List->uniqueListOrdered('("hi" "hello" "hello")) == '("hi" "hello"))
+  assert(List->uniqueListOrdered('("hi" "hello")) == '("hi" "hello"))
+  assert(List->uniqueListOrdered('("hi" "hi" "hello" "hello")) == '("hi" "hello"))
+  assert(List->uniqueListOrdered('("hi" "hi" "hello" "hello" "" "")) == '("hi" "hello" "")) ; multiple empty strings
+)
+
+Test->run(list(
+  Test_List_ensure
+  Test_List_setDiff
+  Test_List_uniqueList
+  Test_List_uniqueListOrdered
+))

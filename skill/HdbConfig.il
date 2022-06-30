@@ -1,0 +1,26 @@
+procedure(HdbCreateConfigView(configLCV topCellLCV libraryList viewList stopList) prog((configId result)
+    "Creates a config view in a given lib-cell-view. Sets the top cell 
+     lib-cell-view. Sets the config library list, view list, and stop list in 
+     the global binding section.
+
+    @brief Creates a config view
+    @param configLCV (list(str str str)): A list containing the library, cell, and view name of where the config will be created.
+    @param topCellLCV (list(str str str)): A list containing the library, cell, and view name of the Top Cell in the created config
+    @param libraryList (str): String of library names separated by spaces.
+    @param viewList (str): String of view names separated by spaces.
+    @param stopList(str): String of stops separated by spaces.
+    @return 't if successful, nil otherwise"
+    configId = hdbOpen(nth(0 configLCV) nth(1 configLCV) nth(2 configLCV) "w")
+    unless(configId nil)
+    result = hdbSetTopCellViewName(configId nth(0 topCellLCV) nth(1 topCellLCV) nth(2 topCellLCV))
+    unless(result return(nil))
+    result = hdbSetDefaultLibListString(configId libraryList)
+    unless(result return(nil))
+    result = hdbSetDefaultViewListString(configId viewList)
+    unless(result return(nil))
+    result = hdbSetDefaultStopListString(configId stopList)
+    result = hdbSave(configId)
+    unless(result return(nil))
+    result = hdbClose(configId)
+    return(result)
+))

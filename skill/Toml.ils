@@ -1,0 +1,116 @@
+Toml = let(()
+
+; Reads a toml file and returns it's contents as a SKILL table
+procedure(ReadFile(filePath "t")
+  "Reads a toml file and returns its contents as a SKILL table
+  @brief Reads in a TOML file as a table
+  @param filePath The path to the file
+  @return toml_table A table with the top-level entries of the toml file."
+  prog((root_table currentTable inputPort line name)
+  unless(isFile(filePath)
+    return())
+
+  root_table = makeTable(filePath)
+  currentTable = root_table
+
+	inputPort = infile(filePath)
+	while(gets(line, inputPort)
+    line = car(parseString(line "#"))  ; Strip line comments
+    line = Str->trimWhiteSpace(line)
+    cond(
+      (blankstrp(line) nil)  ; empty or comment-only line
+      (TableName(line) 
+        name = TableName(line)
+        currentTable=makeTable(name)
+        root_table[name]=currentTable
+      )
+      (GetKey(line)
+        currentTable[GetKey(line)] = GetValue(line))
+  ))
+  return(root_table)
+))
+
+procedure(TableName(line)
+  "returns either the table name or nil if the line is not a table declaration line ([table_name])"
+  if((substring(line 1 1) == "[") && (substring(line length(line) 1) == "]")  then
+    substring(line 2 length(line)-2)
+  else
+    nil
+))
+
+procedure(GetKey(line) 
+  prog((key_value_list)
+  key_value_list = parseString(line "=")
+  if(length(key_value_list) == 2 then
+    return(Str->trimWhiteSpace(car(key_value_list)))
+  else
+    return())
+))
+
+procedure(GetValue(line)
+  let((value)
+  value = Str->trimWhiteSpace(cadr(parseString(line "=")))
+  when((substring(value 1 1) == "\"") && (substring(value length(value) 1) == "\"")
+    value = substring(value 2 length(value)-2))
+  value = Str->convertNumber(value)
+  value
+))
+
+procedure(WriteFile(filePath input "tg")
+  "Writes a table or association list to a toml file.
+  @param filePath The path where the toml file will be saved
+  @param input A table or association list to be written to the toml file"
+  let((file)
+  file = outfile(filePath)
+  cond(
+    (tablep(input)
+      PrintTable(file input))
+    (listp(input)
+      PrintAssocList(file input))
+  )
+  close(file)
+))
+
+procedure(PrintTable(file table @key (name nil))
+  let((key)
+  when(name
+    fprintf(file "[%s]\n" name))
+  foreach( key table
+    PrintKey(file key table[key] ?name name)
+  ) 
+))
+
+procedure(PrintAssocList(file assocList)
+  let((item key value)
+  foreach( item assocList
+    key = car(item)
+    value = cadr(item)
+    PrintKey(file key value)
+  )
+))
+
+procedure(PrintKey(file key value @key name)
+  let(((subtables nil) subtableItem subtable_name) 
+  cond(
+      (stringp(key) && !tablep(value)
+        fprintf(file "%s = %L\n" key value))
+      (!tablep(value)
+        fprintf(file "%L = %L\n" key value))
+      (tablep(value)
+       subtables =  append1(subtables list(key value)))
+  )
+  when(subtables
+    foreach(subtableItem subtables
+      if(name then
+        subtable_name = sprintf(nil "%s.%s" name car(subtableItem))
+      else
+        subtable_name = car(subtableItem)
+      )
+      PrintTable(file value ?name subtable_name)
+  ))
+))
+
+list(nil 
+	'ReadFile ReadFile
+  'WriteFile WriteFile
+))

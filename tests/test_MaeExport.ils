@@ -1,0 +1,21 @@
+procedure(Test_BuildMaestroHistoryInfoTable()
+  let((maestro_lib maestro_cell maestro_view history_name sessionName hsdb info_table)
+  maestro_lib = "ids_dev_work"
+  maestro_cell = "SW_TRAN_sim"
+  maestro_view = "maestro"
+  history_name = "Assembler.45"
+  
+  sessionName = maeOpenSetup(maestro_lib maestro_cell maestro_view ?histName history_name ?mode "r")
+  unless(sessionName
+    error("Could not open Maestro cellview"))
+  hsdb = axlGetMainSetupDB(sessionName)
+  info_table = MaeExport->BuildMaestroHistoryInfoTable(sessionName nil)
+  printf("%L" info_table)
+  assert(info_table["history"]["name"] == history_name)
+  assert(info_table["maestro"]["cell"] == maestro_cell)
+))
+Test_BuildMaestroHistoryInfoTable()
+Test->reset_suite()
+Test->run(list(
+  Test_BuildMaestroHistoryInfoTable
+))

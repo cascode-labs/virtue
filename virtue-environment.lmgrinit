@@ -1,11 +1,11 @@
-printf("Initializing IDS library manager environment\n")
+printf("Initializing Virtue library manager environment\n")
 printf("  conda environment prefix:\n  %s\n" getShellEnvVar("CONDA_PREFIX"))
 
 let((prefix path_skill IDS_libs file skillPkgs prj)
 	; Load all the init files from a directory
 	procedure(loadInitFromDir(dir) let((files file)
 		files = getDirFiles(dir)
-		files = remove("IDS.lmgrinit" files) 
+		files = remove("virtue-environment.lmgrinit" files) 
 		when(files
 			foreach(file files
 				cond(
@@ -19,17 +19,16 @@ let((prefix path_skill IDS_libs file skillPkgs prj)
 	; Paths
 	prefix = getShellEnvVar("CONDA_PREFIX")
 	path_skill = strcat(prefix "/lib/skill")
-	printf("Loading SKILL packages from:\n %s\n" path_skill)
+	printf("Loading lib manager skill packages from:\n %s\n" path_skill)
 
-	; Load IDS SKILL lib
-	loadInitFromDir(strcat(path_skill "/IDS-skill"))
-	printf("  Loaded IDS SKILL library\n")
+	loadInitFromDir(strcat(path_skill "/virtue"))
+	printf("  Loaded Virtue SKILL library\n")
 	; Load init files directly from conda env skill lib
 	loadInitFromDir(path_skill)
 
 	; Load projects from directories in conda env skill lib
 	skillPkgs = getDirFiles(path_skill)
-	skillPkgs = remove("IDS-skill" skillPkgs)
+	skillPkgs = remove("virtue" skillPkgs)
 	when(skillPkgs
 		printf("  Loading projects from %s: \n" path_skill)
 		foreach(prj skillPkgs

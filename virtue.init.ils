@@ -1,0 +1,50 @@
+printf("Initializing Virtue SKILL Library\n")
+Virtue = let((file_path dir_path preinit_packages virtue_packages lib)
+
+procedure(GetCurrentFilePath()
+	 file_path = simplifyFilename(get_filename(piport))
+)
+
+procedure(GetCurrentFileDirectory()
+  file_path = GetCurrentFilePath()
+  dir_path = strcat("/" buildString(reverse(cdr(reverse(parseString(file_path "/")))) "/"))
+)
+
+file_path = GetCurrentFilePath()
+dir_path = GetCurrentFileDirectory()
+
+preinit_packages = list(
+  ; Provided by Cadence
+  "calculator/abSP.il"
+	"abSchTree.il"
+  ; Basic
+  "Str.ils"
+	"List.ils"
+)
+foreach(lib preinit_packages
+ 	loadi(strcat(dir_path "/skill/" lib))
+)
+
+virtue_packages = list(
+	; Basic
+	"Test.ils"
+  "Toml.ils"
+	"Geo.ils"
+	; "Sch.ils"
+	"MaeMaestro.ils"
+  "MaeExport.ils"
+	; "skillBridgeMenuItems.il"
+	; "filePathFromLCV.il"
+  ; "SchNets.il"
+  "HdbConfig.il"
+)
+foreach(lib virtue_packages
+  loadi(strcat(dir_path "/skill/" lib))
+)
+
+list(nil
+  'GetCurrentFilePath GetCurrentFilePath
+  'GetCurrentFileDirectory GetCurrentFileDirectory
+))
+
+printf("Initialized Virtue SKILL Library\n")
