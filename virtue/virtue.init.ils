@@ -1,8 +1,9 @@
 printf("Initializing Virtue SKILL Library\n")
+
 Virtue = let((file_path dir_path preinit_packages virtue_packages lib)
 
 procedure(GetCurrentFilePath()
-	 file_path = simplifyFilename(get_filename(piport))
+	 simplifyFilename(get_filename(piport))
 )
 
 procedure(GetCurrentFileDirectory()
@@ -10,7 +11,6 @@ procedure(GetCurrentFileDirectory()
   dir_path = strcat("/" buildString(reverse(cdr(reverse(parseString(file_path "/")))) "/"))
 )
 
-file_path = GetCurrentFilePath()
 dir_path = GetCurrentFileDirectory()
 
 preinit_packages = list(
@@ -46,5 +46,9 @@ list(nil
   'GetCurrentFilePath GetCurrentFilePath
   'GetCurrentFileDirectory GetCurrentFileDirectory
 ))
+
+Virtue = Project->New(Virtue)
+
+define(VrtGetCurrentFileDirectory Virtue->GetCurrentFileDirectory)
 
 printf("Initialized Virtue SKILL Library\n")

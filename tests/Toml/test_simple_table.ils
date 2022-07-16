@@ -1,0 +1,69 @@
+procedure(Test_read_table()
+  let((table table1 table2)  
+  table = Toml->ReadFile("/prj/ids_dev/work_libs/mayberc/IDS-skill/tests/toml/simple_table.toml")
+  println(table)
+  println("keys:")
+  println(table[?])
+  assert(tablep(table["table-1"]))
+  table1=table["table-1"]
+  assert(table1["key1"] == "some string")
+  assert(table1["key2"] == 123)
+  assert(tablep(table["table-2"]))
+  table2=table["table-2"]
+  assert(table2["key1"] == "another string")
+  assert(table2["key2"] == 456)
+))
+
+procedure(Test_write_table()
+  let((filePath table table_dut table1 table2)
+  filePath = "/prj/ids_dev/work_libs/mayberc/IDS-skill/tests/toml/simple_table_write.toml"
+  table = makeTable(filePath)
+  table1 = makeTable("table-1")
+  table["table-1"] = table1
+  table1["key1"] = "some string"
+  table1["key2"] = 123
+  table2 = makeTable("table-2") 
+  table["table-2"] = table2
+  table2["key1"] = "another string"
+  table2["key2"] = 456
+  Toml->WriteFile(filePath table)
+  table_dut = Toml->ReadFile(filePath)
+  table1 = table_dut["table-1"]
+  assert(tablep(table1))
+  assert(table1["key1"] == "some string")
+  assert(table1["key2"] == 123)
+  table2 = table_dut["table-2"]
+  assert(tablep(table2))
+  assert(table2["key1"] == "another string")
+  assert(table2["key2"] == 456)
+))
+
+procedure(Test_table_write_association_list()
+  let((filePath assocList table_dut table1 table2)
+  filePath = "/prj/ids_dev/work_libs/mayberc/IDS-skill/tests/toml/simple_table_write_association_list.toml"
+  table1 = makeTable("table-1")
+  table1["key1"] = "some string"
+  table1["key2"] = 123
+  table2 = makeTable("table-2") 
+  table2["key1"] = "another string"
+  table2["key2"] = 456
+  assocList = list(
+    list("table-1" table1)
+    list("table-2" table2))
+  Toml->WriteFile(filePath assocList)
+  table_dut = Toml->ReadFile(filePath)
+  table1 = table_dut["table-1"]
+  assert(tablep(table1))
+  assert(table1["key1"] == "some string")
+  assert(table1["key2"] == 123)
+  table2 = table_dut["table-2"]
+  assert(tablep(table2))
+  assert(table2["key1"] == "another string")
+  assert(table2["key2"] == 456)
+))
+
+Virtue::TstRunTests(list(
+  Test_read_table
+  Test_write_table
+  Test_table_write_association_list
+))

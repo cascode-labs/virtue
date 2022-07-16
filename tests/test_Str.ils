@@ -104,6 +104,6 @@ Test->run(list(
   Test_Str_bool2str
   Test_Str_startsWith
   Test_Str_endsWith
-  Test_prefixp
-  Test_pathConcat
+  Test_Str_prefixp
+  Test_Str_pathConcat
 ))

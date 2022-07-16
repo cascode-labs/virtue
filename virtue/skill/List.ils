@@ -66,7 +66,7 @@ procedure(assocKeys(assocList "l") let(((out nil))
 	out
 ))
 
-list(nil
+list(1
 	 'ensure ensure
 	 'setDiff setDiff
    'uniqueList uniqueList

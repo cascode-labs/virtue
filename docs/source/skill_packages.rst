@@ -1,7 +1,7 @@
 SKILL Packages
 ==============
 SKILL can be included as a part of any Conda packages and loaded when Cadence
-is started with the "sp" command.  A Conda recipe must be created
+is started with the "vsp" command.  A Conda recipe must be created
 
 The conda package can :
 * Automatic SKILL Code Initialization

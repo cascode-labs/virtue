@@ -1,0 +1,50 @@
+procedure(Test_KeyValueStrings()
+  let((table)  
+  table = Toml->ReadFile("/prj/ids_dev/work_libs/mayberc/IDS-skill/tests/toml/simple_key_value.toml")
+  ;println(table)
+  ;println("keys:")
+  ;println(table[?])
+  assert(table["key"] == "value")
+  assert(table["bare_key1"] == "value1")
+  assert(table["bare-key2"] == "value2")
+  assert(table["1234"] == "value")
+))
+
+procedure(Test_write_kv_table()
+  let((filePath table table_dut)
+  filePath = "/prj/ids_dev/work_libs/mayberc/IDS-skill/tests/toml/simple_key_value_write.toml"
+  table = makeTable(filePath)
+  table["key"] = "value"
+  table["bare_key1"] = "value1"
+  table["bare-key2"] = "value2"
+  table[1234] = "value"
+  Toml->WriteFile(filePath table)
+  table_dut = Toml->ReadFile(filePath)
+  assert(table_dut["key"] == "value")
+  assert(table_dut["bare_key1"] == "value1")
+  assert(table_dut["bare-key2"] == "value2")
+  assert(table_dut["1234"] == "value")
+))
+
+procedure(Test_write_association_list()
+let((filePath assocList table)
+  filePath = "/prj/ids_dev/work_libs/mayberc/IDS-skill/tests/toml/simple_key_value_write_list.toml"
+  assocList = list(
+    list("key" "value")
+    list("bare_key1" "value1")
+    list("bare-key2" "value2")
+    list(1234 "value")
+  )
+  Toml->WriteFile(filePath assocList)
+  table = Toml->ReadFile(filePath)
+  assert(table["key"] == "value")
+  assert(table["bare_key1"] == "value1")
+  assert(table["bare-key2"] == "value2")
+  assert(table["1234"] == "value")
+))
+
+Virtue::TstRunTests(list(
+  TestKeyValueStrings
+  Test_write_kv_table
+  Test_write_association_list
+))

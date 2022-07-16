@@ -132,3 +132,7 @@ list(nil
   'prefixp prefixp
 	'pathConcat pathConcat
 ))
+
+; export 
+define( StrPathConcat Str->pathConcat )
+
