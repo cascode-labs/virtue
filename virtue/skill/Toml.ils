@@ -74,7 +74,7 @@ procedure(WriteFile(filePath input "tg")
 procedure(PrintTable(file table @key (name nil))
   let((key)
   when(name
-    fprintf(file "[%s]\n" name))
+    fprintf(file "\n[%s]\n" name))
   foreach( key table
     PrintKey(file key table[key] ?name name)
   ) 

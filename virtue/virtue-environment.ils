@@ -27,7 +27,7 @@ let((prefix path_skill IDS_libs file skillPkgs prj)
 	;file_path = simplifyFilename(get_filename(piport))
 	;dir_path = buildString(reverse(cdr(reverse(parseString(file_path "/")))) "/")
 
-	; Load IDS SKILL lib
+	; Load SKILL lib
 	loadInitFromDir(strcat(path_skill "/virtue"))
 	;printf("  Loaded Virtue SKILL library\n")
 
@@ -37,6 +37,7 @@ let((prefix path_skill IDS_libs file skillPkgs prj)
 	; Load projects from directories in conda env skill lib
 	skillPkgs = getDirFiles(path_skill)
 	skillPkgs = remove("virtue" skillPkgs)
+	skillPkgs = remove("IDS-skill" skillPkgs)
 	skillPkgs = remove("." skillPkgs)
 	skillPkgs = remove(".." skillPkgs)
 	when(skillPkgs

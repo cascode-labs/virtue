@@ -112,6 +112,12 @@ procedure(prefixp(string prefix "tt")
   )
 )
 
+procedure(pathConcat(@rest pathParts "t")
+  "Concatenates each of the string partial paths into a full path by 
+	concatenating them with file seperators,'/', between them"
+	buildString(pathParts "/")
+)
+
 list(nil
 	'emptyp emptyp
 	'split split 
@@ -124,4 +130,5 @@ list(nil
 	'startsWith startsWith
 	'endsWith endsWith
   'prefixp prefixp
+	'pathConcat pathConcat
 ))

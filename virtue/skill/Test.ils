@@ -48,7 +48,7 @@ procedure(run_directory_suite(directory_path "t")
    @brief Run a directory of test files with each containing a call to Test->run
    @param functionList A list of test function objects to run
    @return success A boolean representing "
-  let((files file success)
+  let((files file test_file_path test_files success)
   reset_suite()
   __running_suite = 't
 	files = getDirFiles(directory_path)
@@ -60,11 +60,14 @@ procedure(run_directory_suite(directory_path "t")
       when(Str->endsWith(file ".il") || 
            Str->endsWith(file ".ils") && 
            (Str->prefixp(file "test_") || Str->prefixp(file "Test_"))
-        loadi(strcat(directory_path "/" file))
+        test_file_path = strcat(directory_path "/" file)
+        loadi(test_file_path)
+        test_files = append1(test_files test_file_path)
       )
     )
   )
   success = (__suite_success_count == __suite_run_count)
+  report_suite_result(test_files)
   reset_suite()
   success
 ))
@@ -75,6 +78,16 @@ procedure(reset_suite()
   __suite_success_count = 0
   __suite_run_count = 0
 )
+
+procedure(report_suite_result(test_files "l")
+  let((file)
+  printf("\nTEST SUITE RESULTS\n------------------\n")
+  printf("\nTest files ran:\n")
+  foreach(file test_files
+    printf("%s\n" file)
+  )
+  printf("\n%d / %d tests successful\n" __suite_success_count __suite_run_count)
+))
 
 list(nil
   'run run

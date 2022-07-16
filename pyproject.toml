@@ -1,0 +1,35 @@
+[build-system]
+requires = ["flit_core>=3.2"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "virtue"
+authors = [
+   {name="Curtis Mayberry", email="Curtisma3@gmail.com"},
+]
+maintainers = [
+   {name="Curtis Mayberry", email="Curtisma3@gmail.com"},
+]
+readme = "README.md"
+license = {file="LICENSE"}
+requires-python = ">=3.8"
+classifiers = [
+   "Programming Language :: Python :: 3",
+   "License :: OSI Approved :: MIT License",
+   "Operating System :: OS Independent",
+]
+keywords = [
+   "circuit design",
+   "design automation",
+   "Cadence",
+   "virtuoso",
+   "SKILL",
+   "Python"
+]
+dynamic = ["version", "description"]
+
+[project.urls]
+"Home" = "https://github.com/cascode-labs/virtue"
+
+[tool.flit.module]
+name = "virtue"

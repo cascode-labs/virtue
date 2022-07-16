@@ -28,7 +28,7 @@ procedure(Test_Str_str2bool()
 )
 
 procedure(Test_Str_str2bool_error()
-    assert(!(errset(Str->str2bool("Nothing"))))
+    assert(!errset(Str->str2bool("Nothing")))
 )
 
 procedure(Test_Str_convertNumber()
@@ -64,10 +64,10 @@ procedure(Test_Str_bool2str()
 
 procedure(Test_Str_startsWith()
     assert(Str->startsWith("HiMan" "Hi"))
-    assert(Str->startsWith("HiMan" "Hi") == "Hi")
+    assert(Str->startsWith("HiMan" "Hi") == "Man")
     assert(!Str->startsWith("HiMan" "Man"))
     assert(!Str->startsWith("HiManly" "High"))
-    assert(!Str->startsWith("HiManly" "H"))
+    assert(Str->startsWith("HiManly" "H"))
 )
 
 procedure(Test_Str_endsWith()
@@ -77,14 +77,20 @@ procedure(Test_Str_endsWith()
     assert(!Str->endsWith("HiManly" "Hi"))
 )
 
-procedure(Test_prefixp()
+procedure(Test_Str_prefixp()
     assert(Str->prefixp("preFix" "pre"))
     assert(!Str->prefixp("notpreFix" "pre"))
     assert(!Str->prefixp("no" "pre"))
 )
 
-))
-
+procedure(Test_Str_pathConcat()
+  assert(Str->pathConcat("/absolute" "path" "to" "a" "directory") == 
+         "/absolute/path/to/a/directory")
+  assert(Str->pathConcat("" "absolute" "path" "to" "a" "directory") == 
+         "/absolute/path/to/a/directory")
+  assert(Str->pathConcat("/absolute" "path" "to" "a" "file.txt") == 
+         "/absolute/path/to/a/file.txt")
+)
 
 Test->run(list(
   Test_Str_emptyp
@@ -99,4 +105,5 @@ Test->run(list(
   Test_Str_startsWith
   Test_Str_endsWith
   Test_prefixp
+  Test_pathConcat
 ))

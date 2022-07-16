@@ -1,10 +1,10 @@
 #!/bin/tcsh
-# sp: start project
+# vsp: virtue start project
 set CONDA_ENVS_ROOT = "/prj/ids/ids-conda/envs-production"
 
 # Display the help when no arguments are provided
 if ($# == 0) then
-	sp -h
+	vsp -h
 	exit 0
 endif
 
@@ -68,8 +68,8 @@ while (1)
 	case -h:
 	case --help:
 		echo ""
-		echo "Start Project (sp)"
-		echo " sp [Options] [prj_name]"
+		echo "Virtue Start Project (vsp)"
+		echo " vsp [Options] [prj_name]"
 		echo "   Starts a cadence project in the IDS environment"
 		echo " Example:"
 		echo "   sp sky58270_mk5872ASM_CR"

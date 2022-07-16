@@ -1,0 +1,27 @@
+Lcv = let(()
+
+procedure(lib(cellname_list "l")
+  "Get the library name frim a lcv (lib, cell, view) list"
+  car(cell_list)
+)
+procedure(cell(cellname_list "l")
+  "Get the cell name frim a lcv (lib, cell, view) list"
+  cadr(cell_list)
+)
+
+procedure(view(cellname_list "l")
+  "Get the view name frim a lcv (lib, cell, view) list"
+  caddr(cell_list)
+)
+
+procedure(history(cellname_list "l")
+  "Get the history name frim a lcvh (lib, cell, view, history) list"
+  cadddr(cell_list)
+)
+
+list(nil
+  'lib lib
+  'cell cell
+  'view view
+  'history history
+))
