@@ -1,3 +1,3 @@
 # VIRTUE
 
-Cadence Virtuoso library and Viper Virtuoso Support library
+Cadence Virtuoso SKILL++ library
