@@ -1,0 +1,47 @@
+let((Package 
+     (package_description "Create Virtue SKILL packages"))
+    )
+
+procedure(FunctionDocStrings(package "l")
+  "Reads the documentation string for all the public functions of a package"
+  let((property_symbol)  
+  for(property
+    fdoc(
+
+Package = let(()
+
+  procedure(IsPackage(input "g")
+    listp(input) && tablep(car(input)))
+  
+  procedure(New(package_symbol package_dpl 
+                @optional project_package_dpl 
+                @key (description "") "sllt")
+    "Add a new SKILL Package to Virtue.
+    @param package_symbol A symbol of the package name
+    @param package_dpl The package decomposed property list (DPL)
+    @param project_package_dpl The top-level package of the project which defines this package
+    @brief Add a new SKILL Package to Virtue."
+    let((package_table)
+    
+    if(IsPackage(package_dpl) then
+      package_table = car(package_dpl)
+    else
+      package_table = makeTable(strcat(symbolToString(package_symbol) " package"))
+      package_dpl = cons(package_table cdr(package_dpl))
+    )
+    package_table['symbol] = package_symbol
+    package_table['project] = project_package_dpl
+    package_table['description] = description
+    Import[package_symbol] = package_dpl
+    package_dpl
+  ))
+
+  list(nil
+    'New New
+    'IsPackage IsPackage
+  )
+)
+
+Package->New('Package Package Virtue 
+             ?description package_description)
+)
