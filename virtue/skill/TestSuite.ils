@@ -1,37 +1,60 @@
-let((Test
-     (Str Import['Str])
-     (Package Import['Package])
-     (package_description "SKILL Test framework modeled after PyTest")
+let(((Test Import('Test))
     )
 
-Test = let((current_suite)
+  procedure(ReportSuiteResult(suite "l")
+    let((pass_message)
+    if(pass then
+      pass_message = "passed"
+    else 
+      pass_message = "failed")
+    printf("%s %s\n" result->pass pass_message)
+  )
 
-  procedure(Run(functions @optional test_file_path "lt")
+  procedure(NewSuite(files "l")
+    list(nil
+      'results nil
+      'files files
+    )
+  )
+  putProp(Test NewResult 'NewResult)
+
+)
+
+
+Test = let(
+  ((__running_suite nil) (__suite_success_count 0) (__suite_run_count 0))
+
+  procedure(run(functionList "l")
     "Run the list of functions as tests.  Each function is considered passing if
      it doesn't throw an error.  The assert function can be used inside the 
      function to implement the tests.
-
+  
      @brief Run a list of test functions.
-     @param functions A list of test function objects to run
-     @param test_file_path The optional file path for the file defining the tests
-     @return success A boolean representing"
-    let((pass error_details)
-    printf("\nRunning %d Tests\n" length(functions))
-    unless(current_suite
-      current_suite = Test->NewSuite()
-    )
-    foreachs(function functions
-      pass = errset(
+     @param functionList A list of test function objects to run
+     @return success A boolean representing "
+    let((function (run_count 0) run_status (success_count 0) (failures nil) 
+         failure error_details)
+    printf("\nRunning %d Tests\n" length(functionList))
+    foreach(function functionList
+      run_status = errset(
         function()
       )
-      unless(pass
+      run_count = run_count +1
+      when(__running_suite
+        __suite_run_count = __suite_run_count + 1
+      )
+      if(run_status then
+        success_count = success_count + 1
+        printf("%L: Pass\n" function)
+        when(__running_suite
+          __suite_success_count = __suite_success_count + 1
+        )
+      else
         error_details = errset.errset
+        failures = append1(failures list(function error_details))
         printf("%L: Failure\n   %s\n" function caar(last(error_details)))
       )
-      Test->NewResult(pass 
-                      ?error_details error_details) ; ?function_name 
     )
- 
     foreach(failure failures 
       printf("\nFailed Test Function: %L\n" car(failure))
     )
@@ -90,13 +113,11 @@ Test = let((current_suite)
   ))
   
   list(nil
-    'Run run
+    'run run
     'run_directory_suite run_directory_suite
     'reset_suite reset_suite
   )
 )
 
-Package->New('Test Test
-             ?project Virtue
-             ?description package_description)
+Package->New('Test Test Virtue)
 )

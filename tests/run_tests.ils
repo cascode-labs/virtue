@@ -1,4 +1,6 @@
-let((dir_path)
+let((dir_path
+     (Test Import['Test])
+    )
 
 dir_path = Virtue->GetCurrentFileDirectory()
 

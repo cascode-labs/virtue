@@ -1,3 +1,5 @@
+let(((Str Import['Str]))
+
 procedure(Test_Str_emptyp()
     assert(Str->emptyp(""))
     assert(!Str->emptyp("test"))
@@ -107,3 +109,4 @@ Test->run(list(
   Test_Str_prefixp
   Test_Str_pathConcat
 ))
+)

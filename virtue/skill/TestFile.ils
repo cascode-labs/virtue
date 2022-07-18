@@ -4,34 +4,37 @@ let((Test
      (package_description "SKILL Test framework modeled after PyTest")
     )
 
-Test = let((current_suite)
+Test = let((current_suite )
 
-  procedure(Run(functions @optional test_file_path "lt")
+  procedure(run(functionList "l")
     "Run the list of functions as tests.  Each function is considered passing if
      it doesn't throw an error.  The assert function can be used inside the 
      function to implement the tests.
-
+  
      @brief Run a list of test functions.
-     @param functions A list of test function objects to run
-     @param test_file_path The optional file path for the file defining the tests
-     @return success A boolean representing"
-    let((pass error_details)
-    printf("\nRunning %d Tests\n" length(functions))
-    unless(current_suite
-      current_suite = Test->NewSuite()
-    )
-    foreachs(function functions
-      pass = errset(
+     @param functionList A list of test function objects to run
+     @return success A boolean representing "
+    let((function run_status error_details)
+    printf("\nRunning %d Tests\n" length(functionList))
+    foreach(function functionList
+      run_status = errset(
         function()
       )
-      unless(pass
+      unless(current_suite
+        current_suite = Test->NewSuite()
+      )
+      if(run_status then
+        success_count = success_count + 1
+        printf("%L: Pass\n" function)
+        when(__running_suite
+          __suite_success_count = __suite_success_count + 1
+        )
+      else
         error_details = errset.errset
+        failures = append1(failures list(function error_details))
         printf("%L: Failure\n   %s\n" function caar(last(error_details)))
       )
-      Test->NewResult(pass 
-                      ?error_details error_details) ; ?function_name 
     )
- 
     foreach(failure failures 
       printf("\nFailed Test Function: %L\n" car(failure))
     )
@@ -90,13 +93,12 @@ Test = let((current_suite)
   ))
   
   list(nil
-    'Run run
+    'run run
     'run_directory_suite run_directory_suite
     'reset_suite reset_suite
   )
 )
 
-Package->New('Test Test
-             ?project Virtue
+Package->New('Test Test Virtue
              ?description package_description)
 )
