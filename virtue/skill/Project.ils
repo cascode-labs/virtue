@@ -34,14 +34,6 @@ Project = let(((project_packages makeTable("virtue project packages")))
   procedure(register_project(project_package "l")
     project_packages[car(project_package)['symbol]] = project_package)
 
-  /*
-  procedure(LoadContext(file_path "t")
-    "Load a context and call its initialization function"
-    loadContext(file_path)
-    callInitProc(Str->PathFileName(file_path))
-  )
-  */
-
   list(nil
     'New New
     'ProjectPackages project_packages
