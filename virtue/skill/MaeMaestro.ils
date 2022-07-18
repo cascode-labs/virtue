@@ -1,111 +1,119 @@
+let((Maestro
+     (Package Import['Package])
+    )
 
 ; Skill Functions for Maestro views
-Mae = let(()
+Maestro = let(()
 
-procedure(ExportCellImage(lib cell view filepath) let((win (out nil))
-	win = geOpen(?lib lib ?cell cell ?view view ?mode "r")
-	when(win
-		out = hiExportImage(
-			?fileName filepath 
-			?window win
-			?exportRegion 'entireDesign 
-			?bgColor "white"
-			?fgColor "black"
-			?colorType 'biColor
-			?windowProps list( list("drawAxesOn" nil) list("drawGridOn" nil))
-			?width 2048)
-		hiCloseWindow(win)
-	)
-	out
-))
-
-; Exports the outputs to a csv file called "topOutputs.csv" in the project doc folder and returns the path to the CSV
-procedure(ExportOutputCSVtoDocFolder(sessionName) let((prj outPath)
-	prj = SkyPrj->new()
-	readEnv(prj)
-	outPath = skyPath->new(prj->DocPath->Path "topOutputs.csv")
-	if(axlOutputsExportToFile(sessionName outPath->Path) then
-		outPath->Path
-	else
-		nil)
-))
-
-; Returns the test's design LCV (Library, Cell, View) information
-;  If the view is a config, then it also has the LCV of the top-level cell of the config.
-procedure(GetTestDesign(sessionName testName) let((test out config)
-	"Returns the test's design LCV (Library, Cell, View) information.
-	If the view is a config, then it also has the LCV of the top-level cell of the config."
-	test = maeGetTestSession(testName ?session sessionName)
-	out = list(asiGetDesignLibName(test) asiGetDesignCellName(test) asiGetDesignViewName(test))
-	; Find the config view
-	if(hdbIsConfig(car(out) cadr(out) caddr(out)) then
-		config = hdbOpen(car(out) cadr(out) caddr(out) "r")
-		out = append(out list(hdbGetTopLibName(config) hdbGetTopCellName(config) hdbGetTopViewName(config)))
-		hdbClose(config)
-	)
-	out
-))
-
-procedure(GetTestInfo(sessionName testName) let(()
-	list(
-		testName
-		GetTestDesign(sessionName testName)
-		maeGetEnabledAnalysis(testName ?session sessionName)
-)))
-
-
-procedure(CellViewInfoAssoc(sessionName)
-	list(
-		list("Tests" maeGetSetup() ?session sessionName)
-		list("OutputsCsvPath" ExportOutputCSVtoDocFolder(sessionName))
-		list("SessionLCV" list(
-			axlGetSessionLibName(sessionName) 
-			axlGetSessionCellName(sessionName)
-			axlGetSessionViewName(sessionName)))
-	)
+  procedure(ExportCellImage(lib cell view filepath) let((win (out nil))
+  	win = geOpen(?lib lib ?cell cell ?view view ?mode "r")
+  	when(win
+  		out = hiExportImage(
+  			?fileName filepath 
+  			?window win
+  			?exportRegion 'entireDesign 
+  			?bgColor "white"
+  			?fgColor "black"
+  			?colorType 'biColor
+  			?windowProps list( list("drawAxesOn" nil) list("drawGridOn" nil))
+  			?width 2048)
+  		hiCloseWindow(win)
+  	)
+  	out
+  ))
+  
+  ; Exports the outputs to a csv file called "topOutputs.csv" in the project doc folder and returns the path to the CSV
+  procedure(ExportOutputCSVtoDocFolder(sessionName) let((prj outPath)
+  	prj = SkyPrj->new()
+  	readEnv(prj)
+  	outPath = skyPath->new(prj->DocPath->Path "topOutputs.csv")
+  	if(axlOutputsExportToFile(sessionName outPath->Path) then
+  		outPath->Path
+  	else
+  		nil)
+  ))
+  
+  ; Returns the test's design LCV (Library, Cell, View) information
+  ;  If the view is a config, then it also has the LCV of the top-level cell of the config.
+  procedure(GetTestDesign(sessionName testName) let((test out config)
+  	"Returns the test's design LCV (Library, Cell, View) information.
+  	If the view is a config, then it also has the LCV of the top-level cell of the config."
+  	test = maeGetTestSession(testName ?session sessionName)
+  	out = list(asiGetDesignLibName(test) asiGetDesignCellName(test) asiGetDesignViewName(test))
+  	; Find the config view
+  	if(hdbIsConfig(car(out) cadr(out) caddr(out)) then
+  		config = hdbOpen(car(out) cadr(out) caddr(out) "r")
+  		out = append(out list(hdbGetTopLibName(config) hdbGetTopCellName(config) hdbGetTopViewName(config)))
+  		hdbClose(config)
+  	)
+  	out
+  ))
+  
+  procedure(GetTestInfo(sessionName testName) let(()
+  	list(
+  		testName
+  		GetTestDesign(sessionName testName)
+  		maeGetEnabledAnalysis(testName ?session sessionName)
+  )))
+  
+  
+  procedure(CellViewInfoAssoc(sessionName)
+  	list(
+  		list("Tests" maeGetSetup() ?session sessionName)
+  		list("OutputsCsvPath" ExportOutputCSVtoDocFolder(sessionName))
+  		list("SessionLCV" list(
+  			axlGetSessionLibName(sessionName) 
+  			axlGetSessionCellName(sessionName)
+  			axlGetSessionViewName(sessionName)))
+  	)
+  )
+  ; Used for the MATLAB DataPanels
+  procedure(TestInfoAssoc(sessionName testName imagePath) let((testSession design imgSuccess)
+  	testSession = maeGetTestSession(testName ?session sessionName)
+  	design = GetTestDesign(sessionName testName)
+  	prj = SkyPrj->new()
+  	readEnv(prj)
+  	if(imagePath then
+  		imagePath = skyPath->new(imagePath)
+  	else
+  		imagePath = skyPath->new(prj->DocPath "tbSchemImage.png")
+  	)
+  	case(length(design)
+  		(3 imgSuccess = ExportCellImage(nth(0 design) nth(1 design) nth(2 design) imagePath->Path))
+  		(6 imgSuccess = ExportCellImage(nth(3 design) nth(4 design) nth(5 design) imagePath->Path))
+  	)
+  	when(not(imgSuccess)
+  		imagePath = skyPath->new(""))
+  	list(
+  		list("EnabledAnalyses" GetEnabledAnalysisNames(testSession))
+  		list("DesignCell" design)
+  		list("SchematicImagePath" imagePath->Path)
+  	)
+  ))
+  
+  procedure(GetEnabledAnalysisNames(testSession) let((out)
+  	foreach(analysis asiGetEnabledAnalysisList(testSession)
+  		out = append1(out symbolToString(asiGetAnalysisName(analysis)))
+  	)
+  	out
+  ))
+  	/*
+  	dbId = axlGetMainSetupDB(car(maeGetSessions()))
+  	testId = axlGetTest(dbId testName)
+  	testSess = asiGetSession(testId) 
+  	asiGetOutputList(testSess)
+  	*/
+  
+  list(nil
+  	'TestInfoAssoc TestInfoAssoc
+  	'GetEnabledAnalysisNames GetEnabledAnalysisNames
+  	'ExportCellImage ExportCellImage
+  	'CellViewInfoAssoc CellViewInfoAssoc
+  	'GetTestDesign GetTestDesign
+  	'GetTestInfo GetTestInfo
+  )
 )
-; Used for the MATLAB DataPanels
-procedure(TestInfoAssoc(sessionName testName imagePath) let((testSession design imgSuccess)
-	testSession = maeGetTestSession(testName ?session sessionName)
-	design = GetTestDesign(sessionName testName)
-	prj = SkyPrj->new()
-	readEnv(prj)
-	if(imagePath then
-		imagePath = skyPath->new(imagePath)
-	else
-		imagePath = skyPath->new(prj->DocPath "tbSchemImage.png")
-	)
-	case(length(design)
-		(3 imgSuccess = ExportCellImage(nth(0 design) nth(1 design) nth(2 design) imagePath->Path))
-		(6 imgSuccess = ExportCellImage(nth(3 design) nth(4 design) nth(5 design) imagePath->Path))
-	)
-	when(not(imgSuccess)
-		imagePath = skyPath->new(""))
-	list(
-		list("EnabledAnalyses" GetEnabledAnalysisNames(testSession))
-		list("DesignCell" design)
-		list("SchematicImagePath" imagePath->Path)
-	)
-))
 
-procedure(GetEnabledAnalysisNames(testSession) let((out)
-	foreach(analysis asiGetEnabledAnalysisList(testSession)
-		out = append1(out symbolToString(asiGetAnalysisName(analysis)))
-	)
-	out
-))
-	/*
-	dbId = axlGetMainSetupDB(car(maeGetSessions()))
-	testId = axlGetTest(dbId testName)
-	testSess = asiGetSession(testId) 
-	asiGetOutputList(testSess)
-	*/
-
-list(nil
-	'TestInfoAssoc TestInfoAssoc
-	'GetEnabledAnalysisNames GetEnabledAnalysisNames
-	'ExportCellImage ExportCellImage
-	'CellViewInfoAssoc CellViewInfoAssoc
-	'GetTestDesign GetTestDesign
-	'GetTestInfo GetTestInfo
-))
+Package->New('Maestro Maestro
+             ?project Virtue)
+)

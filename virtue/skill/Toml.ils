@@ -1,3 +1,11 @@
+let((Toml
+     (package_description "Reads and writes 
+        Tom's Obvious Markup Language (.toml) configuration 
+        files. https://toml.io/en/")
+     (Str Import['Str])
+     (Package Import['Package])
+    )
+
 Toml = let(()
 
 ; Reads a toml file and returns it's contents as a SKILL table
@@ -114,3 +122,8 @@ list(nil
 	'ReadFile ReadFile
   'WriteFile WriteFile
 ))
+
+Package->New('Toml Toml 
+             ?project Virtue
+             ?description package_description)
+)

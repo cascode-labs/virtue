@@ -1,3 +1,7 @@
+let((Str
+     (package_description "String functions")
+     (Package Import['Package])
+    )
 Str = let(()
 
 procedure(emptyp(in "g")
@@ -133,6 +137,8 @@ list(nil
 	'pathConcat pathConcat
 ))
 
-; export 
-define( StrPathConcat Str->pathConcat )
+Package->New('Str Str
+             ?project Virtue
+             ?description package_description)
 
+)

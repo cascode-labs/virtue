@@ -1,54 +1,73 @@
-printf("Initializing Virtue SKILL Library\n")
+define(Import nil)
+Import = makeTable("Virtue Package Import Table")
 
-Virtue = let((file_path dir_path preinit_packages virtue_packages lib)
+let((Virtue)
 
-procedure(GetCurrentFilePath()
-	 simplifyFilename(get_filename(piport))
-)
+Virtue = let(((package_description "SKILL++ Library and package manager")
+             )
 
-procedure(GetCurrentFileDirectory()
-  file_path = GetCurrentFilePath()
-  dir_path = strcat("/" buildString(reverse(cdr(reverse(parseString(file_path "/")))) "/"))
-)
+  procedure(GetCurrentFilePath()
+    simplifyFilename(get_filename(piport))
+  )
 
-dir_path = GetCurrentFileDirectory()
+  procedure(GetCurrentFileDirectory()
+    let((file_path)
+    file_path = GetCurrentFilePath()
+    strcat("/" buildString(reverse(cdr(reverse(parseString(file_path "/")))) "/"))
+  ))
 
-preinit_packages = list(
-  ; Provided by Cadence
-  "calculator/abSP.il"
-	"abSchTree.il"
-  ; Basic
-  "Str.ils"
-	"List.ils"
-)
-foreach(lib preinit_packages
- 	loadi(strcat(dir_path "/skill/" lib))
-)
+  procedure(Initialize()
+    let((dir_path preinit_packages Package Project virtue_packages lib)
+    printf("\nInitializing Virtue SKILL++ Library\n")
 
-virtue_packages = list(
-	; Basic
-	"Test.ils"
-  "Toml.ils"
-	"Geo.ils"
-	; "Sch.ils"
-	"MaeMaestro.ils"
-  "MaeExport.ils"
-	; "skillBridgeMenuItems.il"
-	; "filePathFromLCV.il"
-  ; "SchNets.il"
-  "HdbConfig.il"
-)
-foreach(lib virtue_packages
-  loadi(strcat(dir_path "/skill/" lib))
-)
+    dir_path = GetCurrentFileDirectory()
 
-list(nil
-  'GetCurrentFilePath GetCurrentFilePath
-  'GetCurrentFileDirectory GetCurrentFileDirectory
+    loadi(strcat(dir_path "/skill/Package.ils"))
+    Package = Import['Package]
+    Virtue = Package->New('Virtue Virtue 
+      ?project Virtue
+      ?description package_description)
+
+    preinit_packages = list(
+      "Str.ils"
+      "Toml.ils"
+      "Project.ils"
+    )
+    Package->load_list(preinit_packages 
+      ?root_path Str->pathConcat(dir_path "skill")
+      ?continue_on_error 't)
+
+    Project = Import['Project]
+    Project->New(Virtue dir_path)
+
+    virtue_packages = list(
+    	; Basic
+      "List.ils"
+    	"Test.ils"
+    	"Geo.ils"
+      ; Provided by Cadence
+      "calculator/Calculator.ils"
+    	"abSchTree.il"
+    	; "Sch.ils"
+    	"MaeMaestro.ils"
+      "MaeExport.ils"
+    	; "skillBridgeMenuItems.il"
+    	; "filePathFromLCV.il"
+      ; "SchNets.il"
+      "HdbConfig.ils"
+    )
+    Package->load_list(virtue_packages 
+      ?root_path Str->pathConcat(dir_path "skill")
+      ?continue_on_error 't)
+    printf("Initialized Virtue SKILL++ Library\n")
+  ))
+
+  list(nil
+    'Import Import
+    'Initialize Initialize
+    'GetCurrentFilePath GetCurrentFilePath
+    'GetCurrentFileDirectory GetCurrentFileDirectory 
 ))
 
-Virtue = Project->New(Virtue)
-
-define(VrtGetCurrentFileDirectory Virtue->GetCurrentFileDirectory)
-
-printf("Initialized Virtue SKILL Library\n")
+Virtue->Initialize()
+)

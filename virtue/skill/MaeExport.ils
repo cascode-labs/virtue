@@ -1,4 +1,8 @@
 ; Exports information about a Maestro view
+let((MaeExport
+     (Package Import['Package])
+    )
+
 MaeExport = let(()
 
 procedure(ExportMaestroHistoryInfoTable(sessionName hsdb filePath "t")
@@ -72,3 +76,7 @@ list(nil
     'ExportMaestroHistoryInfoTable ExportMaestroHistoryInfoTable
     'BuildMaestroHistoryInfoTable BuildMaestroHistoryInfoTable
 ))
+
+Package->New('MaeExport MaeExport 
+             ?project Virtue)
+)

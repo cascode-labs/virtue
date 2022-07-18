@@ -1,4 +1,11 @@
-procedure(HdbCreateConfigView(configLCV topCellLCV libraryList viewList stopList) prog((configId result)
+let((Hdb
+     (package_description "Hierarchy database functions for config views")
+     (Package Import['Package])
+    )
+
+Hdb = let(()
+
+procedure(CreateConfigView(configLCV topCellLCV libraryList viewList stopList) prog((configId result)
     "Creates a config view in a given lib-cell-view. Sets the top cell 
      lib-cell-view. Sets the config library list, view list, and stop list in 
      the global binding section.
@@ -24,3 +31,12 @@ procedure(HdbCreateConfigView(configLCV topCellLCV libraryList viewList stopList
     result = hdbClose(configId)
     return(result)
 ))
+
+list(nil
+  'CreateConfigView CreateConfigView
+))
+
+Package->New('Hdb Hdb 
+             ?project Virtue
+             ?description package_description)
+)

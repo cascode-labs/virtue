@@ -1,76 +1,86 @@
+let((List
+     (package_description "List functions")
+     (Package Import['Package])
+    )
+
 List = let(()
 
-procedure(ensure(input "g")
-  "Ensures the input is a list, making it a list if it isn't one already."
-  unless(listp(input)
-    input = list(input))
-  input
+  procedure(ensure(input "g")
+    "Ensures the input is a list, making it a list if it isn't one already."
+    unless(listp(input)
+      input = list(input))
+    input
+  )
+  
+  procedure(setDiff(plusList minusList "ll") let(()
+    "Returns plusList with the items in minusList removed"
+  	foreach(item minusList
+  		plusList = remove(item plusList)
+  	)
+  	plusList
+  ))
+  
+  procedure(uniqueList(input "l")
+    "Returns a list of items of the unique elements from the input list
+     It doesn't guarantee the order of the elements but is much faster than the ordered version. "
+    let(((table makeTable('uniq_table)))
+    foreach(item input
+      table[item] = 't
+    )
+    table->?
+  ))
+  
+  procedure(uniqueListOrdered(in "l") let((item out noAdd)
+    "Returns a list of items of the unique elements from the input list 
+     while keeping the order between the first unique elements"
+  	out = '()
+  	foreach(item in
+  		noAdd = member(item out)
+  		unless(noAdd
+  			out = append(out list(item))
+  		) 
+  	)
+  out
+  ))
+  
+  ;;;;;;;;;;;;;;;;;;;;;;
+  ; Obj Instance Lists ;
+  ;;;;;;;;;;;;;;;;;;;;;;
+  
+  procedure(getSlot(objList slotName "ls") let((obj out)
+    "Returns a list of the value of the given slot of each instance in the list
+  
+    @param objList A list of skill++ object instances
+    @param slotName A symbol of the slot name
+    "
+  	foreach(obj objList
+  		out = tconc(out slotValue(obj slotName))
+  	)
+  	car(out)
+  ))
+  
+  ;;;;;;;;;;;;;;;;;;;;;
+  ; Association Lists ;
+  ;;;;;;;;;;;;;;;;;;;;;
+  
+  procedure(assocKeys(assocList "l") let(((out nil))
+    "Returns all the keys in the specified association list"
+  	foreach(item assocList
+  		out = tconc(out car(item)))
+  	out
+  ))
+  
+  list(nil
+  	 'ensure ensure
+  	 'setDiff setDiff
+     'uniqueList uniqueList
+     'uniqueListOrdered uniqueListOrdered
+  	 'getSlot getSlot
+  	 'assocKeys assocKeys
+  )
 )
 
-procedure(setDiff(plusList minusList "ll") let(()
-  "Returns plusList with the items in minusList removed"
-	foreach(item minusList
-		plusList = remove(item plusList)
-	)
-	plusList
-))
-
-
-procedure(uniqueList(input "l")
-  "Returns a list of items of the unique elements from the input list
-   It doesn't guarantee the order of the elements but is much faster than the ordered version. "
-  let(((table makeTable('uniq_table)))
-  foreach(item input
-    table[item] = 't
-  )
-  table->?
-))
-
-procedure(uniqueListOrdered(in "l") let((item out noAdd)
-  "Returns a list of items of the unique elements from the input list 
-   while keeping the order between the first unique elements"
-	out = '()
-	foreach(item in
-		noAdd = member(item out)
-		unless(noAdd
-			out = append(out list(item))
-		) 
-	)
-out
-))
-
-;;;;;;;;;;;;;;;;;;;;;;
-; Obj Instance Lists ;
-;;;;;;;;;;;;;;;;;;;;;;
-
-procedure(getSlot(objList slotName "ls") let((obj out)
-  "Returns a list of the value of the given slot of each instance in the list
-
-  @param objList A list of skill++ object instances
-  @param slotName A symbol of the slot name
-  "
-	foreach(obj objList
-		out = tconc(out slotValue(obj slotName))
-	)
-	car(out)
-))
-
-;;;;;;;;;;;;;;;;;;;;;
-; Association Lists ;
-;;;;;;;;;;;;;;;;;;;;;
-
-procedure(assocKeys(assocList "l") let(((out nil))
-  "Returns all the keys in the specified association list"
-	foreach(item assocList
-		out = tconc(out car(item)))
-	out
-))
-
-list(1
-	 'ensure ensure
-	 'setDiff setDiff
-   'uniqueList uniqueList
-   'uniqueListOrdered uniqueListOrdered
-	 'getSlot getSlot
-	 'assocKeys assocKeys
-))
+Package->New('List List
+             ?project Virtue
+             ?description package_description)
+)

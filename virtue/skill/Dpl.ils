@@ -1,0 +1,49 @@
+let((Dpl
+     (package_description "Disembodied property list functions")
+     (Package Import['Package])
+    )
+Dpl = let(()
+
+  procedure(Concat(dpl_1 dpl_2 "ll")
+    "Appends the data (car) and property lists of dpl_1 and dpl_2."
+    cons(append(car(dpl_1) car(dpl_2)) append(cdr(dpl_1) cdr(dpl_2)))
+  )
+
+  procedure(PropertyTable(input_dpl "l")
+    "Convert a DPL to an association table"
+    let((property_list (idx 2) (table makeTable("dpl properties")))
+    property_list = cdr(input_dpl)
+    while(idx <= length(property_list)
+      table[car(property_list)] = cadr(property_list)
+      property_list = cddr(propert_list)
+      idx = idx + 2
+    )
+    table
+  ))
+
+  procedure(foreach_property(key value @rest rest_args "ssg")
+    let((property_list (idx 2))
+    property_list = cdr(input_dpl)
+    while(idx <= length(property_list)
+      key = ie
+      property_list = cddr(propert_list)
+
+  procedure(PropertyNames(input_dpl "l")
+    let((property_list (idx 2))
+    property_list = cdr(input_dpl)
+    while(idx <= length(property_list)
+  )
+
+  procedure(PropertyValues(input_dpl "l")
+
+  )
+
+  list(nil
+    'PropertyTable PropertyTable
+  )
+)
+
+Package->New('Test Test
+             ?project Virtue
+             ?description package_description)
+)

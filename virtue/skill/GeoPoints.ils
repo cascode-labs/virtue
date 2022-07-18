@@ -1,35 +1,15 @@
- /*****************************************************************
-  *                                                               *
-  *             Layout Geometry Package                           *
-  *                                                               *
-  *   Handles layout geometries such as shapes, points, and       *
-  *    bounding boxes                                             *
-  *                                                               *
-  *   * Points are handled by functions starting with pt          *
-  *   * Bounding boxes are handled by functions starting with     *
-  *      bBox                                                     *
-  *   * Figures are handled by functions starting with fig        *
-  *   * Mosaics are handled by functions starting with mos        *
-  *                                                               *
-  *****************************************************************/
+; Point Geometry Package
+; -------------------------
+; Built-in Point Functions:
+;  * isLocation
+;  * xCoord
+;  * yCoord
+;  * dbTransformPoint
+;  * dbTransformPointList
+;  * dbConcatTransform
 
-let((Geo
-     (package_description "Geometry functions")
-     (Package Import['Package])
+let(((Geo Import('Geo))
     )
-
-Geo = let(()
-
-  ;;;;;;;;;;
-  ; Points ;
-  ;;;;;;;;;;
-  ; Built-in Functions:
-  ;  * isLocation
-  ;  * xCoord
-  ;  * yCoord
-  ;  * dbTransformPoint
-  ;  * dbTransformPointList
-  ;  * dbConcatTransform
   
   procedure(ptOffset(P offset "ll")
     "Offset a point or sum 2 points"
@@ -175,89 +155,7 @@ Geo = let(()
       )
   ))
   
-  
-  ;;;;;;;;;;;;;;;;;;
-  ; Bounding Boxes ;
-  ;;;;;;;;;;;;;;;;;;
-  ; Built-in Functions:
-  ;  * isBBox
-  ;  * dbTransformBBox
-  ;  * lowerLeft
-  ;  * upperRight
-  ;  * centerBox
-  ;  * leftEdge
-  ;  * rightEdge
-  ;  * bottomEdge
-  ;  * topEdge
-  
-  procedure(bBoxOffset(box offset)
-    "Offset the given bounding box"
-  	list(ptOffset(lowerLeft(box) offset)
-  	     ptOffset(upperRight(box) offset))
-  )
-  
-  procedure(bBoxSnapToGrid(box grid)
-    "Snap the bBox to the grid"
-  	list(ptSnapToGrid(lowerLeft(box) grid)
-  	     ptSnapToGrid(upperRight(box) grid))
-  )
-  
-  procedure(bBoxFromSize(size "l")
-    "Returns the bounding box with the origin at the center from the size 
-  	 of the bounding box.
-  	@param size: A (x,y) list of the size of the bounding box."
-  	list(list(-xCoord(size)/2 -yCoord(size)/2)
-  		 list( xCoord(size)/2  yCoord(size)/2))
-  )
-  
-  procedure(bBoxSize(box "l")
-    "Calculate the Size of the bounding box
-  	@param box A bounding box list
-  	@return size Size of the bounding box as a (x,y) list"
-  	list(rightEdge(box)-leftEdge(box)
-  		 topEdge(box)-bottomEdge(box))
-  )
-  
-  ;;;;;;;;;;;;;;;;;;;
-  ; Figure Overlaps ;
-  ;;;;;;;;;;;;;;;;;;;
-  ; Built-in Functions:
-  ;  * dbProduceOverlap
-  ;  * dbGetOverlaps
-  ;  * dbGetTrueOverlaps
-  
-  procedure(figFlattenOverlaps(obj "R")
-    "Flattens a hierarchial list of dbObjects returned by the figure overlap 
-  	 functions i.e. dbGetOverlaps, etc
-  	@param obj A hierarchial list of obects returned by dbGetOverlaps"
-  	let((out)
-  	if( atom(obj) && dbobjectp(obj) then
-  		ncons(obj)
-  	else
-  		;mapcan( 'figFlattenOverlaps obj )
-  		out = list()
-  		foreach(singleObj obj
-  			out=append(out figFlattenOverlaps(singleObj))
-  		)
-  		out
-      )
-  ))
-  
-  ;;;;;;;;;;;
-  ; Mosaics ;
-  ;;;;;;;;;;;
-  
-  procedure(mosFlatten(cv) 
-  	"Flattens all the mosaics up to 5 levels deep in the cell's hierarchy
-  	@param cv Cellview object
-  	@return 't"
-  	foreach( inst cv~>mosaics
-  		leFlattenInst(inst 5)
-  	)
-  	't
-  )
-  
-  list(nil 
+  Geo = Dpl->Concat(Geo list(nil 
   	'ptOffset ptOffset
   	'ptNeg ptNeg
   	'ptProduct ptProduct
@@ -265,16 +163,5 @@ Geo = let(()
   	'ptInBoxp ptInBoxp
   	'ptNearestBoxSide ptNearestBoxSide
   	'ptSnapToGrid ptSnapToGrid
-  	'bBoxOffset bBoxOffset
-  	'bBoxSnapToGrid bBoxSnapToGrid
-  	'bBoxFromSize bBoxFromSize
-  	'bBoxSize bBoxSize
-  	'figFlattenOverlaps figFlattenOverlaps
-  	'mosFlatten mosFlatten
-  )
-)
-
-Package->New('Geo Geo
-             ?project Virtue
-             ?description package_description)
+  ))
 )
