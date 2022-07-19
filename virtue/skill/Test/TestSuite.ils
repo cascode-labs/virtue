@@ -1,0 +1,26 @@
+let(((Test Import('Test))
+    )
+
+  procedure(ReportSuiteResult(suite "l")
+    let((pass_message)
+    if(pass then
+      pass_message = "passed"
+    else 
+      pass_message = "failed")
+    printf("%s %s\n" result->pass pass_message)
+  )
+
+  procedure(NewSuite(files "l")
+    list(nil
+      'results nil
+      'files files
+      'AddResult AddResult
+    )
+  )
+
+  procedure(AddResult(suite result "ll")
+      suite->results = cons(result suite->results)
+  )
+
+  putProp(Test NewSuite 'NewSuite)
+)

@@ -1,0 +1,42 @@
+let(((Test Import('Test))
+    )
+
+procedure(NewFunction(symbol function_object "su")
+  list(nil
+    'symbol symbol
+    'function function_object
+    'Run Run
+    ; Results
+    'ran nil
+    'pass nil
+    'error_details nil
+    'ReportResult ReportResult
+  )
+)
+
+procedure(Run(test_function "l")
+  let((pass)
+  pass = errset(
+    test_function->function()
+  )
+  unless(pass
+    error_details = errset.errset
+    
+  )
+  test_function->ran = 't
+  test_function
+))
+
+procedure(ReportResult(test_function "l")
+  let((pass_message "failed")
+  when(test_function->pass
+    pass_message = "passed")
+
+  printf("%s %s\n" test_function->pass pass_message)
+  when(error_details
+    printf("   %s\n"  caar(last(error_details)))
+  )
+))
+
+putProp(Test NewFunction 'NewFunction)
+)
