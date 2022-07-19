@@ -40,7 +40,14 @@
 				"ms-python.python",
 				"ms-python.vscode-pylance",
 				"herbertagosto.skill",
-				"metamorphosis.skill"
+				"metamorphosis.skill",
+				"timonwong.shellcheck",
+				"cschleiden.vscode-github-actions",
+				"GitHub.vscode-pull-request-github",
+				"mhutchie.git-graph",
+				"ms-vscode-remote.vscode-remote-extensionpack",
+				"bungcip.better-toml",
+				"lextudio.restructuredtext"
 			]
 		}
 	},
