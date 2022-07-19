@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "herbertagosto.skill",
+        "ms-python.python",
+        "timonwong.shellcheck",
+        "github.vscode-pull-request-github",
+        "mhutchie.git-graph",
+        "ms-vscode-remote.vscode-remote-extensionpack",
+        "bungcip.better-toml",
+        "lextudio.restructuredtext"
+    ]
+}
