@@ -14,7 +14,7 @@ top-level import table symbol that allows each package to be imported locally.
 
 Note the package imports at the top
 
-``` lisp
+``` scheme
 let(((Str Import['Str])
      (Test Import['Test])
      (Virtue Import['Virtue])
