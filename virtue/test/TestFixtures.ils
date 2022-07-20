@@ -1,0 +1,14 @@
+let(((Test Import['Test])
+     (PathConcat Import['Str]->PathConcat)
+     (Fixtures makeTable("Test Fixtures"))
+    )
+  procedure(TempDirectory(@optional (path_prefix "virtue") "t")
+    let((temp_filepath)
+    temp_filepath = makeTempFileName(PathConcat(getTempDir() path_prefix))
+    createDirHier(temp_filepath)
+    temp_filepath
+  ))
+
+  Fixtures['TempDirectory] = TempDirectory
+  putprop(Test Fixtures 'Fixtures)
+)

@@ -1,0 +1,30 @@
+let((Test
+     (Virtue Import['Virtue])
+     (Package Import['Package])
+     (package_description "SKILL Test framework modeled after PyTest")
+    )
+
+Test = let((current_suite)
+
+  procedure(Initialize()
+    let((root_path subpackages)  
+    root_path = Virtue->GetCurrentFileDirectory()  
+    subpackages = list(
+      "TestFunction.ils"
+      ;"TestFile.ils"
+      ;"TestSuite.ils"
+      "TestFixtures.ils"
+    )
+    Package->load_list(subpackages ?root_path root_path)
+  ))
+
+  list(nil
+    'Initialize Initialize
+  )
+)
+
+Package->New('Test Test
+             ?project Virtue
+             ?description package_description)
+Test->Initialize()
+)

@@ -85,12 +85,12 @@ procedure(Test_Str_prefixp()
     assert(!Str->prefixp("no" "pre"))
 )
 
-procedure(Test_Str_pathConcat()
-  assert(Str->pathConcat("/absolute" "path" "to" "a" "directory") == 
+procedure(Test_Str_PathConcat()
+  assert(Str->PathConcat("/absolute" "path" "to" "a" "directory") == 
          "/absolute/path/to/a/directory")
-  assert(Str->pathConcat("" "absolute" "path" "to" "a" "directory") == 
+  assert(Str->PathConcat("" "absolute" "path" "to" "a" "directory") == 
          "/absolute/path/to/a/directory")
-  assert(Str->pathConcat("/absolute" "path" "to" "a" "file.txt") == 
+  assert(Str->PathConcat("/absolute" "path" "to" "a" "file.txt") == 
          "/absolute/path/to/a/file.txt")
 )
 
@@ -107,6 +107,6 @@ Test->run(list(
   Test_Str_startsWith
   Test_Str_endsWith
   Test_Str_prefixp
-  Test_Str_pathConcat
+  Test_Str_PathConcat
 ))
 )

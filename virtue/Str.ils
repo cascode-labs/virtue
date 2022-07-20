@@ -116,25 +116,25 @@ procedure(prefixp(string prefix "tt")
   )
 )
 
-procedure(pathConcat(@rest pathParts "t")
+procedure(PathConcat(@rest pathParts "t")
   "Concatenates each of the string partial paths into a full path by 
 	concatenating them with file seperators,'/', between them"
 	buildString(pathParts "/")
 )
 
 list(nil
-	'emptyp emptyp
-	'split split 
-	'trimWhiteSpace trimWhiteSpace
-	'convertNumber convertNumber
-	'convert convert
-	'str2bool str2bool
-	'num2str num2str
-	'bool2str bool2str
-	'startsWith startsWith
-	'endsWith endsWith
+  'emptyp emptyp
+  'split split 
+  'trimWhiteSpace trimWhiteSpace
+  'convertNumber convertNumber
+  'convert convert
+  'str2bool str2bool
+  'num2str num2str
+  'bool2str bool2str
+  'startsWith startsWith
+  'endsWith endsWith
   'prefixp prefixp
-	'pathConcat pathConcat
+  'PathConcat PathConcat
 ))
 
 Package->New('Str Str

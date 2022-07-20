@@ -22,7 +22,7 @@ Virtue = let(((package_description "SKILL++ Library and package manager")
 
     dir_path = GetCurrentFileDirectory()
 
-    loadi(strcat(dir_path "/skill/Package.ils"))
+    loadi(strcat(dir_path "/Package.ils"))
     Package = Import['Package]
     Virtue = Package->New('Virtue Virtue 
       ?project Virtue
@@ -34,7 +34,7 @@ Virtue = let(((package_description "SKILL++ Library and package manager")
       "Project.ils"
     )
     Package->load_list(preinit_packages 
-      ?root_path Str->pathConcat(dir_path "skill")
+      ?root_path dir_path
       ?continue_on_error 't)
 
     Project = Import['Project]
@@ -43,11 +43,11 @@ Virtue = let(((package_description "SKILL++ Library and package manager")
     virtue_packages = list(
     	; Basic
       "List.ils"
-    	"Test.ils"
+    	"test/Test.ils"
     	"Geo.ils"
       ; Provided by Cadence
       "calculator/Calculator.ils"
-    	"abSchTree.il"
+    	;"abSchTree.il"
     	; "Sch.ils"
     	"MaeMaestro.ils"
       "MaeExport.ils"
@@ -57,9 +57,9 @@ Virtue = let(((package_description "SKILL++ Library and package manager")
       "HdbConfig.ils"
     )
     Package->load_list(virtue_packages 
-      ?root_path Str->pathConcat(dir_path "skill")
+      ?root_path dir_path
       ?continue_on_error 't)
-    printf("Initialized Virtue SKILL++ Library\n")
+    printf("  Initialized Virtue SKILL++ Library\n")
   ))
 
   list(nil

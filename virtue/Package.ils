@@ -40,10 +40,19 @@ Package = let(()
     )
   ))
 
+  procedure(Method(method package_dpl "ul")
+    let((new_method)
+      procedure(new_method(@rest rest_args "g")
+        apply(method cons(package_dpl rest_args))
+      )
+    new_method
+  ))
+
   list(nil
     'New New
     'IsPackage IsPackage
     'load_list load_list
+    'Method Method
   )
 )
 

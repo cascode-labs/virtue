@@ -1,5 +1,6 @@
 let((Test
      (Str Import['Str])
+     (Virtue Import['Virtue])
      (Package Import['Package])
      (package_description "SKILL Test framework modeled after PyTest")
     )

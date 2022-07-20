@@ -1,0 +1,65 @@
+let(((Test Import['Test])
+     (Package Import['Package])
+    )
+
+procedure(NewFunction(symbol function_object "su")
+  let((test_function)
+  test_function = list(nil
+    'symbol symbol
+    'function function_object
+    ; Results
+    'ran nil
+    'pass nil
+    'error_details nil
+  )
+  putprop(test_function Package->Method(Run test_function) 'Run)
+  putprop(test_function Package->Method(ReportResult test_function) 'ReportResult)
+  test_function
+))
+
+procedure(get_fixture_values(test_function "l")
+  let((function_args fixture_values)
+  function_args = arglist(test_function->function)
+  foreach(fixture_symbol function_args
+    fixture_function = Test->Fixtures[fixture_symbol]
+    when(fixture_function == 'unbound
+      error("The fixture function '%s' is not defined in the Test->Fixtures table" fixture_symbol))
+    fixture_values = append1(fixture_function() fixture_values)
+  )
+  fixture_values
+))
+
+procedure(Run(test_function "l")
+  let((pass function_arg_values error_details)
+  pass = errset(begin(
+    function_arg_values = get_fixture_values(test_function)
+    if(function_arg_values then
+      apply(test_function->function function_arg_values)
+    else
+      test_function->function())
+  ))
+  unless(pass
+    error_details = errset.errset
+  )
+  test_function->ran = 't
+  if(pass then
+    test_function->pass = pass
+  else
+    test_function->pass = nil)
+  test_function->error_details = error_details
+  test_function
+))
+
+procedure(ReportResult(test_function "l")
+  let(((pass_message "failed"))
+  when(test_function->pass
+    pass_message = "passed")
+
+  printf("%s: %s\n" pass_message test_function->symbol )
+  when(test_function->error_details
+    printf("   %s\n"  caar(last(test_function->error_details)))
+  )
+))
+
+putprop(Test NewFunction 'NewFunction)
+)

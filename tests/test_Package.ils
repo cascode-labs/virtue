@@ -1,0 +1,22 @@
+let((dut_package
+     (Package Import['Package])
+     (Test Import['Test])
+    )
+
+procedure(PackageCat(package string_arg)
+  strcat(package->some_string string_arg)
+)
+
+dut_package = list(nil
+  'some_string "A")
+
+putprop(dut_package Package->Method(PackageCat dut_package) 'PackageCat)
+
+procedure(test_Method()
+  assert(dut_package->PackageCat("B") == "AB")
+)
+
+test_function = Test->NewFunction('test_Method test_Method)
+test_function->Run()
+test_function->ReportResult()
+)

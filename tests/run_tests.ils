@@ -4,7 +4,7 @@ let((dir_path
 
 dir_path = Virtue->GetCurrentFileDirectory()
 
-load(Str->pathConcat(dir_path "../virtue/virtue.init.ils"))
+load(Str->PathConcat(dir_path "../virtue/virtue.init.ils"))
 
 Test->run_directory_suite(dir_path)
 

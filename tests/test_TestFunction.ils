@@ -1,0 +1,21 @@
+let((test_function
+     (Test Import['Test])
+    )
+
+procedure(test_args_pass(arg1)
+    assert('t)
+)
+
+
+procedure(test_pass(arg1)
+    assert('t)
+)
+
+procedure(test_args_pass(arg1)
+    assert(!)
+)
+
+test_function = Test->NewFunction('test_args_pass test_args_pass)
+test_function->Run(test_function)
+test_function->ReportResult(test_function)
+)
