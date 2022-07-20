@@ -41,13 +41,9 @@ Virtue = let(((package_description "SKILL++ Library and package manager")
     Project->New(Virtue dir_path)
 
     virtue_packages = list(
-    	; Basic
       "List.ils"
     	"test/Test.ils"
     	"Geo.ils"
-      ; Provided by Cadence
-      "calculator/Calculator.ils"
-    	;"abSchTree.il"
     	; "Sch.ils"
     	"MaeMaestro.ils"
       "MaeExport.ils"
