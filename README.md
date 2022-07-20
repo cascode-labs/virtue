@@ -46,7 +46,7 @@ Test->RunFile(list(nil
 )
 ```
 
-Prints out the follwing when ran in the ICFB:
+Prints out the follwing when ran in the CIW:
 
 ``` sh
 FILE: /path/to/file/test_Str.ils
