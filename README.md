@@ -49,7 +49,7 @@ Test->RunFile(list(nil
 Prints out the follwing when ran in the ICFB:
 
 ``` sh
-FILE: /prj/ids_dev/work_libs/mayberc/virtue/tests/test_Str.ils
+FILE: /path/to/file/test_Str.ils
   passed: Test_emptyp
   passed: Test_str2bool
   passed: Test_str2bool_error
