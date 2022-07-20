@@ -11,7 +11,7 @@ Test = let((current_suite)
     root_path = Virtue->GetCurrentFileDirectory()  
     subpackages = list(
       "TestFunction.ils"
-      ;"TestFile.ils"
+      "TestFile.ils"
       ;"TestSuite.ils"
       "TestFixtures.ils"
     )

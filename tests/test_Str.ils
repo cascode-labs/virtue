@@ -1,18 +1,21 @@
-let(((Str Import['Str]))
+let(((Str Import['Str])
+     (Test Import['Test])
+     (Virtue Import['Virtue])
+    )
 
-procedure(Test_Str_emptyp()
+procedure(Test_emptyp()
     assert(Str->emptyp(""))
     assert(!Str->emptyp("test"))
 )
 
-procedure(Test_Str_split()
+procedure(Test_split()
     assert(Str->split("Hi,how,,you" ",") == '("Hi" "how" "" "you"))
     assert(Str->split("Hi,how,are,you" ",") == '("Hi" "how" "are" "you"))
     assert(Str->split("Hi how  you" " ") == '("Hi" "how" "" "you"))
     assert(Str->split("Hi how are you" " ") == '("Hi" "how" "are" "you"))
 )
 
-procedure(Test_Str_trimWhiteSpace()
+procedure(Test_trimWhiteSpace()
     assert(Str->trimWhiteSpace("  Hi everyone") == "Hi everyone")
     assert(Str->trimWhiteSpace("  Hi everyone  ") == "Hi everyone")
     assert(Str->trimWhiteSpace("Hi everyone  ") == "Hi everyone")
@@ -20,7 +23,7 @@ procedure(Test_Str_trimWhiteSpace()
     assert(!("Hi everyone  " == "Hi everyone"))
 )
 
-procedure(Test_Str_str2bool()
+procedure(Test_str2bool()
     assert(Str->str2bool("true"))
     assert(Str->str2bool("True"))
     assert(Str->str2bool("TRUE"))
@@ -29,18 +32,18 @@ procedure(Test_Str_str2bool()
     assert(!Str->str2bool("FALSE"))
 )
 
-procedure(Test_Str_str2bool_error()
+procedure(Test_str2bool_error()
     assert(!errset(Str->str2bool("Nothing")))
 )
 
-procedure(Test_Str_convertNumber()
+procedure(Test_convertNumber()
     assert(Str->convertNumber("5.0") == 5.0)    
     assert(Str->convertNumber("5") == 5)
     assert(floatp(Str->convertNumber("5.0")))
     assert(integerp(Str->convertNumber("5")))
 )
 
-procedure(Test_Str_convert()
+procedure(Test_convert()
     assert(Str->convert("true"))
     assert(!Str->convert("false"))
     assert(Str->convert("5") == 5)
@@ -50,21 +53,21 @@ procedure(Test_Str_convert()
     assert(Str->convert("5") == 5.0)
 )
 
-procedure(Test_Str_num2str()
+procedure(Test_num2str()
     assert(Str->num2str(5) == "5")
     assert(Str->num2str(5.0) == "5.000000")
     assert(Str->num2str(4.5) == "4.500000")
     assert(Str->num2str(10) == "10")
 )
 
-procedure(Test_Str_bool2str()
+procedure(Test_bool2str()
     assert(Str->bool2str('t) == "TRUE")
     assert(Str->bool2str(nil) == "FALSE")
     assert(Str->bool2str("test") == "TRUE")
     assert(!(Str->bool2str('("test")) == "FALSE"))
 )
 
-procedure(Test_Str_startsWith()
+procedure(Test_startsWith()
     assert(Str->startsWith("HiMan" "Hi"))
     assert(Str->startsWith("HiMan" "Hi") == "Man")
     assert(!Str->startsWith("HiMan" "Man"))
@@ -72,20 +75,20 @@ procedure(Test_Str_startsWith()
     assert(Str->startsWith("HiManly" "H"))
 )
 
-procedure(Test_Str_endsWith()
+procedure(Test_endsWith()
     assert(Str->endsWith("HiMan" "Man"))
     assert(Str->endsWith("HiMan" "Man") == "Hi")
     assert(!Str->endsWith("HiManly" "Man"))
     assert(!Str->endsWith("HiManly" "Hi"))
 )
 
-procedure(Test_Str_prefixp()
+procedure(Test_prefixp()
     assert(Str->prefixp("preFix" "pre"))
     assert(!Str->prefixp("notpreFix" "pre"))
     assert(!Str->prefixp("no" "pre"))
 )
 
-procedure(Test_Str_PathConcat()
+procedure(Test_PathConcat()
   assert(Str->PathConcat("/absolute" "path" "to" "a" "directory") == 
          "/absolute/path/to/a/directory")
   assert(Str->PathConcat("" "absolute" "path" "to" "a" "directory") == 
@@ -94,19 +97,22 @@ procedure(Test_Str_PathConcat()
          "/absolute/path/to/a/file.txt")
 )
 
-Test->run(list(
-  Test_Str_emptyp
-  Test_Str_split
-  Test_Str_trimWhiteSpace
-  Test_Str_str2bool
-  Test_Str_str2bool_error
-  Test_Str_convertNumber
-  Test_Str_convert
-  Test_Str_num2str
-  Test_Str_bool2str
-  Test_Str_startsWith
-  Test_Str_endsWith
-  Test_Str_prefixp
-  Test_Str_PathConcat
-))
+Test->RunFile(list(nil
+  'Test_emptyp Test_emptyp
+  'Test_split Test_split
+  'Test_trimWhiteSpace Test_trimWhiteSpace
+  'Test_str2bool Test_str2bool
+  'Test_str2bool_error Test_str2bool_error
+  'Test_convertNumber Test_convertNumber
+  'Test_convert Test_convert
+  'Test_num2str Test_num2str
+  'Test_bool2str Test_bool2str
+  'Test_startsWith Test_startsWith
+  'Test_endsWith Test_endsWith
+  'Test_prefixp Test_prefixp
+  'Test_PathConcat Test_PathConcat
+  )
+  ?filepath Virtue->GetCurrentFilePath()
+)
+
 )

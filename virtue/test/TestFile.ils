@@ -9,24 +9,49 @@ procedure(NewFile(path @optional test_functions_dpl "tl")
     'functions nil
     'functions_tconc nil
     'AddTestFunctions AddTestFunctions
+    'ReportResult ReportResult
   )
-  putprop(test_file Package->Method(AddTestFunctions) 'AddTestFunctions)
+  putprop(test_file Package->Method(AddTestFunctions test_file) 'AddTestFunctions)
+  putprop(test_file Package->Method(ReportResult test_file) 'ReportResult)
+  putprop(test_file Package->Method(Run test_file) 'Run)
+  putprop(test_file Package->Method(FunctionCount test_file) 'FunctionCount)
+  putprop(test_file Package->Method(FunctionPassCount test_file) 'FunctionPassCount)
   test_file->AddTestFunctions(test_functions_dpl)
+  test_file
 ))
 
 procedure(Run(test_file "l")
+  printf("Running File: %s \n" test_file->path)
   foreachs(test_function test_file->functions
     test_function->Run()
+    
   )
+  printf("  Done Running File: %s \n" test_file->path)
 )
 
-procedure(ReportResults(test_file)
+procedure(RunFile(test_functions_dpl @key filepath "lt")
+  test_file = NewFile(filepath test_functions_dpl)
+  test_file->Run()
+  test_file->ReportResult()
+  test_file
+)
+
+procedure(ReportResult(test_file "l")
+  let((function_count pass_count)
   printf("FILE: %s\n" test_file->path)
   foreachs(test_function test_file->functions
     printf("  ")
-    test_function->ReportResults()
+    test_function->ReportResult()
   )
-)
+  function_count = test_file->FunctionCount()
+  pass_count = test_file->FunctionPassCount()
+  printf("%n / %n tests passed\n" pass_count function_count)
+  if(pass_count == function_count then
+    printf("\nALL TESTS PASS!\n\n")
+  else
+    printf("\n%n TESTS FAILED!\n\n" function_count - pass_count))
+  
+))
 
 procedure(AddTestFunctions(test_file test_functions_dpl "ll")
   when(test_functions_dpl
@@ -34,7 +59,7 @@ procedure(AddTestFunctions(test_file test_functions_dpl "ll")
     functions_tconc = test_file->functions_tconc
     test_functions_dpl = cdr(test_functions_dpl)
     while(test_functions_dpl
-      tconc(functions_tconc 
+      functions_tconc = tconc(functions_tconc 
             Test->NewFunction(car(test_functions_dpl) cadr(test_functions_dpl)))
       test_functions_dpl = cddr(test_functions_dpl)
     )
@@ -45,5 +70,19 @@ procedure(AddTestFunctions(test_file test_functions_dpl "ll")
   't
 )
 
-putProp(Test NewFile 'NewFile)
+procedure(FunctionCount(test_file "l")
+  length(test_file->functions)
+)
+
+procedure(FunctionPassCount(test_file "l")
+  let(((pass_count 0) test_function)
+  foreachs(test_function test_file->functions
+    when(test_function->pass
+      pass_count = pass_count + 1)
+  )
+  pass_count
+))
+
+putprop(Test NewFile 'NewFile)
+putprop(Test RunFile 'RunFile)
 )
