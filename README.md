@@ -55,3 +55,19 @@ FILE: /path/to/file/test_Str.ils
   passed: Test_str2bool_error
 3 / 3 tests passed
 ```
+
+## Installation
+
+Just load the "virtue.init.ils" from the CIW window or add the following to
+your .cdsinit file:
+
+```lisp
+load("/path/to/repo/virtue/virtue.init.ils")
+```
+
+Reminder: This is written in SKILL++ so to use it interactively you'll need
+to change your top-level interpreter to SKILL++ first:
+
+```lisp
+toplevel('ils)
+```
