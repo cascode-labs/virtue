@@ -24,17 +24,20 @@ procedure(Run(test_file "l")
   printf("Running File: %s \n" test_file->path)
   foreachs(test_function test_file->functions
     test_function->Run()
-    
   )
   printf("  Done Running File: %s \n" test_file->path)
 )
 
-procedure(RunFile(test_functions_dpl @key filepath "lt")
+procedure(RunFile(test_functions_dpl @key (filepath "") "lt")
+  let(((current_suite Test->GetCurrentSuite()))
   test_file = NewFile(filepath test_functions_dpl)
   test_file->Run()
-  test_file->ReportResult()
+  when(current_suite
+    current_suite->AddFile(test_file))
+  unless(current_suite
+    test_file->ReportResult())
   test_file
-)
+))
 
 procedure(ReportResult(test_file "l")
   let((function_count pass_count)

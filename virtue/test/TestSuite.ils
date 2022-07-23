@@ -1,26 +1,96 @@
-let(((Test Import('Test))
+let(((Test Import['Test])
+     (Str Import['Str])
+     (Package Import['Package])
+     current_suite
     )
 
-  procedure(ReportSuiteResult(suite "l")
-    let((pass_message)
-    if(pass then
-      pass_message = "passed"
-    else 
-      pass_message = "failed")
-    printf("%s %s\n" result->pass pass_message)
-  )
-
-  procedure(NewSuite(files "l")
-    list(nil
-      'results nil
-      'files files
-      'AddResult AddResult
+  procedure(RunDirectory(directory_path "t")
+    "Run a directory of tests.  Loads each SKILL or SKILL++ file with a 'Test_'
+     prefix and reports the results of each.
+  
+     @brief Run a directory of test files with each containing a call to Test->RunFile
+     @param directory_path Path to a directory of SKILL test scripts
+     @return A test suite object"
+    let((files file test_file_path test_files success)
+    ResetSuite()
+    current_suite = NewSuite(?path directory_path)
+  	files = getDirFiles(directory_path)
+    files = remove("run_tests.ils" files)
+    files = remove("." files)
+    files = remove(".." files)
+    when(files
+      foreach(file files
+        when(Str->endsWith(file ".il") || 
+             Str->endsWith(file ".ils") && 
+             (Str->prefixp(file "test_") || Str->prefixp(file "Test_"))
+          loadi(Str->PathConcat(directory_path file))
+        )
+      )
     )
+    current_suite->ReportResult()
+    Test->ResetSuite()
+  ))
+
+  procedure(NewSuite( @key path "t")
+    let((suite)
+    suite = list(nil
+      'path path
+      'files nil
+      'pass 't
+      'ResetSuite ResetSuite
+    )
+    Package->AddMethod('AddFile AddFile suite)
+    Package->AddMethod('ReportResult ReportResult suite)
+    Package->AddMethod('FunctionCount FunctionCount suite)
+    Package->AddMethod('FunctionPassCount FunctionPassCount suite)
+    suite
+  ))
+
+  procedure(AddFile(suite file "ll")
+    ;suite->files = cons(file suite->files)
+    suite->files = append1(suite->files file)
   )
 
-  procedure(AddResult(suite result "ll")
-      suite->results = cons(result suite->results)
+  procedure(ReportResult(suite "l")
+    let((function_count pass_count)
+    printf("RAN SUITE: %s\n" suite->path)
+    foreachs(file suite->files
+      printf("  ")
+      file->ReportResult()
+    )
+    function_count = suite->FunctionCount()
+    pass_count = suite->FunctionPassCount()
+    printf("%n / %n suite tests passed\n" pass_count function_count)
+    if(pass_count == function_count then
+      printf("\nALL SUITE TESTS PASS!\n\n")
+    else
+      printf("\n%n SUITE TESTS FAILED!\n\n" function_count - pass_count))
+  ))
+
+  procedure(FunctionCount(suite "l")
+    let(((function_count 0))
+    foreachs(file suite->files
+      function_count = function_count + file->FunctionCount()
+    )
+    function_count
+  ))
+  
+  procedure(FunctionPassCount(suite "l")
+    let(((pass_count 0))
+    foreachs(file suite->files
+      pass_count = pass_count + file->FunctionPassCount()
+    )
+    pass_count
+  ))
+
+  procedure(ResetSuite()
+    current_suite = nil
   )
 
-  putProp(Test NewSuite 'NewSuite)
+  procedure(GetCurrentSuite()
+    current_suite)
+
+  putprop(Test RunDirectory 'RunDirectory)
+  putprop(Test ResetSuite 'ResetSuite)
+  putprop(Test GetCurrentSuite 'GetCurrentSuite)
 )

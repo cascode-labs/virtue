@@ -1,3 +1,7 @@
+let(((Test Import['Test])
+     (Virtue Import['Virtue])
+    )
+
 procedure(setup_maestro_lcvh()
   let((lib cell view history_name)
   lib = "ids_dev_work"
@@ -26,6 +30,10 @@ procedure(Test_BuildMaestroHistoryInfoTable()
   Toml->WriteFile("~/test_maestro_info.toml" info_table)
 ))
 
-Test->run(list(
-  Test_BuildMaestroHistoryInfoTable
-))
+Test->RunFile(list(nil
+  'Test_BuildMaestroHistoryInfoTable Test_BuildMaestroHistoryInfoTable
+)
+  ?filepath Virtue->GetCurrentFilePath()
+)
+
+)

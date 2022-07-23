@@ -30,18 +30,20 @@ procedure(get_fixture_values(test_function "l")
 ))
 
 procedure(Run(test_function "l")
-  let((pass function_arg_values error_details)
+  let((pass function_arg_values ran error_details)
   pass = errset(begin(
     function_arg_values = get_fixture_values(test_function)
     if(function_arg_values then
-      apply(test_function->function function_arg_values)
+      ran = errset(apply(test_function->function function_arg_values))
     else
-      test_function->function())
+      ran = errset(test_function->function()))
   ))
-  unless(pass
+  unless((pass || ran)
     error_details = errset.errset
   )
-  test_function->ran = 't
+  when(ran
+    ran = 't)
+  test_function->ran = ran
   if(pass then
     test_function->pass = pass
   else

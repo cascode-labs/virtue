@@ -1,19 +1,23 @@
+let(((List Import['List])
+     (Test Import['Test])
+     (Virtue Import['Virtue])
+    )
 
-procedure(Test_List_ensure()
+procedure(Test_ensure()
   assert(List->ensure('(1 2 3)) == '(1 2 3)) ; already a list
   assert(List->ensure("testing false") == '("testing false")) ; a string
   assert(List->ensure(1) == '(1)) ; an integer
   assert(List->ensure('()) == '()) ; empty list
 )
 
-procedure(Test_List_setDiff()
+procedure(Test_setDiff()
   assert(List->setDiff('(1 2 3) '(2 3)) == '(1)) ; integers
   assert(List->setDiff('(1 2 3) '(1 2 3)) == '()) 
   assert(List->setDiff('("A" "B" "CD" "E") '("A" "CD")) == '("B" "E")) ; strings
   assert(List->setDiff('("A" "B" "CD" "E") '("A" "B" "CD" "E")) == '())
 )
 
-procedure(Test_List_uniqueList()
+procedure(Test_uniqueList()
   assert(List->uniqueList('(1 2 3 2 3)) == '(3 2 1)) ; integers
   assert(List->uniqueList('(1 2 3)) == '(3 2 1))
   assert(List->uniqueList('("A" "B" "CD" "E" "A" "CD")) == '("B" "CD" "E" "A")) ; strings
@@ -23,7 +27,7 @@ procedure(Test_List_uniqueList()
   assert(List->uniqueList('("hi" "hi" "hello" "hello" "" "")) == '("hi" "" "hello")) ; multiple empty strings
 )
 
-procedure(Test_List_uniqueListOrdered()
+procedure(Test_uniqueListOrdered()
   assert(List->uniqueListOrdered('(1 2 3 2 3)) == '(1 2 3)) ; integers
   assert(List->uniqueListOrdered('(1 2 3)) == '(1 2 3))
   assert(List->uniqueListOrdered('("A" "B" "CD" "E" "A" "CD")) == '("A" "B" "CD" "E")) ; strings
@@ -33,9 +37,20 @@ procedure(Test_List_uniqueListOrdered()
   assert(List->uniqueListOrdered('("hi" "hi" "hello" "hello" "" "")) == '("hi" "hello" "")) ; multiple empty strings
 )
 
-Test->run(list(
-  Test_List_ensure
-  Test_List_setDiff
-  Test_List_uniqueList
-  Test_List_uniqueListOrdered
-))
+procedure(Test_assocKeys()
+  assert(List->assocKeys('((1 "A") '(2 "B") '(3 "C"))) == '(1 2 3))
+  assert(List->assocKeys('((1 "A"))) == '(1))
+  assert(!List->assocKeys(nil))
+)
+
+Test->RunFile(list(nil
+  'Test_ensure Test_ensure
+  'Test_setDiff Test_setDiff
+  'Test_uniqueList Test_uniqueList
+  'Test_uniqueListOrdered Test_uniqueListOrdered
+  'Test_assocKeys Test_assocKeys
+  )
+  ?filepath Virtue->GetCurrentFilePath()
+)
+
+)

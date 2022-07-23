@@ -12,7 +12,7 @@ Test = let((current_suite)
     subpackages = list(
       "TestFunction.ils"
       "TestFile.ils"
-      ;"TestSuite.ils"
+      "TestSuite.ils"
       "TestFixtures.ils"
     )
     Package->load_list(subpackages ?root_path root_path)
@@ -20,6 +20,7 @@ Test = let((current_suite)
 
   list(nil
     'Initialize Initialize
+    'current_suite current_suite
   )
 )
 

@@ -1,11 +1,9 @@
 let((dir_path
      (Test Import['Test])
+     (Virtue Import['Virtue])
+     (Str Import['Str])
     )
 
 dir_path = Virtue->GetCurrentFileDirectory()
-
-load(Str->PathConcat(dir_path "../virtue/virtue.init.ils"))
-
-Test->run_directory_suite(dir_path)
-
+Test->RunDirectory(dir_path)
 )
