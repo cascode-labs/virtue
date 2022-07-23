@@ -37,6 +37,6 @@ list(nil
 ))
 
 Package->New('Hdb Hdb 
-             ?project Virtue
+             ?project Import['Virtue]
              ?description package_description)
 )

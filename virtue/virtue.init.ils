@@ -24,8 +24,8 @@ Virtue = let(((package_description "SKILL++ Library and package manager")
 
     loadi(strcat(dir_path "/Package.ils"))
     Package = Import['Package]
-    Virtue = Package->New('Virtue Virtue 
-      ?project Virtue
+    Virtue = Package->New('Virtue Import['Virtue]
+      ?project Import['Virtue]
       ?description package_description)
 
     preinit_packages = list(
@@ -44,6 +44,7 @@ Virtue = let(((package_description "SKILL++ Library and package manager")
       "List.ils"
     	"test/Test.ils"
     	"Geo.ils"
+      "Dpl.ils"
     	; "Sch.ils"
     	"MaeMaestro.ils"
       "MaeExport.ils"
@@ -65,5 +66,6 @@ Virtue = let(((package_description "SKILL++ Library and package manager")
     'GetCurrentFileDirectory GetCurrentFileDirectory 
 ))
 
+Import['Virtue] = Virtue
 Virtue->Initialize()
 )

@@ -115,5 +115,5 @@ Maestro = let(()
 )
 
 Package->New('Maestro Maestro
-             ?project Virtue)
+             ?project Import['Virtue])
 )

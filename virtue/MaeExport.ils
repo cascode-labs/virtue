@@ -78,5 +78,5 @@ list(nil
 ))
 
 Package->New('MaeExport MaeExport 
-             ?project Virtue)
+             ?project Import['Virtue])
 )

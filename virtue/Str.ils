@@ -138,7 +138,7 @@ list(nil
 ))
 
 Package->New('Str Str
-             ?project Virtue
+             ?project Import['Virtue]
              ?description package_description)
 
 )

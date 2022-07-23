@@ -4,7 +4,7 @@ let((Dpl
     )
 Dpl = let(()
 
-  procedure(Concat(dpl_1 dpl_2 "ll")
+  procedure(Cat(dpl_1 dpl_2 "ll")
     "Appends the data (car) and property lists of dpl_1 and dpl_2."
     cons(append(car(dpl_1) car(dpl_2)) append(cdr(dpl_1) cdr(dpl_2)))
   )
@@ -13,37 +13,21 @@ Dpl = let(()
     "Convert a DPL to an association table"
     let((property_list (idx 2) (table makeTable("dpl properties")))
     property_list = cdr(input_dpl)
-    while(idx <= length(property_list)
+
+    while(property_list
       table[car(property_list)] = cadr(property_list)
-      property_list = cddr(propert_list)
-      idx = idx + 2
+      property_list = cddr(property_list)
     )
     table
   ))
 
-  procedure(foreach_property(key value @rest rest_args "ssg")
-    let((property_list (idx 2))
-    property_list = cdr(input_dpl)
-    while(idx <= length(property_list)
-      key = ie
-      property_list = cddr(propert_list)
-
-  procedure(PropertyNames(input_dpl "l")
-    let((property_list (idx 2))
-    property_list = cdr(input_dpl)
-    while(idx <= length(property_list)
-  )
-
-  procedure(PropertyValues(input_dpl "l")
-
-  )
-
   list(nil
     'PropertyTable PropertyTable
+    'Cat Cat
   )
 )
 
-Package->New('Test Test
-             ?project Virtue
+Package->New('Dpl Dpl
+             ?project Import['Virtue]
              ?description package_description)
 )

@@ -42,6 +42,6 @@ Project = let(((project_packages makeTable("virtue project packages")))
 )
 
 Package->New('Project Project
-             ?project Virtue
+             ?project Import['Virtue]
              ?description package_description)
 )

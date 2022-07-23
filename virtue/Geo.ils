@@ -275,6 +275,6 @@ Geo = let(()
 )
 
 Package->New('Geo Geo
-             ?project Virtue
+             ?project Import['Virtue]
              ?description package_description)
 )

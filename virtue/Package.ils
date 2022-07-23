@@ -22,6 +22,8 @@ Package = let(()
       package_dpl = cons(package_table cdr(package_dpl))
     )
     package_table['symbol] = package_symbol
+    when(symbolp(project)
+      project = Import[project])
     package_table['project] = project
     package_table['description] = description
     Import[package_symbol] = package_dpl
@@ -48,15 +50,20 @@ Package = let(()
     new_method
   ))
 
+  procedure(AddMethod(method_symbol method object_dpl "sul")
+    putprop(object_dpl Package->Method(method object_dpl) method_symbol)
+  )
+
   list(nil
     'New New
     'IsPackage IsPackage
     'load_list load_list
     'Method Method
+    'AddMethod AddMethod
   )
 )
 
 Package->New('Package Package
-             ?project Virtue
+             ?project Import['Virtue]
              ?description package_description)
 )
