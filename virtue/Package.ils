@@ -30,7 +30,7 @@ Package = let(()
     package_dpl
   ))
   
-  procedure(load_list(package_filepaths @key (root_path "") continue_on_error)
+  procedure(LoadList(package_filepaths @key (root_path "") continue_on_error)
     "loads a list of filepaths."
     let((filepath load_function)
     if(continue_on_error then
@@ -57,7 +57,7 @@ Package = let(()
   list(nil
     'New New
     'IsPackage IsPackage
-    'load_list load_list
+    'LoadList LoadList
     'Method Method
     'AddMethod AddMethod
   )

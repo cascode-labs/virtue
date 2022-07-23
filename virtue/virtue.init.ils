@@ -33,7 +33,7 @@ Virtue = let(((package_description "SKILL++ Library and package manager")
       "Toml.ils"
       "Project.ils"
     )
-    Package->load_list(preinit_packages 
+    Package->LoadList(preinit_packages 
       ?root_path dir_path
       ?continue_on_error 't)
 
@@ -53,7 +53,7 @@ Virtue = let(((package_description "SKILL++ Library and package manager")
       ; "SchNets.il"
       "HdbConfig.ils"
     )
-    Package->load_list(virtue_packages 
+    Package->LoadList(virtue_packages 
       ?root_path dir_path
       ?continue_on_error 't)
     printf("  Initialized Virtue SKILL++ Library\n")

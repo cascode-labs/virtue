@@ -15,7 +15,7 @@ Test = let((current_suite)
       "TestSuite.ils"
       "TestFixtures.ils"
     )
-    Package->load_list(subpackages ?root_path root_path)
+    Package->LoadList(subpackages ?root_path root_path)
   ))
 
   list(nil
