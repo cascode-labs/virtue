@@ -63,12 +63,10 @@ List = let(()
   ; Association Lists ;
   ;;;;;;;;;;;;;;;;;;;;;
   
-  procedure(assocKeys(assocList "l") let(((out nil))
-    "Returns all the keys in the specified association list"
-  	foreach(item assocList
-  		out = tconc(out car(item)))
-  	out
-  ))
+  procedure(assocKeys(assocList "l")
+  "Returns all the keys in the specified association list"
+    mapcar( 'car assocList)
+  )
   
   list(nil
   	 'ensure ensure
