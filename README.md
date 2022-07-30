@@ -46,7 +46,7 @@ Test->RunFile(list(nil
 )
 ```
 
-Prints out the follwing when ran in the CIW:
+Prints out the following when ran in the CIW:
 
 ``` sh
 FILE: /path/to/file/test_Str.ils
@@ -65,8 +65,7 @@ your .cdsinit file:
 load("/path/to/repo/virtue/virtue.init.ils")
 ```
 
-Reminder: This is written in SKILL++ so to use it interactively you'll need
-to change your top-level interpreter to SKILL++ first:
+Reminder: The following will change your top-level interpreter to SKILL++:
 
 ```lisp
 toplevel('ils)
