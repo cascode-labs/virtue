@@ -3,18 +3,21 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+******
 VIRTUE
-=========
+******
 
 .. include:: overview.rst
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   :hidden:
 
    overview
-   skill_packages
+   packaging/index
    api/index
+   conda
 
 
 Indices and tables

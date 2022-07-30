@@ -1,14 +1,19 @@
+========
 Overview
 ========
-Virtue provides a Cadence Virtuoso SKILL library and supports Viper projects in
-Cadence Virtuoso.  It also supports the Cadence Virtuoso environment as 
-part of the [Viper](http://www.cascode-labs.org/viper/) open circuit design 
-environment. It loads the SKILL code contained in the active Viper 
-[Conda environment](https://docs.conda.io/en/latest/) when 
-a project is started using the "vsp" virtue command.
+Virtue is a SKILL++ library for `Cadence Virtuoso <https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html>`_
 
-* Automatically loads the Viper SKILL environment from the active Conda environment
-* Provides a standard SKILL library
-* Includes instructions for including SKILL code in Viper Packages
-* Supports seamless execution of SKILL from Python using 
+Features:
+
+- A standard library of packages with functions for common tasks
+- A test framework modeled after `pytest <https://docs.pytest.org/en/7.1.x/>`_
+- A `TOML config file <https://toml.io>`_ reader and writer
+- A SKILL code packaging system
+
+  - Define SKILL++ modules 
+  - Create a SKILL++ package from a set of modules
+  - Import modules into a SKILL++ environment using the top-level "Import" table 
+
+- Support for SKILL environment management using `Conda <https://docs.conda.io/en/latest/>`_
+- Supports seamless execution of SKILL from Python using 
   `SkillBridge <https://unihd-cag.github.io/skillbridge/>`_

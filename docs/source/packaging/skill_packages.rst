@@ -1,13 +1,25 @@
-SKILL Packages
-==============
-SKILL can be included as a part of any Conda packages and loaded when Cadence
-is started with the "vsp" command.  A Conda recipe must be created
+*****************
+SKILL++  Packages
+*****************
+
+A SKILL++ package is a set of related SKILL++ modules defined as part of a 
+project.  Packages can have 
+
+Package help
+------------
+
+Package description
+--------------------
+
+SKILL can be included as a part of any Conda package and loaded when Cadence
+is started with the "vsp" command.  A Conda recipe must be created to build 
+a conda package
 
 The conda package can :
-* Automatic SKILL Code Initialization
-* Library Manager Customization
-* Data Registry Customization
-* Cadence Library Inclusion
+* Automatically initialize SKILL Code 
+* Customize the library manager
+* Register custom views with the data registry
+* Include cadence libraries
 
 Conda Recipe
 ------------
