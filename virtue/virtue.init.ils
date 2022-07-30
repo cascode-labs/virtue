@@ -1,5 +1,6 @@
-define(Import nil)
-Import = makeTable("Virtue Package Import Table")
+; Define the iport table as a global in both SKILL and SKILL++
+inSkill(Import = makeTable("Virtue Package Import Table"))
+importSkillVar(Import)
 
 let((Virtue)
 
