@@ -23,5 +23,3 @@ References
 .. include:: Str.rst
 
 .. include:: Geo.rst
-
-.. include:: UtUnitTest.rst

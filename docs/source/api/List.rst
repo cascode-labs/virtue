@@ -12,6 +12,6 @@ List manipulation functions.
 
 .. dropdown:: List.ils sourcecode
 
-    .. literalinclude:: _static/src/List.ils
+    .. literalinclude:: ../_static/src/List.ils
        :language: none
        :linenos:

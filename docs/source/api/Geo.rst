@@ -29,6 +29,6 @@ Geometry functions
 
 .. dropdown:: Geo.ils sourcecode
 
-    .. literalinclude:: _static/src/Geo.ils
+    .. literalinclude:: ../_static/src/Geo.ils
        :language: none
        :linenos:
