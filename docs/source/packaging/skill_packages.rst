@@ -53,14 +53,14 @@ etc.
 
 This is supported by our system library manager initialization loading the
 script using the following SKILL code.  $VIRTUE_LMGR_INIT is initialized by the
-virtue activation script.
+virtue activation script::
 
-```
-when(getShellEnvVar("VIRTUE_LMGR_INIT") && isFile(strcat(env(VIRTUE_LMGR_INIT) "/virtue.lmgrinit"))
-   printf("Loading virtue.lmgrinit...\n")
-   loadi(strcat(env(VIRTUE_LMGR_INIT) "/virtue.lmgrinit"))
-)
-```
+
+   when(getShellEnvVar("VIRTUE_LMGR_INIT") && isFile(strcat(env(VIRTUE_LMGR_INIT) "/virtue.lmgrinit"))
+      printf("Loading virtue.lmgrinit...\n")
+      loadi(strcat(env(VIRTUE_LMGR_INIT) "/virtue.lmgrinit"))
+   )
+
 
 Data Registry Customization
 ---------------------------
