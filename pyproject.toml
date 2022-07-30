@@ -3,7 +3,7 @@ requires = ["flit_core>=3.2"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "virtue"
+name = "virtue-skill"
 authors = [
    {name="Curtis Mayberry", email="Curtisma3@gmail.com"},
 ]
@@ -29,7 +29,9 @@ keywords = [
 dynamic = ["version", "description"]
 
 [project.urls]
-"Home" = "https://github.com/cascode-labs/virtue"
+"Home" = "http://www.cascode-labs.org/virtue/"
+"Documentation" = "http://www.cascode-labs.org/virtue/"
+"Source" = "https://github.com/cascode-labs/virtue"
 
 [tool.flit.module]
 name = "virtue"

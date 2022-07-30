@@ -58,6 +58,8 @@ FILE: /path/to/file/test_Str.ils
 
 ## Installation
 
+### From Source
+
 Just load the "virtue.init.ils" from the CIW window or add the following to
 your .cdsinit file:
 
@@ -70,3 +72,10 @@ Reminder: The following will change your top-level interpreter to SKILL++:
 ```lisp
 toplevel('ils)
 ```
+
+### Pip
+
+You can install Virtue using pip from the `virtue-skill PyPi package <https://pypi.org/project/virtue-skill/>`_
+::
+
+  pip install virtue-skill
