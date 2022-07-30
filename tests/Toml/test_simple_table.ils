@@ -1,3 +1,7 @@
+let(((List Import['Toml])
+     (Test Import['Test])
+    )
+
 procedure(Test_read_table()
   let((table table1 table2)  
   table = Toml->ReadFile("/prj/ids_dev/work_libs/mayberc/IDS-skill/tests/toml/simple_table.toml")
@@ -62,8 +66,13 @@ procedure(Test_table_write_association_list()
   assert(table2["key2"] == 456)
 ))
 
-Virtue::TstRunTests(list(
-  Test_read_table
-  Test_write_table
-  Test_table_write_association_list
-))
+Test->RunFile(list(nil
+  'Test_read_table Test_read_table
+  'Test_write_table Test_write_table
+  'Test_table_write_association_list Test_table_write_association_list
+  )
+  ?filepath Import['Virtue]->GetCurrentFilePath()
+)
+
+)
+

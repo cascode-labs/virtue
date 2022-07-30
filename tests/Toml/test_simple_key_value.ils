@@ -1,3 +1,8 @@
+let(((List Import['Toml])
+     (Test Import['Test])
+    )
+
+
 procedure(Test_KeyValueStrings()
   let((table)  
   table = Toml->ReadFile("/prj/ids_dev/work_libs/mayberc/IDS-skill/tests/toml/simple_key_value.toml")
@@ -43,8 +48,12 @@ let((filePath assocList table)
   assert(table["1234"] == "value")
 ))
 
-Virtue::TstRunTests(list(
-  TestKeyValueStrings
-  Test_write_kv_table
-  Test_write_association_list
-))
+Test->RunFile(list(nil
+  'Test_KeyValueStrings Test_KeyValueStrings
+  'Test_write_kv_table Test_write_kv_table
+  'Test_write_association_list Test_write_association_list
+  )
+  ?filepath Import['Virtue]->GetCurrentFilePath()
+)
+
+)
