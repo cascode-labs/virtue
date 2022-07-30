@@ -8,21 +8,25 @@ let((Project
 Project = let(((project_packages makeTable("virtue project packages")))
 
   procedure(New(project_package project_init_dir_path "lt")
-    "Adds a set of useful variables about the project to the project package to the project package's data_table."
-    let((package_table config_filepath config_filepath_above)
+    "Adds a set of useful variables about the project to the project 
+    package to the project package's data_table."
+    let((package_table config_filepaths config_filepath)
     package_table = car(project_package)
-    config_filepath = Str->PathConcat(project_init_dir_path "pyproject.toml")
-    config_filepath_above = Str->PathConcat(project_init_dir_path "../pyproject.toml")
-    cond(
-      (isFile(config_filepath) nil)
-      (isFile(config_filepath_above) 
-        config_filepath = config_filepath_above)
-      (t error(strcat(
-          "Could not read the pyproject.toml or skill-project.toml file!\n"
-          "Please make sure it is located in the same"
-          "directory as the initialization file or the directory directly above it."))
-      )
+    config_filepaths = '("skill_project.toml" "../skill_project.toml" 
+                         "pyproject.toml" "../pyproject.toml")
+    foreachs(filepath config_filepaths
+      filepath = Str->PathConcat(project_init_dir_path filepath)
+      when(isFile(filepath)
+        config_filepath = filepath)
     )
+    unless(config_filepath
+      warn(strcat(
+        "Could not read the pyproject.toml or skill-project.toml file!\n
+        Please make sure it is located in the same directory as the\n
+        initialization file or the directory directly above it."
+      ))
+    )
+
     package_table['project] = read_project_config(config_filepath)
     package_table['project]['project_root_path] = project_init_dir_path
     register_project(project_package)
