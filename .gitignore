@@ -3,6 +3,8 @@
 *.ils~
 *.il~
 
+# docs setup
+docs/source/_static/src
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
