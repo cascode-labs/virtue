@@ -77,7 +77,8 @@ toplevel('ils)
 
 ### Pip
 
-You can install Virtue using pip from the `virtue-skill PyPi package <https://pypi.org/project/virtue-skill/>`_
-::
+You can install Virtue using pip from the [virtue-skill PyPi package](https://pypi.org/project/virtue-skill/)
 
-  pip install virtue-skill
+```bash
+pip install virtue-skill
+```
