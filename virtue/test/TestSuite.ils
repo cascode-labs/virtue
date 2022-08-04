@@ -1,6 +1,7 @@
 let(((Test Import['Test])
      (Str Import['Str])
      (Package Import['Package])
+     (Path Import['Path])
      current_suite
     )
 
@@ -23,7 +24,7 @@ let(((Test Import['Test])
         when(Str->endsWith(file ".il") || 
              Str->endsWith(file ".ils") && 
              (Str->prefixp(file "test_") || Str->prefixp(file "Test_"))
-          loadi(Str->PathConcat(directory_path file))
+          loadi(Path->Concat(directory_path file))
         )
       )
     )

@@ -3,6 +3,7 @@ let((Project
      (Str Import['Str])
      (Toml Import['Toml])
      (Package Import['Package])
+     (Path Import['Path])
     )
 
 Project = let(((project_packages makeTable("virtue project packages")))
@@ -15,7 +16,7 @@ Project = let(((project_packages makeTable("virtue project packages")))
     config_filepaths = '("skill_project.toml" "../skill_project.toml" 
                          "pyproject.toml" "../pyproject.toml")
     foreachs(filepath config_filepaths
-      filepath = Str->PathConcat(project_init_dir_path filepath)
+      filepath = Path->Concat(project_init_dir_path filepath)
       when(isFile(filepath)
         config_filepath = filepath)
     )

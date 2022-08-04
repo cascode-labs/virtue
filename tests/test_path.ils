@@ -1,0 +1,21 @@
+let(((Path Import['Path])
+     (Test Import['Test])
+     (Virtue Import['Virtue])
+    )
+
+procedure(Test_PathConcat()
+  assert(Path->Concat("/absolute" "path" "to" "a" "directory") == 
+         "/absolute/path/to/a/directory")
+  assert(Path->Concat("" "absolute" "path" "to" "a" "directory") == 
+         "/absolute/path/to/a/directory")
+  assert(Path->Concat("/absolute" "path" "to" "a" "file.txt") == 
+         "/absolute/path/to/a/file.txt")
+)
+
+Test->RunFile(list(nil
+  'Test_PathConcat Test_PathConcat
+  )
+  ?filepath Virtue->GetCurrentFilePath()
+)
+
+)

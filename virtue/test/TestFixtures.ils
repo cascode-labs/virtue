@@ -1,5 +1,5 @@
 let(((Test Import['Test])
-     (PathConcat Import['Str]->PathConcat)
+     (PathConcat Import['Path]->Concat)
      (Fixtures makeTable("Test Fixtures"))
     )
   procedure(TempDirectory(@optional (path_prefix "virtue") "t")

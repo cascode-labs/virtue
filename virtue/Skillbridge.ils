@@ -1,0 +1,96 @@
+let(((package_description "Skillbridge interface"))
+
+Skillbridge = let(()
+procedure(GetID()
+	strcat( getShellEnvVar("PROJ_ID") "-" getShellEnvVar("USER"))
+)
+
+procedure(IsInstalled()
+	procedurep(fboundp('pyStartServer))
+)
+
+procedure(StartPythonServer() 
+	"Start the Skillbridge Python server"
+  let(((server_id GetID()))
+	if(IsInstalled() then
+		if( pyStartServer(?id server_id) then
+			fprintf(poport, "Skill Bridge server started successfully, id = '%s'.\n" server_id)
+				t
+		else
+				fprintf(poport, "Skill Bridge server was unable to be started, id = '%s'\n." server_id)
+				nil
+		)
+	else
+		error("Cannot start the Skillbridge server.  It is not installed.")
+	)
+))
+
+procedure(KillPythonServer()
+    ; Add id correspond to the project that is open
+	pyKillServer()
+)
+
+procedure(TogglePythonServerLmgrCallback(menu_item_name _lib _cell _view _file _cat)
+	let(((menu_item lmgrGetObject(menu_item_name)) server_running)
+	server_running = cadr(assoc("state" menu_item))
+	if(!server_running then
+		KillPythonServer()
+		menu_item->state = 't
+		lmgrSetObject(menu_item_name list(list("label" "Start Skillbridge Server")))
+	else
+		StartPythonServer()
+		menu_item->state = nil
+		lmgrSetObject(menu_item_name list(list("label" "Kill Skillbridge Server")))
+	)
+))
+
+procedure(ReloadPythonServer()
+	pyReloadServer())
+
+procedure(ShowLog(@optional length "x")
+	if(length then
+	  pyShowLog(length)
+	else
+		pyShowLog()
+	)
+)
+
+procedure(RunPythonScript(@rest rest_args)
+  apply(pyRunScript rest_args)
+)
+
+procedure(OpenDocumentation()
+	system("firefox https://unihd-cag.github.io/skillbridge/ &")
+)
+
+; Callback to open the SkyVer help from the library manager window
+procedure(OpenDocumentationLmgrCallback(_menuItem _lib _cell _view _file _cat)
+  OpenDocumentation()
+)
+
+procedure(Initialize()
+	unless(IsInstalled()
+		lmgrSensitizeMenuItems('("SkillBridgeToggle") nil))
+)
+
+list(nil
+	'Initialize Initialize
+	'TogglePythonServerLmgrCallback TogglePythonServerLmgrCallback
+	'OpenDocumentationLmgrCallback OpenDocumentationLmgrCallback
+	'IsInstalled IsInstalled
+))
+
+Import['Package]->New('Skillbridge Skillbridge
+                      ?project Import['Virtue]
+                      ?description package_description)
+Skillbridge->Initialize()
+
+)
+
+;define('VrtSkillbridgeTogglePythonServerLmgrCallback nil)
+
+; Global functions required for library manager
+VrtSkillbridgeTogglePythonServerLmgrCallback = 
+	Import['Skillbridge]->TogglePythonServerLmgrCallback
+VrtSkillbridgeOpenDocumentationLmgrCallback = 
+	Import['Skillbridge]->OpenDocumentationLmgrCallback

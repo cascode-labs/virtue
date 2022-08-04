@@ -89,11 +89,11 @@ procedure(Test_prefixp()
 )
 
 procedure(Test_PathConcat()
-  assert(Str->PathConcat("/absolute" "path" "to" "a" "directory") == 
+  assert(Path->Concat("/absolute" "path" "to" "a" "directory") == 
          "/absolute/path/to/a/directory")
-  assert(Str->PathConcat("" "absolute" "path" "to" "a" "directory") == 
+  assert(Path->Concat("" "absolute" "path" "to" "a" "directory") == 
          "/absolute/path/to/a/directory")
-  assert(Str->PathConcat("/absolute" "path" "to" "a" "file.txt") == 
+  assert(Path->Concat("/absolute" "path" "to" "a" "file.txt") == 
          "/absolute/path/to/a/file.txt")
 )
 
@@ -110,7 +110,6 @@ Test->RunFile(list(nil
   'Test_startsWith Test_startsWith
   'Test_endsWith Test_endsWith
   'Test_prefixp Test_prefixp
-  'Test_PathConcat Test_PathConcat
   )
   ?filepath Virtue->GetCurrentFilePath()
 )

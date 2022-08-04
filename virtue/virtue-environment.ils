@@ -1,9 +1,18 @@
 printf("Initializing Virtue skill environment\n")
-printf("  conda environment prefix:\n  %s\n" getShellEnvVar("CONDA_PREFIX"))
+when(getShellEnvVar("CONDA_PREFIX")
+	printf("  conda environment prefix:\n  %s\n" getShellEnvVar("CONDA_PREFIX")))
 
-let((prefix path_skill IDS_libs file skillPkgs prj)
-	; Load all the init files from a directory
-	procedure(loadInitFromDir(dir) let((files file)
+let((prefix skillPkgs prj)
+
+	procedure(GetCurrentFileDirectory()
+		let((file_path)
+		file_path = simplifyFilename(get_filename(piport))
+		strcat("/" buildString(reverse(cdr(reverse(parseString(file_path "/")))) "/"))
+	))
+
+	procedure(loadInitFromDir(dir)
+		"Load all the SKILL and SKILL++ init files from a directory"
+		let((files file)
 		files = getDirFiles(dir)
 		files = remove("virtue-environment.ils" files)
 		files = remove("." files)
@@ -21,31 +30,34 @@ let((prefix path_skill IDS_libs file skillPkgs prj)
 	))
 
 	; Paths
-	prefix = getShellEnvVar("CONDA_PREFIX")
-	path_skill = strcat(prefix "/lib/skill")
-	printf("Loading SKILL packages from:\n %s\n" path_skill)
-	;file_path = simplifyFilename(get_filename(piport))
-	;dir_path = buildString(reverse(cdr(reverse(parseString(file_path "/")))) "/")
+	;prefix = getShellEnvVar("CONDA_PREFIX")
+	;path_skill = strcat(prefix "/lib/skill")
+  prefix = cond(
+    ;(getShellEnvVar("CONDA_PREFIX")
+    ;  prefix = strcat(getShellEnvVar("CONDA_PREFIX") "/lib/skill"))
+    (getShellEnvVar("VIRTUE_DEV")
+      strcat(GetCurrentFileDirectory() "/../.."))
+    ('t strcat(GetCurrentFileDirectory() "/.."))
+  )
+	printf("Loading SKILL packages from:\n %s\n" prefix)
 
 	; Load SKILL lib
-	loadInitFromDir(strcat(path_skill "/virtue"))
-	;printf("  Loaded Virtue SKILL library\n")
+	loadInitFromDir(strcat(prefix "/virtue"))
 
 	; Load init files directly from conda env skill lib
-	loadInitFromDir(path_skill)
+	loadInitFromDir(prefix)
 
 	; Load projects from directories in conda env skill lib
-	skillPkgs = getDirFiles(path_skill)
+	skillPkgs = getDirFiles(prefix)
 	skillPkgs = remove("virtue" skillPkgs)
 	skillPkgs = remove("IDS-skill" skillPkgs)
 	skillPkgs = remove("." skillPkgs)
 	skillPkgs = remove(".." skillPkgs)
 	when(skillPkgs
-		printf("  Loading projects from %s: \n" path_skill)
+		printf("  Loading projects from %s: \n" prefix)
 		foreach(prj skillPkgs
-			when(isDir(strcat(strcat(path_skill "/" prj)))
-				loadInitFromDir(strcat(path_skill "/" prj))))
+			when(isDir(strcat(strcat(prefix "/" prj)))
+				loadInitFromDir(strcat(prefix "/" prj))))
 	)
+  printf("  Done, initialized Virtue environment from:\n %s" prefix)
 )
-
-printf("  Done, initialized Virtue environment from:\n %s" skillPkgs)

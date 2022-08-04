@@ -5,29 +5,33 @@ let((Package
 Package = let(()
 
   procedure(IsPackage(input "g")
-    listp(input) && tablep(car(input)))
+    listp(input) && tablep(car(input)) ||
+    tablep(input) && tablep(input['_package])
+  )
   
-  procedure(New(package_symbol package_dpl 
-                @key project (description "") "sllt")
+  procedure(New(package_symbol package 
+                @key project (description "") "sglt")
     "Add a new SKILL Package to Virtue.
     @param package_symbol A symbol of the package name
-    @param package_dpl The package decomposed property list (DPL)
+    @param package The package decomposed property list (DPL) or table
     @param project The top-level package DPL of the project which defines this package
     @brief Add a new SKILL Package to Virtue."
     let((package_table)
-    if(IsPackage(package_dpl) then
-      package_table = car(package_dpl)
+    package_table = makeTable(strcat(symbolToString(package_symbol) " package"))
+    if(listp(package) then
+      package = cons(package_table cdr(package))
+    else if(tablep(package) then
+      package['_package] = package_table
     else
-      package_table = makeTable(strcat(symbolToString(package_symbol) " package"))
-      package_dpl = cons(package_table cdr(package_dpl))
-    )
+      error("A package must be a DPL or a table")
+    ))
     package_table['symbol] = package_symbol
     when(symbolp(project)
       project = Import[project])
     package_table['project] = project
     package_table['description] = description
-    Import[package_symbol] = package_dpl
-    package_dpl
+    Import[package_symbol] = package
+    package
   ))
   
   procedure(LoadList(package_filepaths @key (root_path "") continue_on_error)
@@ -54,6 +58,23 @@ Package = let(()
     putprop(object_dpl Package->Method(method object_dpl) method_symbol)
   )
 
+  procedure(GetPackageTable(package "g")
+    if(listp(package) then
+      car(package)
+    else if(tablep(package) then
+      package['_package]
+    else
+      error("Package must be a DPL or table")
+    ))
+  )
+
+  procedure(UninitializePackage(package "g")
+    if(symbolp(package) then
+      Import[package]->
+      remove(package Import)
+    )
+  )
+
   list(nil
     'New New
     'IsPackage IsPackage
@@ -66,4 +87,5 @@ Package = let(()
 Package->New('Package Package
              ?project Import['Virtue]
              ?description package_description)
+
 )

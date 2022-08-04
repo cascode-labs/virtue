@@ -16,6 +16,15 @@ Virtue = let(((package_description "SKILL++ Library and package manager")
     file_path = GetCurrentFilePath()
     strcat("/" buildString(reverse(cdr(reverse(parseString(file_path "/")))) "/"))
   ))
+  
+  procedure(OpenDocumentation()
+    system("firefox http://www.cascode-labs.org/virtue/ &")
+  )
+
+  procedure(OpenDocumentationLmgrCallback(_menuItem _lib _cell _view _file _cat)
+    "Callback to open the Virtue help from the library manager window"
+    OpenDocumentation()
+  )
 
   procedure(Initialize()
     let((dir_path preinit_packages Package Project virtue_packages lib)
@@ -31,6 +40,7 @@ Virtue = let(((package_description "SKILL++ Library and package manager")
 
     preinit_packages = list(
       "Str.ils"
+      "Path.ils"
       "Toml.ils"
       "Project.ils"
     )
@@ -53,6 +63,7 @@ Virtue = let(((package_description "SKILL++ Library and package manager")
     	; "filePathFromLCV.il"
       ; "SchNets.il"
       "HdbConfig.ils"
+      "Skillbridge.ils"
     )
     Package->LoadList(virtue_packages 
       ?root_path dir_path
@@ -64,9 +75,15 @@ Virtue = let(((package_description "SKILL++ Library and package manager")
     'Import Import
     'Initialize Initialize
     'GetCurrentFilePath GetCurrentFilePath
-    'GetCurrentFileDirectory GetCurrentFileDirectory 
+    'GetCurrentFileDirectory GetCurrentFileDirectory
+    'OpenDocumentation OpenDocumentation
+    'OpenDocumentationLmgrCallback OpenDocumentationLmgrCallback
 ))
 
 Import['Virtue] = Virtue
 Virtue->Initialize()
 )
+
+; Global functions required for library manager
+VrtOpenDocumentationLmgrCallback = 
+	Import['Virtue]->OpenDocumentationLmgrCallback

@@ -1,0 +1,94 @@
+let((Path
+     (package_description "String file and directory path functions")
+     (Package Import['Package])
+    )
+
+Path = let(()
+
+  procedure(Concat(@rest pathParts "t")
+    "Concatenates each of the string partial paths into a full path by 
+      concatenating them with file seperators,'/', between them"
+      buildString(pathParts "/")
+  )
+  
+  procedure(CopyCallback(_menu lib cell view _file _cat)
+    "Library manager callback for copying a library, cell, or view path from
+     a context menu"
+    when(lib||cell||view
+      hiSetClipboard( ddGetObj(lib cell view)~>readPath))
+  )
+
+  procedure(FileName(path "t")
+    "Returns the file name of the path, including the extension"
+    car(last(parseString(path "/")))
+  )
+
+  procedure(Folder(path "t")
+    "Returns the path to the folder containing the path object"
+    let((pieces fileName folderPath)
+    pieces = parseString(path "/")
+    fileName = car(last(pieces))
+    folderPath = buildString(remq(fileName pieces) "/")
+    when(substring(path 1 1) == "/"
+      folderPath = strcat("/" folderPath))
+    folderPath
+  ))
+
+  procedure(RemoveExtension(path "t") 
+    "Removes the current file extension if the file currently has one."
+    let((currentExt)
+    currentExt = FileExtension(path)
+    if(currentExt then
+      path = buildString(list(Folder(path) 
+                              substring(FileName(path) 1 
+                                length(FileName(path))-length(currentExt)-1)
+                            )
+                        "/")
+    )
+    path
+  ))
+
+  procedure(UpdateExtension(path extension "tt")
+    "Update the file extension to the provided value.  Appends the extension if 
+    one is not included.  The last item in the path is considered the file name.
+    @param extension The new file extension to be used.  It shouldn't include the '.'"
+    RemoveExtension(path)
+    strcat(path "." extension)
+  )
+
+  procedure(FileExtension(path "t")
+    "Returns the file extension of the path"
+    let((fileNameParts)
+    fileNameParts = parseString(FileName(path) ".")
+    if(length(fileNameParts) > 1 then
+      car(last(fileNameParts))
+    else
+      nil)
+  ))
+
+  procedure(Exists(path "t")
+    "Checks if the file or directory of the path exists.  
+    Alias for the built-in 'isFileName' function"
+    isFileName(path)
+  )
+
+  procedure(ExistsFile(path "t")
+    "Checks if the path exists and is a file, not a directory. 
+    Alias for the built-in 'isFile' function."
+    isFile(path)
+  )
+
+  list(nil
+    'Concat Concat
+    'CopyCallback CopyCallback
+  )
+)
+
+Package->New('Path Path
+             ?project Import['Virtue]
+             ?description package_description)
+
+)
+
+; Global functions required for library manager
+VrtPathCopyCallback = Import['Path]->CopyCallback
