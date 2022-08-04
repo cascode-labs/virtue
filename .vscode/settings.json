@@ -1,5 +1,9 @@
 {
     "editor.rulers": [
     79
-    ]
+    ],
+    "[skill]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2
+    }
 }
