@@ -1,8 +1,6 @@
 printf("Initializing Virtue skill environment\n")
-when(getShellEnvVar("CONDA_PREFIX")
-	printf("  conda environment prefix:\n  %s\n" getShellEnvVar("CONDA_PREFIX")))
 
-let((prefix skillPkgs prj)
+let((prefix)
 
 	procedure(GetCurrentFileDirectory()
 		let((file_path)
@@ -10,54 +8,61 @@ let((prefix skillPkgs prj)
 		strcat("/" buildString(reverse(cdr(reverse(parseString(file_path "/")))) "/"))
 	))
 
-	procedure(loadInitFromDir(dir)
-		"Load all the SKILL and SKILL++ init files from a directory"
+	procedure(loadInitFromDir(dir_path "t")
+		"Load all the SKILL and SKILL++ init files from a directory and all
+		 directories below it.  Except for the virtue initialization, which 
+		 needs to happen first."
 		let((files file)
-		files = getDirFiles(dir)
-		files = remove("virtue-environment.ils" files)
+		files = getDirFiles(dir_path)
 		files = remove("." files)
 		files = remove(".." files)
+		files = remove("virtue.init.ils" files)
 		when(files
 			foreach(file files
-				cond(
-					((substring(file -8 8) == "init.ils")
-						loadi(strcat(dir "/" file)))
-					((substring(file -7 7) == "init.il")
-						loadi(strcat(dir "/" file)))
-				)
+				loadInitRecursively(dir_path file)
 			)
 		)
 	))
 
-	; Paths
-	;prefix = getShellEnvVar("CONDA_PREFIX")
-	;path_skill = strcat(prefix "/lib/skill")
+	procedure(loadInitRecursively(dir_path file_name "tt")
+		"Loads the given file path with directories loaded recursively.
+		 Catches and displays errors with loading the file, but continues to load 
+		 other files."
+		let(((file_path strcat(dir_path "/" file_name)))
+		errset(
+			cond(
+				(isDir(file_path)
+					loadInitFromDir(file_path))
+				((substring(file_name -9 9) == ".init.ils")
+					load(file_path))
+				((substring(file_name -8 8) == ".init.il")
+					load(file_path))
+			)
+		't)
+	))
+
   prefix = cond(
-    ;(getShellEnvVar("CONDA_PREFIX")
-    ;  prefix = strcat(getShellEnvVar("CONDA_PREFIX") "/lib/skill"))
-    (getShellEnvVar("VIRTUE_DEV")
-      strcat(GetCurrentFileDirectory() "/../.."))
-    ('t strcat(GetCurrentFileDirectory() "/.."))
+		(getShellEnvVar("VIRTUE_SKILL_PREFIX")
+		  getShellEnvVar("VIRTUE_SKILL_PREFIX"))
+    ((getShellEnvVar("CONDA_PREFIX") 
+		 && isFile(strcat(getShellEnvVar("CONDA_PREFIX") "/lib/skill/virtue/virtue-environment.ils")))
+		  printf("  Loading skill environment from conda environment prefix:\n    %s\n" getShellEnvVar("CONDA_PREFIX"))
+		  strcat(getShellEnvVar("CONDA_PREFIX") "/lib/skill")
+		)
+    ('t error("  Please set the 'VIRTUE_SKILL_PREFIX' environment variable \n
+							 or start Virtuoso in a Conda environment with Virtue installed"))
   )
-	printf("Loading SKILL packages from:\n %s\n" prefix)
+	printf("  Loading Virtue SKILL environment from:\n  %s\n" prefix)
 
-	; Load SKILL lib
-	loadInitFromDir(strcat(prefix "/virtue"))
-
-	; Load init files directly from conda env skill lib
+	cond(
+		; Standard installation
+	  (isFile(strcat(prefix "/virtue/virtue.init.ils"))
+			loadInitRecursively(prefix "virtue/virtue.init.ils"))
+		; Repo installation
+		(isFile(strcat(prefix "/virtue/virtue.init.ils"))
+			loadInitRecursively(prefix "virtue/virtue/virtue.init.ils"))
+	)
 	loadInitFromDir(prefix)
 
-	; Load projects from directories in conda env skill lib
-	skillPkgs = getDirFiles(prefix)
-	skillPkgs = remove("virtue" skillPkgs)
-	skillPkgs = remove("IDS-skill" skillPkgs)
-	skillPkgs = remove("." skillPkgs)
-	skillPkgs = remove(".." skillPkgs)
-	when(skillPkgs
-		printf("  Loading projects from %s: \n" prefix)
-		foreach(prj skillPkgs
-			when(isDir(strcat(strcat(prefix "/" prj)))
-				loadInitFromDir(strcat(prefix "/" prj))))
-	)
-  printf("  Done, initialized Virtue environment from:\n %s" prefix)
+  printf("  Done, initialized Virtue SKILL environment from:\n  %s\n" prefix)
 )
