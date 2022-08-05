@@ -2,7 +2,7 @@
 
 ![PyPI](https://img.shields.io/pypi/v/virtue-skill) ![GitHub issues](https://img.shields.io/github/issues/cascode-labs/virtue)
 
-Cadence Virtuoso SKILL++ library
+Cadence Virtuoso SKILL++ framework
 
 Features:
 
