@@ -1,0 +1,38 @@
+{% set name = "virtue" %}
+
+package:
+  name: "{{ name|lower }}"
+  #version: "{{ version }}"
+  version: "0.1.0" # Need to make a single place for the version #
+source:
+  - path: ../conda-recipe
+    folder: conda-recipe
+  - path: ../virtue
+    folder: virtue
+  - path: ../tests
+    folder: tests
+  - path: ../README.md
+  - path: ../setup.py
+  - path: ../pyproject.toml
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - python==3.8
+    - pip=22.2.2
+  run:
+    - python>=3.8
+
+test:
+  imports:
+    - virtue
+
+about:
+  home: http://www.cascode-labs.org/virtue/
+  license: MIT
+  summary: Cadence Virtuoso SKILL++ framework
+  dev_url: https://github.com/cascode-labs/virtue
+  doc_url: http://www.cascode-labs.org/virtue/
+  doc_source_url: https://github.com/cascode-labs/virtue/tree/main/docs/source
