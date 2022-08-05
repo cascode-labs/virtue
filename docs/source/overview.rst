@@ -17,3 +17,42 @@ Features:
 - Support for SKILL environment management using `Conda <https://docs.conda.io/en/latest/>`_
 - Supports seamless execution of SKILL from Python using 
   `SkillBridge <https://unihd-cag.github.io/skillbridge/>`_
+
+License
+-------
+
+Virtue is licensed under an MIT license.
+
+Installation
+------------
+
+From Source
+^^^^^^^^^^^^
+
+Just load the "virtue.init.ils" from the CIW window or add the following to
+your .cdsinit file:
+
+.. code-block:: lisp
+
+   load("/path/to/repo/virtue/virtue/virtue.init.ils")
+
+
+Reminder: The following will change your top-level interpreter to SKILL++:
+
+.. code-block:: lisp
+
+   toplevel('ils)
+
+Pip
+^^^^^
+
+You can install Virtue using pip from the [virtue-skill PyPi package](https://pypi.org/project/virtue-skill/)
+
+.. code-block:: bash
+
+   pip install virtue-skill
+
+Conda
+^^^^^
+
+Coming soon!

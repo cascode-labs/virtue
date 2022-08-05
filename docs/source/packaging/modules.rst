@@ -4,8 +4,9 @@ SKILL++ Modules
 
 SKILL++ modules allow closely related code to be grouped together and share 
 private functions and variables.  Modules can then be imported 
-into a local lexical SKILL++ environment without affecting the top-level 
-environment.  A module can be created as a DPL or a table.
+into a local lexical SKILL++ environment from the Import table without 
+affecting the top-level environment.  A module can be created as a DPL or a 
+table.
 
 DPL Modules
 ------------

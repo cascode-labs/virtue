@@ -1,7 +1,7 @@
 Packaging
 =========
 
-Package SKILL++ code into modules and package modules into packages.
+Virtue allows SKILL++ code to be  into modules and package modules into packages.
 
 .. toctree::
    :caption: Contents:
