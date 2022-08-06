@@ -18,5 +18,6 @@ help:
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
 	mkdir -p ./source/_static
-	cp -rf ./../virtue ./source/_static/src
+	cp -rf ../virtue ./source/_static/src
+	cp -f ../LICENSE ./source/_static/LICENSE
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
