@@ -56,6 +56,7 @@ Virtue = let(((module_description "SKILL++ Library and package manager")
     	"test/Test.ils"
     	"Geo.ils"
       "Dpl.ils"
+      "Lcv.ils"
     	; "Sch.ils"
     	"MaeMaestro.ils"
       "MaeExport.ils"
