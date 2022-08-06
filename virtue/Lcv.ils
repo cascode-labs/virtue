@@ -1,22 +1,26 @@
+let((Lcv
+     (module_description 
+      "Select the lib, cell, view or history name from an ordered list of them.")
+    )
 Lcv = let(()
 
-procedure(lib(cellname_list "l")
+procedure(lib(lcv_list "l")
   "Get the library name frim a lcv (lib, cell, view) list"
-  car(cell_list)
+  car(lcv_list)
 )
-procedure(cell(cellname_list "l")
+procedure(cell(lcv_list "l")
   "Get the cell name frim a lcv (lib, cell, view) list"
-  cadr(cell_list)
+  cadr(lcv_list)
 )
 
-procedure(view(cellname_list "l")
+procedure(view(lcv_list "l")
   "Get the view name frim a lcv (lib, cell, view) list"
-  caddr(cell_list)
+  caddr(lcv_list)
 )
 
-procedure(history(cellname_list "l")
+procedure(history(lcvh_list "l")
   "Get the history name frim a lcvh (lib, cell, view, history) list"
-  cadddr(cell_list)
+  cadddr(lcvh_list)
 )
 
 list(nil
@@ -25,3 +29,8 @@ list(nil
   'view view
   'history history
 ))
+
+Module->New('Lcv Lcv
+             ?project Import['Virtue]
+             ?description module_description)
+)

@@ -1,0 +1,44 @@
+let(((Lcv Import['Lcv])
+     (Test Import['Test])
+     (Virtue Import['Virtue])
+    )
+
+procedure(lcv_list()
+  list("lib_name" "cell_name" "view_name")
+)
+
+procedure(lcvh_list()
+  list("lib_name" "cell_name" "view_name" "history_name")
+)
+
+Test->Fixtures['lcv_list] = lcv_list
+Test->Fixtures['lcvh_list] = lcvh_list
+
+procedure(Test_lib(lcv_list, lcvh_list)
+  assert(Lcv->lib(lcv_list) == "lib_name")
+  assert(Lcv->lib(lcvh_list) == "lib_name")
+)
+
+procedure(Test_cell(lcv_list, lcvh_list)
+  assert(Lcv->cell(lcv_list) == "cell_name")
+  assert(Lcv->cell(lcvh_list) == "cell_name")
+)
+
+procedure(Test_view(lcv_list, lcvh_list)
+  assert(Lcv->view(lcv_list) == "view_name")
+  assert(Lcv->view(lcvh_list) == "view_name")
+)
+
+procedure(Test_history(lcvh_list)
+  assert(Lcv->view(lcvh_list) == "history_name")
+)
+
+Test->RunFile(list(nil
+  'Test_lib Test_lib
+  'Test_cell Test_cell
+  'Test_view Test_view
+  )
+  ?filepath Virtue->GetCurrentFilePath()
+)
+
+)
