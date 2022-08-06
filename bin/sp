@@ -1,0 +1,147 @@
+#!/bin/tcsh
+# svp: start virtue project
+
+# Display the help when no arguments are provided
+if ($# == 0) then
+	svp --help
+	exit 0
+endif
+
+# Get the directory of this script
+#set rootdir = `dirname $0`
+#set abs_rootdir = `cd $rootdir && pwd`
+
+# Defaults
+set conda_env=""
+set dev="false"
+set no_skill="false"
+set VIEWPRJ_CMD="false"
+
+# Parse input options
+set opts=(`getopt -s tcsh -o cdhon:p:v -l code,dev,help,no,name,prefix,view -- $argv:q`)
+if ($? != 0) then 
+  echo "Terminating..." >/dev/stderr
+  exit 1
+endif
+# Now we do the eval part. As the result is a list, we need braces. But they
+# must be quoted, because they must be evaluated when the eval is called.
+# The 'q` stops doing any silly substitutions.
+eval set argv=\($opts:q\)
+
+while (1)
+	switch($1:q)
+	case -c:
+	case --code:
+		echo "code option set"
+		setenv SP_START_CODE "TRUE"
+		shift
+		breaksw
+	case -n:
+	case --name:
+		echo "named conda environment set to $2:q"
+		set conda_env=\`$2:q\'  
+		shift ; shift
+		breaksw
+	case --o:
+	case --no:
+		echo "no option set, will not load skill environment (-o / --no)"
+		set no_skill="true" ; shift
+		breaksw
+	case -p:
+	case --prefix:
+		echo "conda environment prefix set to $2:q"
+		set VIRTUE_CONDA_PREFIX=$2 ; shift ; shift
+		breaksw
+	case -v:
+	case --view:
+		echo "Opening virtuoso session in view mode (viewprj)"
+		set VIEWPRJ_CMD="true" ; shift
+		breaksw
+	case -h:
+	case --help:
+		echo ""
+		echo "Start Project (sp)"
+		echo " sp [Options] [prj_name]"
+		echo "   Starts a cadence project in a Virtue SKILL environment"
+		echo " Example:"
+		echo "   sp sky58270_mk5872ASM_CR"
+		echo " Options:"
+		echo "   -c, --code: Starts vs code in the project's code workspace"
+		echo "     instead of running virtuoso"
+		echo "   -h, --help:	Display this help message"
+		echo "   -O, --no: Don't load any SKILL environment,"
+		echo "     just start the project"
+		echo "   -n, --name: Uses the conda environment specified by the name given"
+		echo "     If both -n and -p are specified then -p is used"
+		echo "   -p, --prefix: Uses the conda environment specified by the prefix given"
+		echo "     If both -n and -p are specified then -p is used"
+		echo "   -v, --view: Opens the virtuoso project as read-only, if supported"
+		echo ""
+		exit 0
+	case --:
+		shift
+		break
+	default:
+		echo "Internal error!" ; exit 1
+	endsw
+end
+
+if ($#argv == 0) then
+	echo "error: You must specify the project name as the last argument or -h / --help"
+endif
+
+setenv PRJ_NAME $1:q
+set argv = ()
+
+if (${VIEWPRJ_CMD} == "false") then
+	cdsprj ${PRJ_NAME}
+else
+	viewprj ${PRJ_NAME}
+endif
+
+# Setup Virtue SKILL environment
+if ( $?CONDA_PREFIX && (-d ${CONDA_PREFIX}/lib/skill/virtue ) ) then
+  setenv VIRTUE_CONDA_PREFIX ${CONDA_PREFIX}
+  setenv VIRTUE_SKILL_PREFIX ${CONDA_PREFIX}/lib/skill
+  echo "Using active Conda environment:\n  ${CONDA_PREFIX}\n"
+else if ( $?VIRTUE_CONDA_PREFIX ) then
+  setenv VIRTUE_SKILL_PREFIX ${VIRTUE_CONDA_PREFIX}/lib/skill
+else if ( ! $?VIRTUE_SKILL_PREFIX ) then
+  echo 'No VIRTUE SKILL environment found, please select a virtue skill\n
+        environment by setting $VIRTUE_SKILL_PREFIX, activating a Conda \n
+		environment containing the virtue package before calling "sp", or \n
+		setting $VIRTUE_CONDA_PREFIX to the prefix of a conda environment \n
+		containing Virtue.'
+  exit 1
+endif
+echo "Loading skill environment:\n  ${CONDA_PREFIX}"
+
+echo "activating conda"
+if ( -d "$VIRTUE_CONDA_PREFIX" ) then
+	# Required in tcsh scripts, similar to the interactive "conda activate"
+	source ${VIRTUE_CONDA_PREFIX}/etc/profile.d/conda.csh
+	conda activate $VIRTUE_CONDA_PREFIX
+	conda info
+	echo "  Done, Activated conda environment"
+else if ( $?VIRTUE_CONDA_PREFIX ) then
+   echo '  No Conda evironment found at'
+   echo '    $VIRTUE_CONDA_PREFIX = ' $VIRTUE_CONDA_PREFIX
+   exit 1
+endif
+
+
+if ( $?SP_START_CODE ) then
+	mkdir -p ../../${PRJ_NAME}_code
+	cd ../../${PRJ_NAME}_code
+	code .
+else
+	if ( -r "${VIRTUE_SKILL_PREFIX}/virtue/virtue-environment.ils" && ${no_skill} == "false" ) then
+		echo "Starting Virtuoso with Virtue SKILL env initialization script:"
+		echo "  ${VIRTUE_SKILL_PREFIX}/virtue/virtue-environment.ils"
+		icfb -replay "${VIRTUE_SKILL_PREFIX}/virtue/virtue-environment.ils"
+	else if ( ${no_skill} == "true" ) then
+		echo "Virtue SKILL environment disabled with --no"
+		echo "  Starting Virtuoso with no Virtue SKILL environment initialized"
+		icfb
+	endif
+endif
