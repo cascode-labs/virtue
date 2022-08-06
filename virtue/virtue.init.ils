@@ -1,10 +1,10 @@
 ; Define the iport table as a global in both SKILL and SKILL++
-inSkill(Import = makeTable("Virtue Package Import Table"))
+inSkill(Import = makeTable("Virtue Module Import Table"))
 importSkillVar(Import)
 
 let((Virtue)
 
-Virtue = let(((package_description "SKILL++ Library and package manager")
+Virtue = let(((module_description "SKILL++ Library and package manager")
              )
 
   procedure(GetCurrentFilePath()
@@ -27,16 +27,16 @@ Virtue = let(((package_description "SKILL++ Library and package manager")
   )
 
   procedure(Initialize()
-    let((dir_path preinit_packages Package Project virtue_packages lib)
+    let((dir_path preinit_packages Module Project virtue_packages lib)
     printf("\nInitializing Virtue SKILL++ Library\n")
 
     dir_path = GetCurrentFileDirectory()
 
-    loadi(strcat(dir_path "/Package.ils"))
-    Package = Import['Package]
-    Virtue = Package->New('Virtue Import['Virtue]
+    loadi(strcat(dir_path "/Module.ils"))
+    Module =Import['Module]
+    Virtue = Module->New('Virtue Import['Virtue]
       ?project Import['Virtue]
-      ?description package_description)
+      ?description module_description)
 
     preinit_packages = list(
       "Str.ils"
@@ -44,7 +44,7 @@ Virtue = let(((package_description "SKILL++ Library and package manager")
       "Toml.ils"
       "Project.ils"
     )
-    Package->LoadList(preinit_packages 
+    Module->LoadList(preinit_packages 
       ?root_path dir_path
       ?continue_on_error 't)
 
@@ -65,7 +65,7 @@ Virtue = let(((package_description "SKILL++ Library and package manager")
       "HdbConfig.ils"
       "Skillbridge.ils"
     )
-    Package->LoadList(virtue_packages 
+    Module->LoadList(virtue_packages 
       ?root_path dir_path
       ?continue_on_error 't)
     printf("  Initialized Virtue SKILL++ Library\n")

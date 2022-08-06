@@ -1,6 +1,6 @@
 ; Exports information about a Maestro view
 let((MaeExport
-     (Package Import['Package])
+     (Module Import['Module])
     )
 
 MaeExport = let(()
@@ -77,6 +77,6 @@ list(nil
     'BuildMaestroHistoryInfoTable BuildMaestroHistoryInfoTable
 ))
 
-Package->New('MaeExport MaeExport 
+Module->New('MaeExport MaeExport 
              ?project Import['Virtue])
 )

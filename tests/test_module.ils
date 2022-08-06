@@ -1,19 +1,19 @@
 let((dut_package
-     (Package Import['Package])
+     (Module Import['Module])
      (Test Import['Test])
     )
 
-procedure(PackageCat(package string_arg)
-  strcat(package->some_string string_arg)
+procedure(ModuleCat(package string_arg)
+  strcat(Module->some_string string_arg)
 )
 
 dut_package = list(nil
   'some_string "A")
 
-putprop(dut_package Package->Method(PackageCat dut_package) 'PackageCat)
+putprop(dut_package Module->Method(ModuleCat dut_package) 'ModuleCat)
 
 procedure(test_Method()
-  assert(dut_package->PackageCat("B") == "AB")
+  assert(dut_Module->ModuleCat("B") == "AB")
 )
 
 test_function = Test->NewFunction('test_Method test_Method)

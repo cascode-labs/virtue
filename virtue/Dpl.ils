@@ -1,6 +1,6 @@
 let((Dpl
-     (package_description "Disembodied property list functions")
-     (Package Import['Package])
+     (module_description "Disembodied property list functions")
+     (Module Import['Module])
     )
 Dpl = let(()
 
@@ -27,7 +27,7 @@ Dpl = let(()
   )
 )
 
-Package->New('Dpl Dpl
+Module->New('Dpl Dpl
              ?project Import['Virtue]
-             ?description package_description)
+             ?description module_description)
 )

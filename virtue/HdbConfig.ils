@@ -1,6 +1,6 @@
 let((Hdb
-     (package_description "Hierarchy database functions for config views")
-     (Package Import['Package])
+     (module_description "Hierarchy database functions for config views")
+     (Module Import['Module])
     )
 
 Hdb = let(()
@@ -36,7 +36,7 @@ list(nil
   'CreateConfigView CreateConfigView
 ))
 
-Package->New('Hdb Hdb 
+Module->New('Hdb Hdb 
              ?project Import['Virtue]
-             ?description package_description)
+             ?description module_description)
 )

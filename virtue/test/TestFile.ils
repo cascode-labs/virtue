@@ -1,5 +1,5 @@
 let(((Test Import['Test])
-     (Package Import['Package])
+     (Module Import['Module])
     )
 
 procedure(NewFile(path @optional test_functions_dpl "tl")
@@ -11,11 +11,11 @@ procedure(NewFile(path @optional test_functions_dpl "tl")
     'AddTestFunctions AddTestFunctions
     'ReportResult ReportResult
   )
-  putprop(test_file Package->Method(AddTestFunctions test_file) 'AddTestFunctions)
-  putprop(test_file Package->Method(ReportResult test_file) 'ReportResult)
-  putprop(test_file Package->Method(Run test_file) 'Run)
-  putprop(test_file Package->Method(FunctionCount test_file) 'FunctionCount)
-  putprop(test_file Package->Method(FunctionPassCount test_file) 'FunctionPassCount)
+  putprop(test_file Module->Method(AddTestFunctions test_file) 'AddTestFunctions)
+  putprop(test_file Module->Method(ReportResult test_file) 'ReportResult)
+  putprop(test_file Module->Method(Run test_file) 'Run)
+  putprop(test_file Module->Method(FunctionCount test_file) 'FunctionCount)
+  putprop(test_file Module->Method(FunctionPassCount test_file) 'FunctionPassCount)
   test_file->AddTestFunctions(test_functions_dpl)
   test_file
 ))

@@ -2,7 +2,7 @@ SKILL API
 =========
 A library of SKILL functions and classes.
 
-Packages:
+Modules:
 
 - List
 - String (Str)

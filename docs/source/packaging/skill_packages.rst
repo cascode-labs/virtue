@@ -1,14 +1,14 @@
 *****************
-SKILL++  Packages
+SKILL++  Modules
 *****************
 
 A SKILL++ package is a set of related SKILL++ modules defined as part of a 
-project.  Packages can have 
+project.  Modules can have 
 
-Package help
+Module help
 ------------
 
-Package description
+Module description
 --------------------
 
 SKILL can be included as a part of any Conda package and loaded when Cadence

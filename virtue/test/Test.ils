@@ -1,7 +1,7 @@
 let((Test
      (Virtue Import['Virtue])
-     (Package Import['Package])
-     (package_description "SKILL Test framework modeled after PyTest")
+     (Module Import['Module])
+     (module_description "SKILL Test framework modeled after PyTest")
     )
 
 Test = let((current_suite)
@@ -15,7 +15,7 @@ Test = let((current_suite)
       "TestSuite.ils"
       "TestFixtures.ils"
     )
-    Package->LoadList(subpackages ?root_path root_path)
+    Module->LoadList(subpackages ?root_path root_path)
   ))
 
   list(nil
@@ -24,8 +24,8 @@ Test = let((current_suite)
   )
 )
 
-Package->New('Test Test
+Module->New('Test Test
              ?project Virtue
-             ?description package_description)
+             ?description module_description)
 Test->Initialize()
 )

@@ -1,6 +1,6 @@
 let((List
-     (package_description "List functions")
-     (Package Import['Package])
+     (module_description "List functions")
+     (Module Import['Module])
     )
 
 List = let(()
@@ -78,7 +78,7 @@ List = let(()
   )
 )
 
-Package->New('List List
+Module->New('List List
              ?project Import['Virtue]
-             ?description package_description)
+             ?description module_description)
 )

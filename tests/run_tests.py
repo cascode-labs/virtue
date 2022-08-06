@@ -1,5 +1,8 @@
-"""Run the SKILL tests from Python.  Makes it easy to run them from a 
-python IDE.  Not working yet though."""
+"""
+Run the SKILL tests from Python.  Makes it easy to run them from a 
+python IDE.  Not working yet though as skillbridge doesn't currently support 
+tables.
+"""
 
 from pathlib import Path
 from skillbridge import Workspace, Symbol

@@ -29,16 +29,14 @@ let((prefix)
 		 Catches and displays errors with loading the file, but continues to load 
 		 other files."
 		let(((file_path strcat(dir_path "/" file_name)))
-		errset(
-			cond(
-				(isDir(file_path)
-					loadInitFromDir(file_path))
-				((substring(file_name -9 9) == ".init.ils")
-					load(file_path))
-				((substring(file_name -8 8) == ".init.il")
-					load(file_path))
-			)
-		't)
+		cond(
+			(isDir(file_path)
+				loadInitFromDir(file_path))
+			((substring(file_name -9 9) == ".init.ils")
+				loadi(file_path))
+			((substring(file_name -8 8) == ".init.il")
+				loadi(file_path))
+		)
 	))
 
   prefix = cond(

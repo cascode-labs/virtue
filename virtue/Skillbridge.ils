@@ -1,4 +1,4 @@
-let(((package_description "Skillbridge interface"))
+let(((module_description "Skillbridge interface"))
 
 Skillbridge = let(()
 procedure(GetID()
@@ -80,9 +80,9 @@ list(nil
 	'IsInstalled IsInstalled
 ))
 
-Import['Package]->New('Skillbridge Skillbridge
+Import['Module]->New('Skillbridge Skillbridge
                       ?project Import['Virtue]
-                      ?description package_description)
+                      ?description module_description)
 Skillbridge->Initialize()
 
 )

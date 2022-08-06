@@ -1,5 +1,5 @@
 let(((Test Import['Test])
-     (Package Import['Package])
+     (Module Import['Module])
     )
 
 procedure(NewFunction(symbol function_object "su")
@@ -12,8 +12,8 @@ procedure(NewFunction(symbol function_object "su")
     'pass nil
     'error_details nil
   )
-  putprop(test_function Package->Method(Run test_function) 'Run)
-  putprop(test_function Package->Method(ReportResult test_function) 'ReportResult)
+  putprop(test_function Module->Method(Run test_function) 'Run)
+  putprop(test_function Module->Method(ReportResult test_function) 'ReportResult)
   test_function
 ))
 

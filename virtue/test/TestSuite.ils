@@ -1,6 +1,6 @@
 let(((Test Import['Test])
      (Str Import['Str])
-     (Package Import['Package])
+     (Module Import['Module])
      (Path Import['Path])
      current_suite
     )
@@ -40,10 +40,10 @@ let(((Test Import['Test])
       'pass 't
       'ResetSuite ResetSuite
     )
-    Package->AddMethod('AddFile AddFile suite)
-    Package->AddMethod('ReportResult ReportResult suite)
-    Package->AddMethod('FunctionCount FunctionCount suite)
-    Package->AddMethod('FunctionPassCount FunctionPassCount suite)
+    Module->AddMethod('AddFile AddFile suite)
+    Module->AddMethod('ReportResult ReportResult suite)
+    Module->AddMethod('FunctionCount FunctionCount suite)
+    Module->AddMethod('FunctionPassCount FunctionPassCount suite)
     suite
   ))
 

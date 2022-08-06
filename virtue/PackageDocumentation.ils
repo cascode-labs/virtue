@@ -1,10 +1,10 @@
-let((Package 
-     (package_description "Create Virtue SKILL packages"))
+let((Module 
+     (module_description "Create Virtue SKILL packages"))
     )
 
 
 
-Package = let(()
+Module = let(()
 
   procedure(FunctionDocStrings(package "l")
     "Reads the documentation string for all the public functions of a package"
@@ -16,10 +16,10 @@ Package = let(()
 
   list(nil
     'New New
-    'IsPackage IsPackage
+    'IsModule IsModule
   )
 )
 
-Package->New('Package Package Virtue 
-             ?description package_description)
+Module->New('Module Module Virtue 
+             ?description module_description)
 )

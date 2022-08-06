@@ -1,5 +1,5 @@
 let((Maestro
-     (Package Import['Package])
+     (Module Import['Module])
     )
 
 ; Skill Functions for Maestro views
@@ -114,6 +114,6 @@ Maestro = let(()
   )
 )
 
-Package->New('Maestro Maestro
+Module->New('Maestro Maestro
              ?project Import['Virtue])
 )

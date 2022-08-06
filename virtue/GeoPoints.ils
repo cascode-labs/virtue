@@ -1,4 +1,4 @@
-; Point Geometry Package
+; Point Geometry Module
 ; -------------------------
 ; Built-in Point Functions:
 ;  * isLocation

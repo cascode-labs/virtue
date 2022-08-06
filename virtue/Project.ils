@@ -1,8 +1,8 @@
 let((Project
-     (package_description "Registers a SKILL project with Virtue")
+     (module_description "Registers a SKILL project with Virtue")
      (Str Import['Str])
      (Toml Import['Toml])
-     (Package Import['Package])
+     (Module Import['Module])
      (Path Import['Path])
     )
 
@@ -42,11 +42,11 @@ Project = let(((project_packages makeTable("virtue project packages")))
 
   list(nil
     'New New
-    'ProjectPackages project_packages
+    'ProjectModules project_packages
   )
 )
 
-Package->New('Project Project
+Module->New('Project Project
              ?project Import['Virtue]
-             ?description package_description)
+             ?description module_description)
 )

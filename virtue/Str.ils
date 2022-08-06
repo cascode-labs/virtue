@@ -1,6 +1,6 @@
 let((Str
-     (package_description "String functions")
-     (Package Import['Package])
+     (module_description "String functions")
+     (Module Import['Module])
     )
 Str = let(()
 
@@ -130,8 +130,8 @@ list(nil
   'prefixp prefixp
 ))
 
-Package->New('Str Str
+Module->New('Str Str
              ?project Import['Virtue]
-             ?description package_description)
+             ?description module_description)
 
 )

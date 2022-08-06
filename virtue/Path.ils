@@ -1,6 +1,6 @@
 let((Path
-     (package_description "String file and directory path functions")
-     (Package Import['Package])
+     (module_description "String file and directory path functions")
+     (Module Import['Module])
     )
 
 Path = let(()
@@ -84,9 +84,9 @@ Path = let(()
   )
 )
 
-Package->New('Path Path
+Module->New('Path Path
              ?project Import['Virtue]
-             ?description package_description)
+             ?description module_description)
 
 )
 

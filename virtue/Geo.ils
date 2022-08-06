@@ -1,6 +1,6 @@
  /*****************************************************************
   *                                                               *
-  *             Layout Geometry Package                           *
+  *             Layout Geometry Module                            *
   *                                                               *
   *   Handles layout geometries such as shapes, points, and       *
   *    bounding boxes                                             *
@@ -14,8 +14,8 @@
   *****************************************************************/
 
 let((Geo
-     (package_description "Geometry functions")
-     (Package Import['Package])
+     (module_description "Geometry functions")
+     (ModuleImport['Module])
     )
 
 Geo = let(()
@@ -274,7 +274,7 @@ Geo = let(()
   )
 )
 
-Package->New('Geo Geo
+Module->New('Geo Geo
              ?project Import['Virtue]
-             ?description package_description)
+             ?description module_description)
 )

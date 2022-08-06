@@ -1,0 +1,91 @@
+let((Module 
+     (module_description "Create Virtue SKILL modules")
+    )
+  
+Module = let(()
+
+  procedure(IsModule(input "g")
+    listp(input) && tablep(car(input)) ||
+    tablep(input) && tablep(input['_module])
+  )
+  
+  procedure(New(module_symbol module 
+                @key project (description "") "sglt")
+    "Add a new SKILL module to Virtue.
+    @param module_symbol A symbol of the module name
+    @param module The module decomposed property list (DPL) or table
+    @param project The top-level module DPL of the project which defines this module
+    @brief Add a new SKILL module to Virtue."
+    let((module_table)
+    module_table = makeTable(strcat(symbolToString(module_symbol) " module"))
+    if(listp(module) then
+      module = cons(module_table cdr(module))
+    else if(tablep(module) then
+      module['_module] = module_table
+    else
+      error("A module must be a DPL or a table")
+    ))
+    module_table['symbol] = module_symbol
+    when(symbolp(project)
+      project = Import[project])
+    module_table['project] = project
+    module_table['description] = description
+    Import[module_symbol] = module
+    module
+  ))
+  
+  procedure(LoadList(module_filepaths @key (root_path "") continue_on_error)
+    "loads a list of filepaths."
+    let((filepath load_function)
+    if(continue_on_error then
+      load_function = loadi
+    else
+      load_function = load)
+    foreach(filepath module_filepaths
+      load_function(strcat(root_path "/" filepath))
+    )
+  ))
+
+  procedure(Method(method module_dpl "ul")
+    let((new_method)
+      procedure(new_method(@rest rest_args "g")
+        apply(method cons(module_dpl rest_args))
+      )
+    new_method
+  ))
+
+  procedure(AddMethod(method_symbol method object_dpl "sul")
+    putprop(object_dpl Module->Method(method object_dpl) method_symbol)
+  )
+
+  procedure(GetModuleTable(module "g")
+    if(listp(module) then
+      car(module)
+    else if(tablep(module) then
+      module['_module]
+    else
+      error("Input module must be a DPL or table")
+    ))
+  )
+
+  procedure(UninitializeModule(module "g")
+    if(symbolp(module) then
+      Import[module]->
+      remove(module Import)
+    )
+  )
+
+  list(nil
+    'New New
+    'IsModule IsModule
+    'LoadList LoadList
+    'Method Method
+    'AddMethod AddMethod
+  )
+)
+
+Module->New('Module Module
+             ?project Import['Virtue]
+             ?description module_description)
+
+)

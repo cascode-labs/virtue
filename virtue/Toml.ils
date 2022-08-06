@@ -1,9 +1,9 @@
 let((Toml
-     (package_description "Reads and writes 
+     (module_description "Reads and writes 
         Tom's Obvious Markup Language (.toml) configuration 
         files. https://toml.io/en/")
      (Str Import['Str])
-     (Package Import['Package])
+     (Module Import['Module])
     )
 
 Toml = let(()
@@ -123,7 +123,7 @@ list(nil
   'WriteFile WriteFile
 ))
 
-Package->New('Toml Toml 
+Module->New('Toml Toml 
              ?project Import['Virtue]
-             ?description package_description)
+             ?description module_description)
 )
