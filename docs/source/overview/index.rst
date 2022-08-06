@@ -67,12 +67,13 @@ user's.
 
 .. code-block:: lisp
    :linenos:
-   :caption: install_cdsLibMgr.il
+   :caption: Load virtue-environment.cdsLibMgr.il
    :name: install_cdsLibMgr-il
 
-   when(getShellEnvVar("VIRTUE_SKILL_PREFIX") && isFile(strcat(env(VIRTUE_SKILL_PREFIX) "/virtue//virtue.lmgrinit"))
-      printf("Loading virtue.cdsLibMgr.il...\n")
-      loadi(strcat(env(VIRTUE_SKILL_PREFIX) "/virtue/virtue.cdsLibMgr.il"))
+   when(getShellEnvVar("VIRTUE_SKILL_PREFIX") 
+        && isFile(strcat(env(VIRTUE_SKILL_PREFIX) "/virtue/virtue-environment.cdsLibMgr.il"))
+      printf("virtue-environment.cdsLibMgr.il...\n")
+      loadi(strcat(env(VIRTUE_SKILL_PREFIX) "/virtue/virtue-environment.cdsLibMgr.il"))
    )
 
 
