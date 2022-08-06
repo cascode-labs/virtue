@@ -1,5 +1,5 @@
 *****************
-SKILL++  Modules
+SKILL++  Packages
 *****************
 
 A SKILL++ package is a set of related SKILL++ modules defined as part of a 

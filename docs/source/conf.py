@@ -39,6 +39,7 @@ master_doc = 'index'
 extensions = [
     'sphinx_copybutton',
     'sphinx_panels',
+    "sphinx_github_changelog",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -64,3 +65,24 @@ html_theme = "pydata_sphinx_theme"
 html_static_path = ['_static']
 
 panels_add_bootstrap_css = False
+
+html_theme_options = {
+    "icon_links": [
+        {
+            # Label for this link
+            "name": "GitHub",
+            # URL where the link will redirect
+            "url": "https://github.com/cascode-labs/virtue",  # required
+            # Icon class (if "type": "fontawesome"), or path to local image (if "type": "local")
+            "icon": "fab fa-github-square",
+            # The type of image to be used (see below for details)
+            "type": "fontawesome",
+        }
+    ],
+    "external_links": [
+      {"name": "cascode-labs", "url": "http://www.cascode-labs.org/"},
+    ],
+    "logo": {
+        "text": "Virtue",
+    },
+}
