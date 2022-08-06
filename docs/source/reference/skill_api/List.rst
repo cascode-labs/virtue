@@ -1,6 +1,6 @@
 List
 ----
-A list manipulation library.
+A list manipulation module.
 
 **Functions**:
 

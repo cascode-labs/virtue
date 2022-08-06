@@ -18,16 +18,6 @@ Features:
 - Supports seamless execution of SKILL from Python using 
   `SkillBridge <https://unihd-cag.github.io/skillbridge/>`_
 
-License
--------
-
-Virtue is licensed under an MIT license.
-
-.. dropdown:: MIT License
-
-    .. literalinclude:: ../_static/LICENSE
-       :linenos:
-
 Installation
 ------------
 
@@ -51,7 +41,7 @@ Reminder: The following will change your top-level interpreter to SKILL++:
 Pip
 ^^^^^
 
-You can install Virtue using pip from the [virtue-skill PyPi package](https://pypi.org/project/virtue-skill/)
+You can install Virtue using pip from the `virtue-skill PyPi package <https://pypi.org/project/virtue-skill/>`_
 
 .. code-block:: bash
 
@@ -71,7 +61,7 @@ Library customizations for all packages installed in a Virtue SKILL environment
 can be loaded by adding the following code to the "cdsLibMgr.il" file in the 
 current working directory, a user's home directory, or a site installation 
 directory from setup.loc list.  You should also follow the instructions for 
-`loading multiple cdsLibMgr.il files<https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1Od0000000nYLwEAM&pageName=ArticleContent>`_,
+`loading multiple cdsLibMgr.il files <https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1Od0000000nYLwEAM&pageName=ArticleContent>`_,
 especially when existing site customizations must be loaded in addition to the
 user's.
 
@@ -84,6 +74,17 @@ user's.
       printf("Loading virtue.cdsLibMgr.il...\n")
       loadi(strcat(env(VIRTUE_SKILL_PREFIX) "/virtue/virtue.cdsLibMgr.il"))
    )
+
+
+License
+-------
+
+Virtue is licensed under an MIT license.
+
+.. dropdown:: MIT License
+
+    .. literalinclude:: ../_static/LICENSE
+       :linenos:
 
 .. toctree::
    :maxdepth: 2

@@ -19,7 +19,7 @@ help:
 %: Makefile
 	cp -rf ../virtue ./source/_static/src
 	cp -f  ../LICENSE ./source/_static/LICENSE
-	cp -rf ../conda-recipe./source/_static/conda-recipe
+	cp -rf ../conda-recipe ./source/_static/conda-recipe
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 clean:

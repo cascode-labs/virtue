@@ -38,10 +38,10 @@ customize its menus and settings. See the installation instructions for how
 the library customization environment initialization script can be called.
 
  
-Include a library manager initialization script in the source code directory.  
-This file needs to have a ".lmgrinit.il" extension. This file can contain 
+A library manager initialization script can be included in the source code 
+directory.  This file needs to have a ".lmgrinit.il" extension. This file can contain 
 calls to any of the
-`library manager SKILL functions<https://support.cadence.com/apex/techpubDocViewerPage?path=caiskill/caiskillICADVM20.1/Imgr.html#pgfId-962695>_.
+`library manager SKILL functions <https://support.cadence.com/apex/techpubDocViewerPage?path=caiskill/caiskillICADVM20.1/Imgr.html#pgfId-962695>`_.
 These functions cannot be called from the main SKILL initialization script 
 which is loaded in the top-level SKILL environment.
 
@@ -49,12 +49,12 @@ see :ref:`install-library-manager-customizations` for installation information.
 
 Examples:
 
-See `"Library Manager customization example file"<https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1Od0000000nYpvEAE&pageName=ArticleContent>_
+See `Library Manager customization example file <https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1Od0000000nYpvEAE&pageName=ArticleContent>`_
 from Cadence online support for examples.
 
 .. dropdown:: Virtue's virtue.cdsLibMgr.il script
 
-    .. literalinclude:: ../_static/src/virtue.cdsLibMgr.il
+    .. literalinclude:: ../../_static/src/virtue.cdsLibMgr.il
        :language: lisp
        :linenos:
 

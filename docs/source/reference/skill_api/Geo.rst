@@ -1,6 +1,6 @@
 Geometry (Geo)
 --------------
-A geometry function library
+A geometry function module.
 
 **Point Functions:**
 

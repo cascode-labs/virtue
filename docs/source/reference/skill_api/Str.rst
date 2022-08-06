@@ -1,6 +1,7 @@
 String (Str)
 ------------
-A string manipulation library.
+
+A string manipulation module.
 
 .. dropdown:: Str.ils sourcecode
 

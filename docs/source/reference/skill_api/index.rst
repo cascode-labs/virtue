@@ -1,12 +1,14 @@
 SKILL API
 ==========
 
-A standard library of SKILL and SKILL++ code
+A standard library of SKILL and SKILL++ modules.  They are included directly 
+in the package Import table for convenience.
 
 Cadence Reference Manuals
 --------------------------
 
 Available on Cadence online support:
+
 - `Language Manuals <https://support.cadence.com/apex/Coveo_ProductManuals#t=ProductManualsFromRelease&ph=IC%206.1.8&cadrelease=ic618&seetocfiles=true>`_
 - `Language Reference <https://support.cadence.com/apex/techpubDocViewerPage?path=sklangref/sklangrefIC6.1.8/sklangrefTOC.html>`_
 - `Language User Guide <https://support.cadence.com/apex/techpubDocViewerPage?path=sklanguser/sklanguserIC6.1.8/sklanguserTOC.html>`_
