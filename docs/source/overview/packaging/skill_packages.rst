@@ -3,37 +3,24 @@ SKILL++  Packages
 *****************
 
 A SKILL++ package is a set of related SKILL++ modules defined as part of a 
-project.  Modules can have 
+project.  Normally each project contains a single SKILL++ package. 
 
-Module help
-------------
-
-Module description
---------------------
-
-SKILL can be included as a part of any Conda package and loaded when Cadence
-is started with the "vsp" command.  A Conda recipe must be created to build 
-a conda package
-
-The conda package can :
-* Automatically initialize SKILL Code 
+A Virtue SKILL++ conda package can :
+* Automatically initialize it's SKILL Code 
 * Customize the library manager
 * Register custom views with the data registry
 * Include cadence libraries
 
-Conda Recipe
-------------
-Conda is a tool for creating software packages.
-A `Conda <https://docs.conda.io/en/latest/>`_ recipe provides the instructions
-on how to create a conda package using
-`conda-build <https://docs.conda.io/projects/conda-build/en/latest/>`_.
-The conda-build documentation has instructions on creating a conda package.
+Initialize SKILL
+----------------
 
-SKILL Initialization
---------------------
+Each SKILL++ package should have a "<project-name>.init.ils" or, alternatively,
+a "<project-name>.init.il" initialization file.  It should be located in the 
+top-level source code directory.
 
-The virtue.init.ils script initializes the Conda SKILL environment.  
-The virtue SKILL library is initialized first, followed by all 
+The virtue-environment.ils script initializes each package in the Virtue
+SKILL environment containing it.  
+The Virtue package is initialized first, followed by all 
 the initialization scripts of all the other packages.  The 
 initialization scripts should be contained in $CONDA_PREFIX/lib/skill 
 or, preferrably, a direct  subfolder. The
@@ -43,24 +30,33 @@ initialization scripts are any SKILL files with
 The virtue initialization script is ran in virtuoso when Virtuoso is started with
 the sp command.
 
-Library Manager Customization
+Customize the Library Manager
 -----------------------------
 
-A virtue conda package can customize the Virtuoso library manager by including an
-initialization in its SKILL lib.  This file needs to a ".lmgrinit" extension.
-This file will be loaded by the license manager when it loads to setup menus,
-etc.
+A Virtue SKILL++ package can customize the Virtuoso library manager to 
+customize its menus and settings. See the installation instructions for how
+the library customization environment initialization script can be called.
 
-This is supported by our system library manager initialization loading the
-script using the following SKILL code.  $VIRTUE_LMGR_INIT is initialized by the
-virtue activation script::
+ 
+Include a library manager initialization script in the source code directory.  
+This file needs to have a ".lmgrinit.il" extension. This file can contain 
+calls to any of the
+`library manager SKILL functions<https://support.cadence.com/apex/techpubDocViewerPage?path=caiskill/caiskillICADVM20.1/Imgr.html#pgfId-962695>_.
+These functions cannot be called from the main SKILL initialization script 
+which is loaded in the top-level SKILL environment.
 
+see :ref:`install-library-manager-customizations` for installation information.
 
-   when(getShellEnvVar("VIRTUE_LMGR_INIT") && isFile(strcat(env(VIRTUE_LMGR_INIT) "/virtue.lmgrinit"))
-      printf("Loading virtue.lmgrinit...\n")
-      loadi(strcat(env(VIRTUE_LMGR_INIT) "/virtue.lmgrinit"))
-   )
+Examples:
 
+See `"Library Manager customization example file"<https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1Od0000000nYpvEAE&pageName=ArticleContent>_
+from Cadence online support for examples.
+
+.. dropdown:: Virtue's virtue.cdsLibMgr.il script
+
+    .. literalinclude:: ../_static/src/virtue.cdsLibMgr.il
+       :language: lisp
+       :linenos:
 
 Data Registry Customization
 ---------------------------

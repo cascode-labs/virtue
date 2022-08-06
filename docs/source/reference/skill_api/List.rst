@@ -1,6 +1,6 @@
 List
 ----
-List manipulation functions.
+A list manipulation library.
 
 **Functions**:
 
@@ -12,6 +12,6 @@ List manipulation functions.
 
 .. dropdown:: List.ils sourcecode
 
-    .. literalinclude:: ../_static/src/List.ils
-       :language: none
+    .. literalinclude:: ../../_static/src/List.ils
+       :language: scheme
        :linenos:

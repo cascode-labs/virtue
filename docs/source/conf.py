@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.abspath( '../..'))
 import virtue
 
 project = 'virtue'
-copyright = '2020, Skyworks inc.'
+copyright = '2020, Cascode-labs'
 author = 'Curtis Mayberry'
 
 # The full version, including alpha/beta/rc tags
@@ -40,6 +40,7 @@ extensions = [
     'sphinx_copybutton',
     'sphinx_panels',
     "sphinx_github_changelog",
+    'sphinx_sitemap',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -51,6 +52,8 @@ templates_path = ['_templates']
 exclude_patterns = []
 
 source_suffix = ['.rst']
+
+language = "en"
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -85,4 +88,22 @@ html_theme_options = {
     "logo": {
         "text": "Virtue",
     },
+    "footer_items": ["version", "copyright", "sphinx-version"],
+    "show_nav_level": 2,
+    "use_edit_page_button": True,
+    "google_analytics_id": "G-80SSZFFV2B",
 }
+
+html_context = {
+    # "github_url": "https://github.com", # or your GitHub Enterprise interprise
+    "github_user": "cascode-labs",
+    "github_repo": "virtue",
+    "github_version": "main",
+    "doc_path": "docs",
+}
+
+html_baseurl = 'http://www.cascode-labs.org/virtue/'
+
+html_css_files = [
+    'css/custom.css',
+]

@@ -1,6 +1,6 @@
 Geometry (Geo)
 --------------
-Geometry functions
+A geometry function library
 
 **Point Functions:**
 
@@ -29,6 +29,6 @@ Geometry functions
 
 .. dropdown:: Geo.ils sourcecode
 
-    .. literalinclude:: ../_static/src/Geo.ils
-       :language: none
+    .. literalinclude:: ../../_static/src/Geo.ils
+       :language: scheme
        :linenos:
