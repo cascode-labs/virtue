@@ -20,10 +20,12 @@ help:
 	cp -rf ../virtue ./source/_static/src
 	cp -f  ../LICENSE ./source/_static/LICENSE
 	cp -rf ../conda-recipe ./source/_static/conda-recipe
+	cp -rf ../tests  ./source/_static/tests
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 clean:
 	rm -rf ./source/_static/src
 	rm -f ./source/_static/LICENSE
 	rm -rf ./source/_static/conda-recipe
+	rm -rf ./source/_static/tests
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)

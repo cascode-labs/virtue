@@ -1,5 +1,5 @@
 SKILL API
-==========
+=========
 
 A standard library of SKILL and SKILL++ modules.  They are included directly 
 in the package Import table for convenience.

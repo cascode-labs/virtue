@@ -41,7 +41,7 @@ For example this is the meta.yaml file for Virtue:
 .. dropdown:: Virtue meta.yaml
 
     .. literalinclude:: ../_static/conda-recipe/meta.yaml
-       :language: yaml
+       :language: yaml+jinja
        :linenos:
 
 A SKILL package recipe will need a 

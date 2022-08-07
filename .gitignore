@@ -6,6 +6,7 @@
 # docs setup
 docs/source/_static/src
 docs/source/_static/conda-recipe
+docs/source/_static/tests
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

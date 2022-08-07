@@ -41,6 +41,7 @@ extensions = [
     'sphinx_panels',
     "sphinx_github_changelog",
     'sphinx_sitemap',
+    'sphinx.ext.autosectionlabel',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -79,6 +80,12 @@ html_theme_options = {
             # Icon class (if "type": "fontawesome"), or path to local image (if "type": "local")
             "icon": "fab fa-github-square",
             # The type of image to be used (see below for details)
+            "type": "fontawesome",
+        },
+        {
+            "name": "Latest-release",
+            "url": "https://github.com/cascode-labs/virtue/releases/latest",  # required
+            "icon": "fas fa-tag",
             "type": "fontawesome",
         }
     ],

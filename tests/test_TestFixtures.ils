@@ -1,0 +1,15 @@
+let(((Test Import['Test])
+     (Virtue Import['Virtue])
+    )
+
+procedure(test_TempDirectory(TempDirectory)
+  assert(isDir(TempDirectory))
+)
+
+Test->RunFile(list(nil
+  'test_TempDirectory test_TempDirectory
+  )
+  ?filepath Virtue->GetCurrentFilePath()
+)
+
+)

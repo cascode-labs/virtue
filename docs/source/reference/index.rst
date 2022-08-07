@@ -2,7 +2,7 @@
 Reference
 =========
 
-API reference materials
+Virtue includes a SKILL API.
 
 .. toctree::
    :maxdepth: 2
