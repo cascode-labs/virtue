@@ -16,6 +16,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      SPHINX_GITHUB_CHANGELOG_TOKEN: ${{ github.token }}
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
