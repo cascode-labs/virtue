@@ -15,4 +15,5 @@ cp "${RECIPE_DIR}/activate.sh" \
 cp "${RECIPE_DIR}/activate.csh" \
    "${PREFIX}/etc/conda/${CHANGE}.d/${PKG_NAME}_${CHANGE}.csh"
 
-PYTHON -m pip install . -vv
+flit build
+python -m pip install dist/*.whl -vv

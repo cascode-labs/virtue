@@ -12,7 +12,7 @@ source:
   - path: ../tests
     folder: tests
   - path: ../README.md
-  - path: ../setup.py
+  - path: ../LICENSE
   - path: ../pyproject.toml
 
 build:
@@ -22,6 +22,7 @@ requirements:
   build:
     - python==3.8
     - pip=22.2.2
+    - flit=3.7.1
   run:
     - python>=3.8
 
