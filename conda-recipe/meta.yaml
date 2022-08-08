@@ -3,7 +3,7 @@
 package:
   name: "{{ name|lower }}"
   #version: "{{ version }}"
-  version: "0.1.0" # Need to make a single place for the version #
+  version: "0.2.0" # Need to make a single place for the version #
 source:
   - path: ../conda-recipe
     folder: conda-recipe
@@ -19,12 +19,12 @@ build:
   number: 0
 
 requirements:
-  build:
+  host:
     - python==3.8
     - pip=22.2.2
     - flit=3.7.1
   run:
-    - python>=3.8
+    - python==3.8
 
 test:
   imports:
