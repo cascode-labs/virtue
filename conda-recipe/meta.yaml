@@ -3,7 +3,7 @@
 package:
   name: "{{ name|lower }}"
   #version: "{{ version }}"
-  version: "0.2.0" # Need to make a single place for the version #
+  version: "0.2.1" # Need to make a single place for the version #
 source:
   - path: ../conda-recipe
     folder: conda-recipe
