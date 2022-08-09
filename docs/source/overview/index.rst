@@ -21,6 +21,28 @@ Features:
 Installation
 ------------
 
+Conda **(recommended)**
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+I would recommend using Conda to install Virtue and any related packages.  
+This will install both virtue and Python.
+
+Install in a new environment namde "virtuoso":
+
+.. code-block:: bash
+   :linenos:
+
+   conda env create -n virtuoso 
+   conda activate virtuoso
+   conda install -c conda-forge virtue python=3.9
+
+Install in an existing environment:
+
+.. code-block:: bash
+   :linenos:
+
+   conda install -c conda-forge virtue
+
 From Source
 ^^^^^^^^^^^^
 
@@ -46,11 +68,6 @@ You can install Virtue using pip from the `virtue-skill PyPi package <https://py
 .. code-block:: bash
 
    pip install virtue-skill
-
-Conda
-^^^^^
-
-Coming soon!
 
 .. _install-library-manager-customizations:
 

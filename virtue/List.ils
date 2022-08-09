@@ -12,8 +12,9 @@ List = let(()
     input
   )
   
-  procedure(setDiff(plusList minusList "ll") let(()
+  procedure(setDiff(plusList minusList "ll")
     "Returns plusList with the items in minusList removed"
+    let(()
   	foreach(item minusList
   		plusList = remove(item plusList)
   	)

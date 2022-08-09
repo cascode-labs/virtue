@@ -15,7 +15,6 @@
 
 let((Geo
      (module_description "Geometry functions")
-     (ModuleImport['Module])
     )
 
 Geo = let(()
@@ -274,7 +273,7 @@ Geo = let(()
   )
 )
 
-Module->New('Geo Geo
-             ?project Import['Virtue]
-             ?description module_description)
+Import['Module]->New('Geo Geo
+                     ?project Import['Virtue]
+                     ?description module_description)
 )

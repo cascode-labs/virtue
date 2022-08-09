@@ -1,6 +1,8 @@
 # VIRTUE
 
-![PyPI](https://img.shields.io/pypi/v/virtue-skill) ![GitHub issues](https://img.shields.io/github/issues/cascode-labs/virtue)
+![PyPI](https://img.shields.io/pypi/v/virtue-skill) 
+![GitHub issues](https://img.shields.io/github/issues/cascode-labs/virtue) 
+![Conda](https://img.shields.io/conda/v/conda-forge/virtue?label=conda-forge)
 
 Cadence Virtuoso SKILL++ framework
 
@@ -60,6 +62,27 @@ FILE: /path/to/file/test_Str.ils
 
 ## Installation
 
+It requires Python >= 3.7
+
+### Using Conda **(recommended)**
+
+I would recommend using Conda to install Virtue and any related packages.  
+This will install both virtue and Python.
+
+Install in a new environment:
+
+```bash
+conda env create -n virtuoso 
+conda activate virtuoso
+conda install -c conda-forge virtue python=3.9
+```
+
+Install in an existing environment:
+
+```bash
+conda install -c conda-forge virtue
+```
+
 ### From Source
 
 Just load the "virtue.init.ils" from the CIW window or add the following to
@@ -75,7 +98,7 @@ Reminder: The following will change your top-level interpreter to SKILL++:
 toplevel('ils)
 ```
 
-### Pip
+### Using Pip
 
 You can install Virtue using pip from the [virtue-skill PyPi package](https://pypi.org/project/virtue-skill/)
 

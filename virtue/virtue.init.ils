@@ -33,7 +33,7 @@ Virtue = let(((module_description "SKILL++ Library and package manager")
     dir_path = GetCurrentFileDirectory()
 
     loadi(strcat(dir_path "/Module.ils"))
-    Module =Import['Module]
+    Module = Import['Module]
     Virtue = Module->New('Virtue Import['Virtue]
       ?project Import['Virtue]
       ?description module_description)

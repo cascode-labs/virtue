@@ -20,11 +20,11 @@ build:
 
 requirements:
   host:
-    - python==3.8
+    - python {{ python }}
     - pip=22.2.2
     - flit=3.7.1
   run:
-    - python==3.8
+    - python
 
 test:
   imports:
