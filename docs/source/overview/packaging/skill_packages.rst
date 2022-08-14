@@ -36,7 +36,7 @@ Customize the Library Manager
 
 A Virtue SKILL++ package can customize the Virtuoso library manager to 
 customize its menus and settings. See the installation instructions for how
-the library customization environment initialization script can be called.
+the library customization environment initialization script can be called.  
 
  
 A library manager initialization script can be included in the source code 
@@ -51,6 +51,9 @@ which cab be referenced by name, "**VirtueMenu**".
 If more than one item is needed for a project, it should be added as a 
 sub-menu.  Links to documentation for other projects can also be added to the 
 "**VirtueHelpMenu**".
+
+.. image:: ../../_static/virtue_menu.png
+   :alt: Virtue library manager menu
 
 see :ref:`Install the Library Manager Customizations` for installation information.
 
