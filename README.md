@@ -69,12 +69,17 @@ It requires Python >= 3.7
 I would recommend using Conda to install Virtue and any related packages.  
 This will install both virtue and Python.
 
-Install in a new environment:
+If you haven't already installed conda, I would recommend using the
+[mambaforge installer](https://github.com/conda-forge/miniforge#mambaforge).
+Then download the virtuoso environment definition file,
+[environment-virtuoso.yml](environment-virtuoso.yml)
+which will be used to create the environment with the recommended Virtue
+packages.
+
+Install in a new environment named "virtuoso":
 
 ```bash
-conda env create -n virtuoso 
-conda activate virtuoso
-conda install -c conda-forge virtue python=3.9
+conda env create -f environment-virtuoso.yml
 ```
 
 Install in an existing environment:

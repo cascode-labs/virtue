@@ -21,6 +21,7 @@ help:
 	cp -f  ../LICENSE ./source/_static/LICENSE
 	cp -rf ../conda-recipe ./source/_static/conda-recipe
 	cp -rf ../tests  ./source/_static/tests
+	cp -rf ../environment-virtuoso.yml  ./source/_static/environment-virtuoso.yml
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 clean:
@@ -28,4 +29,5 @@ clean:
 	rm -f ./source/_static/LICENSE
 	rm -rf ./source/_static/conda-recipe
 	rm -rf ./source/_static/tests
+	rm -rf ./source/_static/environment-virtuoso.yml
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
