@@ -24,7 +24,7 @@ procedure(get_fixture_values(test_function "l")
     fixture_function = Test->Fixtures[fixture_symbol]
     when(fixture_function == 'unbound
       error("The fixture function '%s' is not defined in the Test->Fixtures table" fixture_symbol))
-    fixture_values = append1(fixture_function() fixture_values)
+    fixture_values = append1(fixture_values fixture_function())
   )
   fixture_values
 ))
