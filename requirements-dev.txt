@@ -15,3 +15,4 @@ sphinx-argparse == 0.3.1
 sphinx-autobuild == 2021.3.14
 sphinx-github-changelog == 1.2.0
 sphinx-sitemap == 2.2.0
+sphinx-click == 4.3.0

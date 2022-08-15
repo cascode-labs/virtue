@@ -34,3 +34,4 @@ dependencies:
   - sphinx-github-changelog = 1.2.0
   - esbonio = 0.13.1
   - sphinx-sitemap = 2.2.0
+  - sphinx-click = 4.3.0

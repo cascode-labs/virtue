@@ -61,7 +61,7 @@ def _get_data_reg_env_script_path() -> Optional[Path]:
 
 def _get_virtue_skill_initialization_paths() -> Tuple[Path]:
     init_paths = plugin_manager.hook.virtue_skill_initialization_paths()
-    return tuple(init_paths)
+    return tuple(itertools.chain(*init_paths))
 
 def _get_libmgr_env_script_path() -> Path:
     """The path to the library manager initialization script"""
@@ -87,7 +87,7 @@ def _install_env_cdsinit_script(filepath: Path) -> None:
 
 def _get_virtue_data_reg_paths() -> Tuple[Path]:
     paths = plugin_manager.hook.virtue_data_reg_paths()
-    return tuple(paths)
+    return tuple(itertools.chain(*paths))
 
 def _install_data_reg_init_script(filepath: Path) -> None:
     if len(_get_virtue_data_reg_paths()) > 0:
@@ -97,7 +97,7 @@ def _install_data_reg_init_script(filepath: Path) -> None:
 
 def _get_virtue_cdslibmgr_paths() -> Tuple[Path]:
     paths = plugin_manager.hook.virtue_cdslibmgr_paths()
-    return tuple(paths)
+    return tuple(itertools.chain(*paths))
 
 def _install_env_cdslibmgr_script(filepath: Path) -> None:
     with filepath.open("w") as file:

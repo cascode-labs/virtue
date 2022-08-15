@@ -5,7 +5,7 @@ import virtue
 
 @virtue.hookimpl
 def virtue_skill_initialization_paths() -> Tuple[Path]:
-    return (files(virtue) / "virtue.init.ils")
+    return (files(virtue) / "virtue.cdsinit.ils"),
 
 @virtue.hookimpl
 def virtue_python_package_name() -> str:
@@ -17,4 +17,4 @@ def virtue_skill_package_name() -> str:
 
 @virtue.hookimpl
 def virtue_cdslibmgr_paths() -> Tuple[Path]:
-    return (files(virtue) / "virtue.cdsLibMgr.il")
+    return (files(virtue) / "virtue.cdsLibMgr.il"),

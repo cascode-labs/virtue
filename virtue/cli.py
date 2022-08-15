@@ -89,27 +89,33 @@ def _print_install_script_table(init_file_paths: Dict[str,Path]):
     print("")
 
 def _print_install_cdsinit(init_file_paths: Dict[str,Path]):
-    cdsinit_path = init_file_paths[".cdsinit"]
-    print("Add the following to your Virtuoso initialization file (e.g. .cdsinit):")
-    code = "; Initialize the Virtue SKILL environment\n" + \
-          f"loadi(\"{cdsinit_path}\")"
+    init_path = init_file_paths[".cdsinit"]
+    print(("Add the following to your Virtuoso initialization file "
+           "(e.g. .cdsinit):"))
+    code = ("; Initialize the Virtue SKILL environment\n"
+           f"when(isFile(\"{init_path}\")\n"
+           f"  loadi(\"{init_path}\"))")
     console.print(Padding(Syntax(code,"scheme"),(1,2)))
 
 def _print_install_datareg(init_file_paths: Dict[str,Path]):
     data_reg_path = init_file_paths["data.reg"]
     if data_reg_path is not None:
         print("Add the following to your data.reg file:")
-        code = "// Initialize the Virtue SKILL environment data registry\n" + \
-              f"SOFTINCLUDE \"{data_reg_path}\""
+        code = ("// Initialize the Virtue SKILL environment data registry\n"
+              f"SOFTINCLUDE \"{data_reg_path}\"")
         console.print(Padding(Syntax(code,"scheme"),(1,2)))
 
 def _print_install_cdslibmgr(init_file_paths: Dict[str,Path]):
     init_path = init_file_paths["cdsLibMgr.il"]
     print(("Add the following to your Virtuoso library manager "
            "initialization file (e.g. cdsLibMgr.il):"))
-    code = "; Initialize the Virtue library manager environment\n" + \
-          f"loadi(\"{init_path}\")"
+    code = (
+        "; Initialize the Virtue SKILL environment in the library manager\n"
+       f"when(isFile(\"{init_path}\")\n"
+       f"  loadi(\"{init_path}\"))")
     console.print(Padding(Syntax(code,"scheme"),(1,2)))
+
+typer_click_object = typer.main.get_command(app)
 
 if __name__ == "__main__":
     app()
