@@ -42,6 +42,7 @@ extensions = [
     "sphinx_github_changelog",
     'sphinx_sitemap',
     'sphinx.ext.autosectionlabel',
+    'sphinx_click',
 ]
 
 # Add any paths that contain templates here, relative to this directory.

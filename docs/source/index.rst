@@ -3,9 +3,9 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-******
-VIRTUE
-******
+***********************
+VIRTUE SKILL Framework
+***********************
 
 Virtue is a SKILL framework for `Cadence Virtuoso <https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html>`_
 
@@ -16,6 +16,7 @@ Features:
 - A `TOML config file <https://toml.io>`_ reader and writer
 - A SKILL code packaging system
 
+  - Simple SKILL package installation from the Python environment
   - Define SKILL++ modules 
   - Create a SKILL++ package from a set of modules
   - Import modules into a SKILL++ environment using the top-level "Import" table 
