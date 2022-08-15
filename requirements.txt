@@ -1,3 +1,6 @@
 pydantic == 1.9.1
 toml == 0.10.2
 skillbridge == 1.2.18
+typer == 0.6.1
+rich == 12.5.1
+pluggy == 1.0.0

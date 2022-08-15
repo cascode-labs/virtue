@@ -1,5 +1,5 @@
-Geometry (Geo)
---------------
+Geometry (Geo) Functions
+-------------------------
 A geometry function module.
 
 **Point Functions:**

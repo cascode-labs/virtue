@@ -1,5 +1,5 @@
-List
-----
+List Functions
+---------------
 A list manipulation module.
 
 **Functions**:

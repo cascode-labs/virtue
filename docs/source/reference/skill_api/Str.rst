@@ -1,5 +1,5 @@
-String (Str)
-------------
+String (Str) Functions
+-----------------------
 
 A string manipulation module.
 

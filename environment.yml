@@ -16,7 +16,11 @@ dependencies:
   - pytest = 7.1.2
   - pylint = 2.14.4
   - mypy = 0.961
-  - pre-commit == 2.20.0
+  - pre-commit = 2.20.0
+# Runtime
+  - typer = 0.6.1
+  - rich = 12.5.1
+  - pluggy = 1.0.0
 # Optional Runtime
   - skillbridge = 1.2.18
 # Build
@@ -31,3 +35,4 @@ dependencies:
   - sphinx-github-changelog = 1.2.0
   - esbonio = 0.13.1
   - sphinx-sitemap = 2.2.0
+  - sphinx-click = 4.3.0

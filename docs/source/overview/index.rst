@@ -33,18 +33,26 @@ Then download the virtuoso environment definition file,
 `environment-virtuoso.yml, <../_static/environment-virtuoso.yml>`_
 which will be used to create the environment with the recommended Virtue 
 packages.
+0. Install mambaforge if it isn't already installed using the 
+   `mambaforge installer <https://github.com/conda-forge/miniforge#mambaforge>`_.
 
-Install in a new environment named "virtuoso":
+1. Install in a new environment named "virtuoso":
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   conda env create -f environment-virtuoso.yml
+      conda env create -f environment-virtuoso.yml
 
-Install just Virtue in an existing environment:
+2. Activate the newly created Conda environment and then
+   install the Virtue SKILL environment into its Python environment.
 
-.. code-block:: bash
 
-   conda install -c conda-forge virtue
+   .. code-block:: bash
+
+   conda activate virtuoso
+   virtue install
+
+3. Follow the instructions to add the Virtue SKILL environment initialization 
+   scripts to your Virtuoso initialization scripts.
 
 From Source
 ^^^^^^^^^^^^
@@ -68,9 +76,16 @@ Pip
 
 You can install Virtue using pip from the `virtue-skill PyPi package <https://pypi.org/project/virtue-skill/>`_
 
-.. code-block:: bash
+1. Install Virtue using Pip 
 
-   pip install virtue-skill
+   .. code-block:: bash
+
+      # Remember to activate your virtual environment first
+      pip install virtue-skill
+      virtue install
+
+3. Follow the instructions to add the Virtue SKILL environment initialization 
+   scripts to your Virtuoso initialization scripts.  Each script has 
 
 .. _install-library-manager-customizations:
 
@@ -80,7 +95,8 @@ Install the Library Manager Customizations
 Library customizations for all packages installed in a Virtue SKILL environment
 can be loaded by adding the following code to the "cdsLibMgr.il" file in the 
 current working directory, a user's home directory, or a site installation 
-directory from the `setup.loc <https://support.cadence.com/apex/techpubDocViewerPage?xmlName=caiuser.xml&title=Cadence%20Application%20Infrastructure%20User%20Guide%20--%20Cadence%20Setup%20Search%20File:%20setup.loc%20-%20Cadence%20Setup%20Search%20File:%20setup.loc&hash=pgfId-1012853&c_version=IC6.1.8&path=caiuser/caiuserIC6.1.8/chap3.html#pgfId-1012853>`_
+directory from the 
+`setup.loc <https://support.cadence.com/apex/techpubDocViewerPage?xmlName=caiuser.xml&title=Cadence%20Application%20Infrastructure%20User%20Guide%20--%20Cadence%20Setup%20Search%20File:%20setup.loc%20-%20Cadence%20Setup%20Search%20File:%20setup.loc&hash=pgfId-1012853&c_version=IC6.1.8&path=caiuser/caiuserIC6.1.8/chap3.html#pgfId-1012853>`_
 list.  You should also follow the instructions for 
 `loading multiple cdsLibMgr.il files <https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1Od0000000nYLwEAM&pageName=ArticleContent>`_,
 especially when existing site customizations must be loaded in addition to the
@@ -151,6 +167,7 @@ Other Open-source SKILL Projects
 
    standard_library
    testing_framework
+   cli
    packaging/index
    conda
    toml
