@@ -20,6 +20,8 @@ readme = "README.md"
 license = {file="LICENSE"}
 requires-python = ">=3.7"
 classifiers = [
+   "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
+   "Topic :: Scientific/Engineering",
    "Programming Language :: Python :: 3 :: Only",
    "Programming Language :: Python :: 3.8",
    "Programming Language :: Python :: 3.9",
@@ -28,8 +30,6 @@ classifiers = [
    "Programming Language :: Other",
    "License :: OSI Approved :: MIT License",
    "Operating System :: POSIX :: Linux",
-   "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
-   "Topic :: Scientific/Engineering",
    "Topic :: Software Development",
    "Topic :: Software Development :: Libraries",
    "Topic :: Software Development :: Libraries :: Python Modules",
@@ -62,18 +62,18 @@ name = "virtue"
 optional = ["softworks"]
 test = [
     "pytest >=7.1.2",
-    "pylint >= 2.14.4"
-    "mypy >= 0.961"
+    "pylint >= 2.14.4",
+    "mypy >= 0.961",
 ]
 dev = ["pre-commit == 2.20.0"]
 doc = [
-   "sphinx == 4.5.0"
-   "pydata-sphinx-theme == 0.9.0"
-   "sphinx-panels == 0.6.0"
-   "sphinx_copybutton == 0.5.0"
-   "sphinx-argparse == 0.3.1"
-   "sphinx-autobuild == 2021.3.14"
-   "sphinx-github-changelog == 1.2.0"
-   "sphinx-sitemap == 2.2.0"
-   "sphinx-click == 4.3.0"
+   "sphinx == 4.5.0",
+   "pydata-sphinx-theme == 0.9.0",
+   "sphinx-panels == 0.6.0",
+   "sphinx_copybutton == 0.5.0",
+   "sphinx-argparse == 0.3.1",
+   "sphinx-autobuild == 2021.3.14",
+   "sphinx-github-changelog == 1.2.0",
+   "sphinx-sitemap == 2.2.0",
+   "sphinx-click == 4.3.0",
 ]
