@@ -1,7 +1,6 @@
 """
 Run the SKILL tests from Python.  Makes it easy to run them from a 
-python IDE.  Not working yet though as skillbridge doesn't currently support 
-tables.
+python IDE.  Make sure the skillbridge server is running first.
 """
 
 from pathlib import Path
@@ -22,4 +21,5 @@ if __name__ == "__main__":
     if result["pass"]:
         print(f"All {pass_count} tests passed! ")
     else:
-        print(f"Some tests failds:\n  {pass_count} passed out of {function_count}\n")
+        print(("Some tests failed:\n"
+              f"  {pass_count} passed out of {function_count}\n"))

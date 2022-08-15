@@ -16,7 +16,10 @@ dependencies:
   - pytest = 7.1.2
   - pylint = 2.14.4
   - mypy = 0.961
-  - pre-commit == 2.20.0
+  - pre-commit = 2.20.0
+# Runtime
+  - typer = 0.6.1
+  - rich = 12.5.1
 # Optional Runtime
   - skillbridge = 1.2.18
 # Build

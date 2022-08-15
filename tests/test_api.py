@@ -16,4 +16,7 @@ def test_api_list_packages():
     assert "version" in packages["virtue-skill"]
 
 def test_api_install():
-    api.install()
+    env_init_file_paths = api.install()
+    assert "cdsinit" in env_init_file_paths
+    assert len(env_init_file_paths["cdsinit"]) > 0
+    assert "data.reg" in env_init_file_paths

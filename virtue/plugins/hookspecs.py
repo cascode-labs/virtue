@@ -20,8 +20,24 @@ def virtue_skill_package_name() -> str:
 @hookspec
 def virtue_skill_initialization_paths() -> Tuple[Path]:
     """Provides a list of paths to SKILL files to be initialized when
-    Virtuoso starts.
+    Virtuoso starts.  They should end in ".cdsinit.il" or ".cdsinit.ils"
 
-    :return: a tuple of skill pathlib Path objects
+    :return: a tuple of pathlib Path objects
     """
 
+@hookspec
+def virtue_data_reg_paths() -> Tuple[Path]:
+    """Provide a list of paths to data.reg files to be added to the environment
+    data.reg using "SOFT_INCLUDE".
+
+    :return: a tuple of pathlib Path objects for data.reg files.
+    """
+
+@hookspec
+def virtue_cdslibmgr_paths() -> Tuple[Path]:
+    """Provide a list of paths to *.cdsLibMgr.il files to be loaded by 
+    the Virtuoso library manager to customize it.
+
+    Returns: a tuple of pathlib Path objects for the package's
+    *.cdsLibMgr.il files.
+    """

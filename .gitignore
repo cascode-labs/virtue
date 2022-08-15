@@ -3,6 +3,11 @@
 *.ils~
 *.il~
 
+# Virtue environment initialization scripts
+virtue/virtue-environment.cdsinit.ils
+virtue/virtue-environment.data.reg
+virtue/virtue-environment.cdsLibMgr.il
+
 # docs setup
 docs/source/_static/src
 docs/source/_static/conda-recipe
