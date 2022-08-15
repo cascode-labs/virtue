@@ -45,5 +45,9 @@ dynamic = ["version", "description"]
 "Documentation" = "http://www.cascode-labs.org/virtue/"
 "Source" = "https://github.com/cascode-labs/virtue"
 
+[project.scripts]
+virtue = "virtue.cli:app"
+
+
 [tool.flit.module]
 name = "virtue"

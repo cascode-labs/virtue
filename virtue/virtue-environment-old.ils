@@ -1,0 +1,66 @@
+printf("Initializing Virtue skill environment\n")
+
+let((prefix)
+
+	procedure(GetCurrentFileDirectory()
+		let((file_path)
+		file_path = simplifyFilename(get_filename(piport))
+		strcat("/" buildString(reverse(cdr(reverse(parseString(file_path "/")))) "/"))
+	))
+
+	procedure(loadInitFromDir(dir_path "t")
+		"Load all the SKILL and SKILL++ init files from a directory and all
+		 directories below it.  Except for the virtue initialization, which 
+		 needs to happen first."
+		let((files file)
+		files = getDirFiles(dir_path)
+		files = remove("." files)
+		files = remove(".." files)
+		files = remove("virtue.init.ils" files)
+		when(files
+			foreach(file files
+				loadInitRecursively(dir_path file)
+			)
+		)
+	))
+
+	procedure(loadInitRecursively(dir_path file_name "tt")
+		"Loads the given file path with directories loaded recursively.
+		 Catches and displays errors with loading the file, but continues to load 
+		 other files."
+		let(((file_path strcat(dir_path "/" file_name)))
+		cond(
+			(isDir(file_path)
+				loadInitFromDir(file_path))
+			((substring(file_name -9 9) == ".init.ils")
+				loadi(file_path))
+			((substring(file_name -8 8) == ".init.il")
+				loadi(file_path))
+		)
+	))
+
+  prefix = cond(
+		(getShellEnvVar("VIRTUE_SKILL_PREFIX")
+		  getShellEnvVar("VIRTUE_SKILL_PREFIX"))
+    ((getShellEnvVar("CONDA_PREFIX") 
+		 && isFile(strcat(getShellEnvVar("CONDA_PREFIX") "/lib/skill/virtue/virtue-environment.ils")))
+		  printf("  Loading skill environment from conda environment prefix:\n    %s\n" getShellEnvVar("CONDA_PREFIX"))
+		  strcat(getShellEnvVar("CONDA_PREFIX") "/lib/skill")
+		)
+    ('t error("  Please set the 'VIRTUE_SKILL_PREFIX' environment variable \n
+							 or start Virtuoso in a Conda environment with Virtue installed"))
+  )
+	printf("  Loading Virtue SKILL environment from:\n  %s\n" prefix)
+
+	cond(
+		; Standard installation
+	  (isFile(strcat(prefix "/virtue/virtue.init.ils"))
+			loadInitRecursively(prefix "virtue/virtue.init.ils"))
+		; Repo installation
+		(isFile(strcat(prefix "/virtue/virtue.init.ils"))
+			loadInitRecursively(prefix "virtue/virtue/virtue.init.ils"))
+	)
+	loadInitFromDir(prefix)
+
+  printf("  Done, initialized Virtue SKILL environment from:\n  %s\n" prefix)
+)
