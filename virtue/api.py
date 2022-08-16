@@ -84,9 +84,9 @@ def _install_env_cdsinit_script(filepath: Path) -> None:
             "  foreachs(file init_files\n"
             "    loadi(file))\n"
             ")\n"
-            "printf(\"  Done, initialized Virtue SKILL environment\\n\")\n")
+            "printf(\"  Done, initialized Virtue SKILL environment\\n\")\n"
             "printf(\"------------------------------------------------------"
-            "-----------\\n\\n\")"
+            "-----------\\n\\n\")")
         )
 
 def _get_virtue_data_reg_paths() -> Tuple[Path]:
