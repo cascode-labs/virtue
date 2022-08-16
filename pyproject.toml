@@ -58,7 +58,7 @@ virtue = "virtue.cli:app"
 name = "virtue"
 
 [project.optional-dependencies]
-optional = ["softworks"]
+optional = ["softworks", "skillbridge"]
 test = [
     "pytest >=7.1.2",
     "pylint >= 2.14.4",
