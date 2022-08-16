@@ -6,8 +6,8 @@ dependency manager.  It can be used to create a Conda environement containing
 Virtue SKILL++ packages, along with any version of Python and packages from any
 language, to easily create an IC design environment.
 
-Getting started
----------------
+Getting started with Conda
+---------------------------
 
 You can find instructions on how setup a design automation environment
 on the Viper-forge site.
