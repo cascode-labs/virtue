@@ -1,4 +1,4 @@
-# VIRTUE
+![Virtue](docs/source/_static/logo/virtue_banner_with_tagline.png "Virtue")
 
 [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/cascode-labs/virtue?include_prereleases)](https://github.com/cascode-labs/virtue/releases/latest)
 [![Conda](https://img.shields.io/conda/v/conda-forge/virtue?label=conda-forge)](https://anaconda.org/conda-forge/virtue)
