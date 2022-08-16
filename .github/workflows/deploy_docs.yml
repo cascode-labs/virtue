@@ -12,6 +12,15 @@ on:
   release:
     types: [published]
   workflow_dispatch:
+    inputs:
+        deploy:
+          description: 'deploy?'
+          required: true
+          default: 'false'
+          type: choice
+          options:
+          - 'true'
+          - 'false'
 
 jobs:
   build:
@@ -30,7 +39,7 @@ jobs:
           path: docs/build/html
   deploy:
     needs: build
-    if: github.event.action == 'published'
+    if: (github.event.action == 'published') || (inputs.deploy == 'true')
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
       pages: write      # to deploy to Pages
