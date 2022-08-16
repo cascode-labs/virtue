@@ -1,8 +1,10 @@
 # VIRTUE
 
-![PyPI](https://img.shields.io/pypi/v/virtue-skill) 
-![GitHub issues](https://img.shields.io/github/issues/cascode-labs/virtue) 
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/cascode-labs/virtue?include_prereleases)
 ![Conda](https://img.shields.io/conda/v/conda-forge/virtue?label=conda-forge)
+![PyPI](https://img.shields.io/pypi/v/virtue-skill)
+![GitHub issues](https://img.shields.io/github/issues/cascode-labs/virtue)
+![PyPI - License](https://img.shields.io/pypi/l/virtue-skill)
 
 Cadence Virtuoso SKILL++ framework
 
@@ -11,8 +13,15 @@ Features:
 - A standard library of packages with functions for common tasks
 - A test framework modeled after [pytest](https://docs.pytest.org/en/7.1.x/)
 - A [TOML config file](https://toml.io) reader and writer
-- A package import system that allows the library to define just a single
-top-level import table symbol that allows each package to be imported locally.
+- A SKILL code packaging system
+  - Define SKILL++ modules
+  - Create a SKILL++ package from a set of modules
+  - Import modules into a SKILL++ environment using the top-level "Import" table
+- Support for SKILL environment management using Python environments with
+  [Conda](https://docs.conda.io/en/latest/) and
+  [Pip](https://pip.pypa.io/en/stable/reference/build-system/pyproject-toml/)
+- Supports seamless execution of SKILL from Python using
+  [SkillBridge](https://unihd-cag.github.io/skillbridge/)
 
 ## Example Test File
 
@@ -62,51 +71,11 @@ FILE: /path/to/file/test_Str.ils
 
 ## Installation
 
-It requires Python >= 3.7
+Virtue requires Python >= 3.7 and can be installed using several methods:
+- Conda
+- Pip
+- From source
 
-### Using Conda **(recommended)**
-
-I would recommend using Conda to install Virtue and any related packages.  
-This will install both virtue and Python.
-
-If you haven't already installed conda, I would recommend using the
-[mambaforge installer](https://github.com/conda-forge/miniforge#mambaforge).
-Then download the virtuoso environment definition file,
-[environment-virtuoso.yml](environment-virtuoso.yml)
-which will be used to create the environment with the recommended Virtue
-packages.
-
-Install in a new environment named "virtuoso":
-
-```bash
-conda env create -f environment-virtuoso.yml
-```
-
-Install in an existing environment:
-
-```bash
-conda install -c conda-forge virtue
-```
-
-### From Source
-
-Just load the "virtue.init.ils" from the CIW window or add the following to
-your .cdsinit file:
-
-```lisp
-load("/path/to/repo/virtue/virtue.init.ils")
-```
-
-Reminder: The following will change your top-level interpreter to SKILL++:
-
-```lisp
-toplevel('ils)
-```
-
-### Using Pip
-
-You can install Virtue using pip from the [virtue-skill PyPi package](https://pypi.org/project/virtue-skill/)
-
-```bash
-pip install virtue-skill
-```
+See the
+[installation instructions in the documentation](https://www.cascode-labs.org/virtue/overview/index.html#installation)
+for detailed instructions.

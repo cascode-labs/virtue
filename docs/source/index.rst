@@ -7,7 +7,16 @@
 VIRTUE SKILL Framework
 ***********************
 
-Virtue is a SKILL framework for `Cadence Virtuoso <https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html>`_
+.. image:: https://img.shields.io/github/v/release/cascode-labs/virtue?include_prereleases
+   :alt: GitHub release (latest by date including pre-releases)
+.. image:: https://img.shields.io/conda/v/conda-forge/virtue?label=conda-forge
+   :alt: Conda
+.. image:: https://img.shields.io/pypi/v/virtue-skill
+   :alt: PyPI
+.. image:: https://img.shields.io/pypi/l/virtue-skill
+   :alt: PyPI - License
+
+| Virtue is a SKILL framework for `Cadence Virtuoso <https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html>`_
 
 Features:
 

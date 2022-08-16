@@ -1,7 +1,17 @@
 ========
 Overview
 ========
-Virtue is a SKILL framework for `Cadence Virtuoso <https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html>`_
+
+.. image:: https://img.shields.io/github/v/release/cascode-labs/virtue?include_prereleases
+   :alt: GitHub release (latest by date including pre-releases)
+.. image:: https://img.shields.io/conda/v/conda-forge/virtue?label=conda-forge
+   :alt: Conda
+.. image:: https://img.shields.io/pypi/v/virtue-skill
+   :alt: PyPI
+.. image:: https://img.shields.io/pypi/l/virtue-skill
+   :alt: PyPI - License
+
+| Virtue is a SKILL framework for `Cadence Virtuoso <https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html>`_
 
 Features:
 
@@ -14,8 +24,9 @@ Features:
   - Create a SKILL++ package from a set of modules
   - Import modules into a SKILL++ environment using the top-level "Import" table 
 
-- Support for SKILL environment management using `Conda <https://docs.conda.io/en/latest/>`_
-- Supports seamless execution of SKILL from Python using 
+- Support for SKILL environment management using Python packages and 
+  `Conda <https://docs.conda.io/en/latest/>`_ or Pip
+- Supports seamless execution of SKILL from Python using
   `SkillBridge <https://unihd-cag.github.io/skillbridge/>`_
 
 Installation
@@ -27,31 +38,30 @@ Conda **(recommended)**
 I would recommend using Conda to install Virtue and any related packages.  
 This will install both virtue and Python.
 
-If you haven't already installed conda, I would recommend using the 
-`mambaforge installer <https://github.com/conda-forge/miniforge#mambaforge>`_.
-Then download the virtuoso environment definition file,
+You'll need to download the virtuoso environment definition file,
 `environment-virtuoso.yml, <../_static/environment-virtuoso.yml>`_
 which will be used to create the environment with the recommended Virtue 
 packages.
-0. Install mambaforge if it isn't already installed using the 
-   `mambaforge installer <https://github.com/conda-forge/miniforge#mambaforge>`_.
 
-1. Install in a new environment named "virtuoso":
+1. Install mambaforge if it isn't already installed using the
+`mambaforge installer <https://github.com/conda-forge/miniforge#mambaforge>`_.
+
+2. Install in a new environment named "virtuoso":
 
    .. code-block:: bash
 
       conda env create -f environment-virtuoso.yml
 
-2. Activate the newly created Conda environment and then
+3. Activate the newly created Conda environment and then
    install the Virtue SKILL environment into its Python environment.
 
 
    .. code-block:: bash
 
-   conda activate virtuoso
-   virtue install
+      conda activate virtuoso
+      virtue install
 
-3. Follow the instructions to add the Virtue SKILL environment initialization 
+4. Follow the instructions to add the Virtue SKILL environment initialization 
    scripts to your Virtuoso initialization scripts.
 
 From Source
@@ -76,16 +86,21 @@ Pip
 
 You can install Virtue using pip from the `virtue-skill PyPi package <https://pypi.org/project/virtue-skill/>`_
 
-1. Install Virtue using Pip 
+0. You'll need to have Python and pip installed and it's recommended to create
+   a new new virtual environment for virtuoso before installing virtue.
+
+1. Install Virtue using Pip.  skillbridge and softworks are both optional
+   recommendations to be installed with virtue.
 
    .. code-block:: bash
 
       # Remember to activate your virtual environment first
-      pip install virtue-skill
+      pip install virtue-skill skillbridge softworks
       virtue install
 
-3. Follow the instructions to add the Virtue SKILL environment initialization 
-   scripts to your Virtuoso initialization scripts.  Each script has 
+2. Follow the instructions to add the Virtue SKILL environment initialization
+   scripts to your Virtuoso initialization scripts.  Each script will need to
+   be initialized in a different way in your Virtuoso environment.
 
 .. _install-library-manager-customizations:
 
