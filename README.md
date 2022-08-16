@@ -1,26 +1,28 @@
 # VIRTUE
 
-![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/cascode-labs/virtue?include_prereleases)
-![Conda](https://img.shields.io/conda/v/conda-forge/virtue?label=conda-forge)
-![PyPI](https://img.shields.io/pypi/v/virtue-skill)
-![GitHub issues](https://img.shields.io/github/issues/cascode-labs/virtue)
-![PyPI - License](https://img.shields.io/pypi/l/virtue-skill)
+[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/cascode-labs/virtue?include_prereleases)](https://github.com/cascode-labs/virtue/releases/latest)
+[![Conda](https://img.shields.io/conda/v/conda-forge/virtue?label=conda-forge)](https://anaconda.org/conda-forge/virtue)
+[![PyPI](https://img.shields.io/pypi/v/virtue-skill)](https://pypi.org/project/virtue-skill/)
+[![GitHub issues](https://img.shields.io/github/issues/cascode-labs/virtue)](https://github.com/cascode-labs/virtue/issues)
+[![PyPI - License](https://img.shields.io/pypi/l/virtue-skill)](https://choosealicense.com/licenses/mit/)
 
-Cadence Virtuoso SKILL++ framework
+A SKILL and Python Framework for automating IC design in
+[Cadence Virtuoso](https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html).
 
-Features:
+## Features
 
-- A standard library of packages with functions for common tasks
-- A test framework modeled after [pytest](https://docs.pytest.org/en/7.1.x/)
-- A [TOML config file](https://toml.io) reader and writer
-- A SKILL code packaging system
-  - Define SKILL++ modules
-  - Create a SKILL++ package from a set of modules
-  - Import modules into a SKILL++ environment using the top-level "Import" table
-- Support for SKILL environment management using Python environments with
-  [Conda](https://docs.conda.io/en/latest/) and
+- A [SKILL standard library](https://www.cascode-labs.org/virtue/reference/skill_api/index.html) of "batteries included" modules
+- A [SKILL test framework](https://www.cascode-labs.org/virtue/overview/testing_framework.html) modeled after [pytest](https://docs.pytest.org/en/7.1.x/)
+- A SKILL [TOML config file](https://toml.io) reader and writer
+- A SKILL package manager
+  - Define [SKILL++ modules](https://www.cascode-labs.org/virtue/overview/packaging/modules.html)
+  - Create [SKILL++ packages](https://www.cascode-labs.org/virtue/overview/packaging/skill_packages.html)
+  - Import modules into a SKILL++ lexical scope using the top-level "Import" table
+- SKILL environment manager using
+  [Conda](https://docs.conda.io/en/latest/) or
   [Pip](https://pip.pypa.io/en/stable/reference/build-system/pyproject-toml/)
-- Supports seamless execution of SKILL from Python using
+  Python environments
+- Seamless execution of SKILL from Python using
   [SkillBridge](https://unihd-cag.github.io/skillbridge/)
 
 ## Example Test File
