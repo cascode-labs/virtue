@@ -2,11 +2,12 @@
 Reference
 =========
 
-Virtue includes a SKILL API.
+Reference materials for Virtue's command-line interface, SKILL API, and
+Python API.
 
 .. toctree::
-   :maxdepth: 2
    :caption: Contents:
    :hidden:
 
+   cli
    skill_api/index

@@ -1,4 +1,4 @@
-SKILL Standard library
+SKILL Standard Library
 ======================
 
 Virtue includes a standard library of functions that extend Virtuoso's library

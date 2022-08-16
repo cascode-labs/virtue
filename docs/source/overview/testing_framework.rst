@@ -1,5 +1,5 @@
-Testing framework
-==================
+SKILL Test Framework
+====================
 
 The Test module defines a testing framework modelled after the Python
 `PyTest <https://docs.pytest.org/en/7.1.x/>`_

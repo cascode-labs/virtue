@@ -4,30 +4,42 @@ Overview
 
 .. image:: https://img.shields.io/github/v/release/cascode-labs/virtue?include_prereleases
    :alt: GitHub release (latest by date including pre-releases)
+   :target: https://github.com/cascode-labs/virtue/releases/latest
 .. image:: https://img.shields.io/conda/v/conda-forge/virtue?label=conda-forge
    :alt: Conda
+   :target: https://anaconda.org/conda-forge/virtue
 .. image:: https://img.shields.io/pypi/v/virtue-skill
    :alt: PyPI
+   :target: https://pypi.org/project/virtue-skill/
+.. image:: https://img.shields.io/github/issues/cascode-labs/virtue
+   :alt: GitHub issues
+   :target: https://github.com/cascode-labs/virtue/issues
 .. image:: https://img.shields.io/pypi/l/virtue-skill
    :alt: PyPI - License
+   :target: https://choosealicense.com/licenses/mit/
 
-| Virtue is a SKILL framework for `Cadence Virtuoso <https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html>`_
+| Virtue is a SKILL and Python Framework for automating IC design in `Cadence Virtuoso <https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html>`_
 
-Features:
+Features
+--------
 
-- A standard library of packages with functions for common tasks
-- A test framework modeled after `pytest <https://docs.pytest.org/en/7.1.x/>`_
-- A `TOML config file <https://toml.io>`_ reader and writer
+- A :ref:`SKILL standard library` of "batteries included" modules
+- A :ref:`SKILL test framework` modeled after `pytest <https://docs.pytest.org/en/7.1.x/>`_
+- A :ref:`SKILL TOML config file reader and writer <TOML Config Files>`
+  for the `TOML standard <https://toml.io>`_
 - A SKILL code packaging system
 
-  - Define SKILL++ modules
-  - Create a SKILL++ package from a set of modules
+  - Simple SKILL package installation from the Python environment
+  - Define :ref:`SKILL++ modules`
+  - Create :ref:`SKILL++ packages`
   - Import modules into a SKILL++ environment using the top-level "Import" table
 
-- Support for SKILL environment management using Python packages and
-  `Conda <https://docs.conda.io/en/latest/>`_ or Pip
-- Supports seamless execution of SKILL from Python using
+- SKILL environment manager using
+  `Conda <https://docs.conda.io/en/latest/>`_ or
+  `Pip <https://pip.pypa.io/en/stable/reference/build-system/pyproject-toml/>`_
+- Seamless execution of SKILL from Python using
   `SkillBridge <https://unihd-cag.github.io/skillbridge/>`_
+
 
 Installation
 ------------
