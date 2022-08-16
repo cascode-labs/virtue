@@ -72,6 +72,7 @@ FILE: /path/to/file/test_Str.ils
 ## Installation
 
 Virtue requires Python >= 3.7 and can be installed using several methods:
+
 - Conda
 - Pip
 - From source
