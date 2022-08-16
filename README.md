@@ -13,11 +13,12 @@ A SKILL and Python Framework for automating IC design in
 
 - A [SKILL standard library](https://www.cascode-labs.org/virtue/reference/skill_api/index.html) of "batteries included" modules
 - A [SKILL test framework](https://www.cascode-labs.org/virtue/overview/testing_framework.html) modeled after [pytest](https://docs.pytest.org/en/7.1.x/)
-- A SKILL [TOML config file](https://toml.io) reader and writer
+- A [SKILL TOML config file reader and writer](https://www.cascode-labs.org/virtue/overview/toml.html)
+  for the [TOML standard](https://toml.io)
 - A SKILL package manager
   - Define [SKILL++ modules](https://www.cascode-labs.org/virtue/overview/packaging/modules.html)
-  - Create [SKILL++ packages](https://www.cascode-labs.org/virtue/overview/packaging/skill_packages.html)
   - Import modules into a SKILL++ lexical scope using the top-level "Import" table
+  - Create [SKILL++ packages](https://www.cascode-labs.org/virtue/overview/packaging/skill_packages.html)
 - SKILL environment manager using
   [Conda](https://docs.conda.io/en/latest/) or
   [Pip](https://pip.pypa.io/en/stable/reference/build-system/pyproject-toml/)
