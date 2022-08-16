@@ -26,6 +26,13 @@ A SKILL and Python Framework for automating IC design in
 - Seamless execution of SKILL from Python using
   [SkillBridge](https://unihd-cag.github.io/skillbridge/)
 
+## Projects Built with Virtue
+
+- [Softworks](https://github.com/cascode-labs/softworks):
+  Software and documentation view types in the Cadence Virtuoso IC design environment.
+- [Data-panels](https://github.com/cascode-labs/data-panels):
+  Export rich data reports from simulation results to pptx slides
+
 ## Example Test File
 
 Note the package imports at the top
