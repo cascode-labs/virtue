@@ -102,7 +102,7 @@ def _print_install_datareg(init_file_paths: Dict[str,Path]):
     if data_reg_path is not None:
         print("Add the following to your data.reg file:")
         code = ("// Initialize the Virtue SKILL environment data registry\n"
-              f"SOFTINCLUDE \"{data_reg_path}\"")
+              f"SOFTINCLUDE {data_reg_path};")
         console.print(Padding(Syntax(code,"scheme"),(1,2)))
 
 def _print_install_cdslibmgr(init_file_paths: Dict[str,Path]):

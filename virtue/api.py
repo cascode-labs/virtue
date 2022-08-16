@@ -70,6 +70,8 @@ def _get_libmgr_env_script_path() -> Path:
 def _install_env_cdsinit_script(filepath: Path) -> None:
     with filepath.open("w") as file:
         file.write((
+            "printf(\"\\n---------------------------------------------------"
+            "--------------\n\")"
             "printf(\"Initializing Virtue skill environment\\n\")\n"
             f"printf(\"  loading {filepath}\\n\")\n\n"
             "let((init_files)\n"
@@ -79,10 +81,12 @@ def _install_env_cdsinit_script(filepath: Path) -> None:
             file.write(f"    \"{path}\"\n")
         file.write(
             ("  )\n"
-            "  fors(file init_files\n"
+            "  foreachs(file init_files\n"
             "    loadi(file))\n"
             ")\n"
             "printf(\"  Done, initialized Virtue SKILL environment\\n\")\n")
+            "printf(\"------------------------------------------------------"
+            "-----------\\n\\n\")"
         )
 
 def _get_virtue_data_reg_paths() -> Tuple[Path]:
@@ -111,7 +115,7 @@ def _install_env_cdslibmgr_script(filepath: Path) -> None:
             file.write(f"    \"{path}\"\n")
         file.write(
             ("  )\n"
-            "  fors(file init_files\n"
+            "  foreachs(file init_files\n"
             "    loadi(file))\n"
             ")\n"
             "printf(\"  Done, initialized IDS library manager environment"
