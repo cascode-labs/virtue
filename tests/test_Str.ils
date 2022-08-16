@@ -37,7 +37,7 @@ procedure(Test_str2bool_error()
 )
 
 procedure(Test_convertNumber()
-    assert(Str->convertNumber("5.0") == 5.0)    
+    assert(Str->convertNumber("5.0") == 5.0)
     assert(Str->convertNumber("5") == 5)
     assert(floatp(Str->convertNumber("5.0")))
     assert(integerp(Str->convertNumber("5")))
@@ -89,11 +89,11 @@ procedure(Test_prefixp()
 )
 
 procedure(Test_PathConcat()
-  assert(Path->Concat("/absolute" "path" "to" "a" "directory") == 
+  assert(Path->Concat("/absolute" "path" "to" "a" "directory") ==
          "/absolute/path/to/a/directory")
-  assert(Path->Concat("" "absolute" "path" "to" "a" "directory") == 
+  assert(Path->Concat("" "absolute" "path" "to" "a" "directory") ==
          "/absolute/path/to/a/directory")
-  assert(Path->Concat("/absolute" "path" "to" "a" "file.txt") == 
+  assert(Path->Concat("/absolute" "path" "to" "a" "file.txt") ==
          "/absolute/path/to/a/file.txt")
 )
 

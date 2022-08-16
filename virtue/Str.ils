@@ -10,7 +10,7 @@ procedure(emptyp(in "g")
 
 
 procedure(split(in delim "tt")
-	"Similar to parseString, except multiple delim are not ignored. 
+	"Similar to parseString, except multiple delim are not ignored.
 	 Empty delimiter fields are returned as empty strings."
 	let(((out '()) (inTmp in) nextC)
 	while(nextC = nindex(inTmp,delim)
@@ -37,22 +37,22 @@ procedure(str2bool(input_string "t") let((val)
   else if(stringp(input_string) && (upperCase(input_string) == "FALSE") then
 		val = nil
   else
-	  error("%s is not a boolean, must be \"TRUE\" or \"FALSE\" 
+	  error("%s is not a boolean, must be \"TRUE\" or \"FALSE\"
 		         (case insensitive)" input_string)
   ))
 ))
 
 procedure(convertNumber(in "t") let((splitString)
-	"Converts a string to a floating point number if it contains only 
-	 numbers and a decimal point. Converts a string to an integer if it only 
-	 contains numbers. Otherwise if it is non-numeric it returns the original 
+	"Converts a string to a floating point number if it contains only
+	 numbers and a decimal point. Converts a string to an integer if it only
+	 contains numbers. Otherwise if it is non-numeric it returns the original
 	 string."
 	splitString = parseString(in ".")
 	if(((length(splitString) == 2) && atoi(car(splitString)) && atoi(cadr(splitString))) then
 		atof(in)
 	else if(((length(splitString) == 1) && atoi(in)) then
 		atoi(in)
-	else 
+	else
 		in
 	))
 ))
@@ -67,7 +67,7 @@ procedure(convert(in "t") let((val)
 
 procedure(num2str(number "n")
 	"Converts a number to a string.  The number can be an integer
-	 or a floating point number.  Returns the input unchanged 
+	 or a floating point number.  Returns the input unchanged
 	 if it is not an number."
 	cond(
 		(integerp(number) sprintf(nil "%d" number))
@@ -76,7 +76,7 @@ procedure(num2str(number "n")
 )
 
 procedure(bool2str(in "g")
-	"Converts a boolean to a string.  If the input is nil, it 
+	"Converts a boolean to a string.  If the input is nil, it
 	 returns 'FALSE', anything else returns 'TRUE'"
 	if(in then
 		"TRUE"
@@ -108,7 +108,7 @@ procedure(endsWith(string suffix "tt")
 procedure(prefixp(string prefix "tt")
   "Checks if the input string starts with the given prefix.
    It is case sensitive."
-  if(strlen(string) >= strlen(prefix) && 
+  if(strlen(string) >= strlen(prefix) &&
      substring(string 1 strlen(prefix)) == prefix then
 	  't
   else
@@ -118,7 +118,7 @@ procedure(prefixp(string prefix "tt")
 
 list(nil
   'emptyp emptyp
-  'split split 
+  'split split
   'trimWhiteSpace trimWhiteSpace
   'convertNumber convertNumber
   'convert convert

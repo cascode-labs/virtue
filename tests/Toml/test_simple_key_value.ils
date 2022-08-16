@@ -4,7 +4,7 @@ let(((List Import['Toml])
 
 
 procedure(Test_KeyValueStrings()
-  let((table)  
+  let((table)
   table = Toml->ReadFile("/prj/ids_dev/work_libs/mayberc/IDS-skill/tests/toml/simple_key_value.toml")
   ;println(table)
   ;println("keys:")

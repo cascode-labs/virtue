@@ -11,7 +11,7 @@ List = let(()
       input = list(input))
     input
   )
-  
+
   procedure(setDiff(plusList minusList "ll")
     "Returns plusList with the items in minusList removed"
     let(()
@@ -20,7 +20,7 @@ List = let(()
   	)
   	plusList
   ))
-  
+
   procedure(uniqueList(input "l")
     "Returns a list of items of the unique elements from the input list
      It doesn't guarantee the order of the elements but is much faster than the ordered version. "
@@ -30,27 +30,27 @@ List = let(()
     )
     table->?
   ))
-  
+
   procedure(uniqueListOrdered(in "l") let((item out noAdd)
-    "Returns a list of items of the unique elements from the input list 
+    "Returns a list of items of the unique elements from the input list
      while keeping the order between the first unique elements"
   	out = '()
   	foreach(item in
   		noAdd = member(item out)
   		unless(noAdd
   			out = append(out list(item))
-  		) 
+  		)
   	)
   out
   ))
-  
+
   ;;;;;;;;;;;;;;;;;;;;;;
   ; Obj Instance Lists ;
   ;;;;;;;;;;;;;;;;;;;;;;
-  
+
   procedure(getSlot(objList slotName "ls") let((obj out)
     "Returns a list of the value of the given slot of each instance in the list
-  
+
     @param objList A list of skill++ object instances
     @param slotName A symbol of the slot name
     "
@@ -59,16 +59,16 @@ List = let(()
   	)
   	car(out)
   ))
-  
+
   ;;;;;;;;;;;;;;;;;;;;;
   ; Association Lists ;
   ;;;;;;;;;;;;;;;;;;;;;
-  
+
   procedure(assocKeys(assocList "l")
   "Returns all the keys in the specified association list"
     mapcar( 'car assocList)
   )
-  
+
   list(nil
   	 'ensure ensure
   	 'setDiff setDiff

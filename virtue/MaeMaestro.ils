@@ -9,9 +9,9 @@ Maestro = let(()
   	win = geOpen(?lib lib ?cell cell ?view view ?mode "r")
   	when(win
   		out = hiExportImage(
-  			?fileName filepath 
+  			?fileName filepath
   			?window win
-  			?exportRegion 'entireDesign 
+  			?exportRegion 'entireDesign
   			?bgColor "white"
   			?fgColor "black"
   			?colorType 'biColor
@@ -21,7 +21,7 @@ Maestro = let(()
   	)
   	out
   ))
-  
+
   ; Returns the test's design LCV (Library, Cell, View) information
   ;  If the view is a config, then it also has the LCV of the top-level cell of the config.
   procedure(GetTestDesign(sessionName testName) let((test out config)
@@ -37,16 +37,16 @@ Maestro = let(()
   	)
   	out
   ))
-  
 
-  
+
+
   procedure(GetEnabledAnalysisNames(testSession) let((out)
   	foreach(analysis asiGetEnabledAnalysisList(testSession)
   		out = append1(out symbolToString(asiGetAnalysisName(analysis)))
   	)
   	out
   ))
- 
+
   list(nil
   	'ExportCellImage ExportCellImage
   	'GetTestDesign GetTestDesign

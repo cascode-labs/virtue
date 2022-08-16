@@ -7,8 +7,8 @@ let((Test
 Test = let((current_suite)
 
   procedure(Initialize()
-    let((root_path subpackages)  
-    root_path = Virtue->GetCurrentFileDirectory()  
+    let((root_path subpackages)
+    root_path = Virtue->GetCurrentFileDirectory()
     subpackages = list(
       "TestFunction.ils"
       "TestFile.ils"

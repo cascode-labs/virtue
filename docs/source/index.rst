@@ -26,12 +26,12 @@ Features:
 - A SKILL code packaging system
 
   - Simple SKILL package installation from the Python environment
-  - Define SKILL++ modules 
+  - Define SKILL++ modules
   - Create a SKILL++ package from a set of modules
-  - Import modules into a SKILL++ environment using the top-level "Import" table 
+  - Import modules into a SKILL++ environment using the top-level "Import" table
 
 - Support for SKILL environment management using `Conda <https://docs.conda.io/en/latest/>`_
-- Supports seamless execution of SKILL from Python using 
+- Supports seamless execution of SKILL from Python using
   `SkillBridge <https://unihd-cag.github.io/skillbridge/>`_
 
 .. toctree::

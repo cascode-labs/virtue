@@ -3,7 +3,7 @@ let(((List Import['Toml])
     )
 
 procedure(Test_read_table()
-  let((table table1 table2)  
+  let((table table1 table2)
   table = Toml->ReadFile("/prj/ids_dev/work_libs/mayberc/IDS-skill/tests/toml/simple_table.toml")
   println(table)
   println("keys:")
@@ -26,7 +26,7 @@ procedure(Test_write_table()
   table["table-1"] = table1
   table1["key1"] = "some string"
   table1["key2"] = 123
-  table2 = makeTable("table-2") 
+  table2 = makeTable("table-2")
   table["table-2"] = table2
   table2["key1"] = "another string"
   table2["key2"] = 456
@@ -48,7 +48,7 @@ procedure(Test_table_write_association_list()
   table1 = makeTable("table-1")
   table1["key1"] = "some string"
   table1["key2"] = 123
-  table2 = makeTable("table-2") 
+  table2 = makeTable("table-2")
   table2["key1"] = "another string"
   table2["key2"] = 456
   assocList = list(
@@ -75,4 +75,3 @@ Test->RunFile(list(nil
 )
 
 )
-

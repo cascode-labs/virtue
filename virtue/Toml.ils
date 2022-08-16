@@ -1,6 +1,6 @@
 let((Toml
-     (module_description "Reads and writes 
-        Tom's Obvious Markup Language (.toml) configuration 
+     (module_description "Reads and writes
+        Tom's Obvious Markup Language (.toml) configuration
         files. https://toml.io/en/")
      (Str Import['Str])
      (Module Import['Module])
@@ -27,7 +27,7 @@ procedure(ReadFile(filePath "t")
     line = Str->trimWhiteSpace(line)
     cond(
       (blankstrp(line) nil)  ; empty or comment-only line
-      (TableName(line) 
+      (TableName(line)
         name = TableName(line)
         currentTable=makeTable(name)
         root_table[name]=currentTable
@@ -46,7 +46,7 @@ procedure(TableName(line)
     nil
 ))
 
-procedure(GetKey(line) 
+procedure(GetKey(line)
   prog((key_value_list)
   key_value_list = parseString(line "=")
   if(length(key_value_list) == 2 then
@@ -85,7 +85,7 @@ procedure(PrintTable(file table @key (name nil))
     fprintf(file "\n[%s]\n" name))
   foreach( key table
     PrintKey(file key table[key] ?name name)
-  ) 
+  )
 ))
 
 procedure(PrintAssocList(file assocList)
@@ -98,7 +98,7 @@ procedure(PrintAssocList(file assocList)
 ))
 
 procedure(PrintKey(file key value @key name)
-  let(((subtables nil) subtableItem subtable_name) 
+  let(((subtables nil) subtableItem subtable_name)
   cond(
       (stringp(key) && !tablep(value)
         fprintf(file "%s = %L\n" key value))
@@ -118,12 +118,12 @@ procedure(PrintKey(file key value @key name)
   ))
 ))
 
-list(nil 
+list(nil
 	'ReadFile ReadFile
   'WriteFile WriteFile
 ))
 
-Module->New('Toml Toml 
+Module->New('Toml Toml
              ?project Import['Virtue]
              ?description module_description)
 )

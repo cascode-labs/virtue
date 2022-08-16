@@ -25,8 +25,8 @@ def _version_callback(value: bool):
 @app.callback()
 def main(
     version: Optional[bool] = typer.Option(
-        None, "--version", callback=_version_callback, is_eager=True, 
-        help="""Prints the semantic version number prepended with 'v' 
+        None, "--version", callback=_version_callback, is_eager=True,
+        help="""Prints the semantic version number prepended with 'v'
                 and exit"""
     ),
 ) -> None:
@@ -48,7 +48,7 @@ def info():
     patch = info_dict["python version"][2]
     python_version = f"{major}.{minor}.{patch}"
     table.add_row("Python version", python_version)
-    
+
     print("")
     console.print(Padding(table,(0,2)))
     _print_install_script_table(api.script_paths())
@@ -61,7 +61,7 @@ def list_packages() -> None:
     print("\n:package: [bold green]Virtue Packages[/bold green] ")
     table = Table("Python Package", "SKILL Package", "Version")
     for package_name, package in packages.items():
-        table.add_row(package_name, package["skill package"], 
+        table.add_row(package_name, package["skill package"],
                       package["version"])
     console.print(table)
 
@@ -83,7 +83,7 @@ def _print_install_script_table(init_file_paths: Dict[str,Path]):
         if script_path is not None:
             table.add_row(script_name, str(script_path))
         else:
-            table.add_row(script_name, 
+            table.add_row(script_name,
                           "Not Applicable: No Virtue packages require it")
     print(Padding(table,(0,2)))
     print("")

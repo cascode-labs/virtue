@@ -1,4 +1,4 @@
-let((Module 
+let((Module
      (module_description "Create Virtue SKILL packages"))
     )
 
@@ -8,7 +8,7 @@ Module = let(()
 
   procedure(FunctionDocStrings(package "l")
     "Reads the documentation string for all the public functions of a package"
-    let((property_symbol)  
+    let((property_symbol)
     for(property
       fdoc()
     )
@@ -20,6 +20,6 @@ Module = let(()
   )
 )
 
-Module->New('Module Module Virtue 
+Module->New('Module Module Virtue
              ?description module_description)
 )

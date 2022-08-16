@@ -2,8 +2,8 @@
 Virtue Python Plugins
 ***********************
 
-Virtue uses `Pluggy <https://pluggy.readthedocs.io/en/stable/#>`_ 
-to register Virtue packages and include their SKILL packages in the 
+Virtue uses `Pluggy <https://pluggy.readthedocs.io/en/stable/#>`_
+to register Virtue packages and include their SKILL packages in the
 Virtue SKILL environment.
 
 The available hooks can be found in the hook specs:

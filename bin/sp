@@ -19,7 +19,7 @@ set VIEWPRJ_CMD="false"
 
 # Parse input options
 set opts=(`getopt -s tcsh -o cdhon:p:v -l code,dev,help,no,name,prefix,view -- $argv:q`)
-if ($? != 0) then 
+if ($? != 0) then
   echo "Terminating..." >/dev/stderr
   exit 1
 endif
@@ -39,7 +39,7 @@ while (1)
 	case -n:
 	case --name:
 		echo "named conda environment set to $2:q"
-		set conda_env=\`$2:q\'  
+		set conda_env=\`$2:q\'
 		shift ; shift
 		breaksw
 	case --o:

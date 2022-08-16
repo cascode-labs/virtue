@@ -6,8 +6,8 @@ let((Hdb
 Hdb = let(()
 
 procedure(CreateConfigView(configLCV topCellLCV libraryList viewList stopList) prog((configId result)
-    "Creates a config view in a given lib-cell-view. Sets the top cell 
-     lib-cell-view. Sets the config library list, view list, and stop list in 
+    "Creates a config view in a given lib-cell-view. Sets the top cell
+     lib-cell-view. Sets the config library list, view list, and stop list in
      the global binding section.
 
     @brief Creates a config view
@@ -36,7 +36,7 @@ list(nil
   'CreateConfigView CreateConfigView
 ))
 
-Module->New('Hdb Hdb 
+Module->New('Hdb Hdb
              ?project Import['Virtue]
              ?description module_description)
 )

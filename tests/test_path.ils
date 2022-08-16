@@ -4,11 +4,11 @@ let(((Path Import['Path])
     )
 
 procedure(Test_PathConcat()
-  assert(Path->Concat("/absolute" "path" "to" "a" "directory") == 
+  assert(Path->Concat("/absolute" "path" "to" "a" "directory") ==
          "/absolute/path/to/a/directory")
-  assert(Path->Concat("" "absolute" "path" "to" "a" "directory") == 
+  assert(Path->Concat("" "absolute" "path" "to" "a" "directory") ==
          "/absolute/path/to/a/directory")
-  assert(Path->Concat("/absolute" "path" "to" "a" "file.txt") == 
+  assert(Path->Concat("/absolute" "path" "to" "a" "file.txt") ==
          "/absolute/path/to/a/file.txt")
 )
 

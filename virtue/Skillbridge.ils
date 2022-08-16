@@ -9,7 +9,7 @@ procedure(IsInstalled()
 	procedurep(fboundp('pyStartServer))
 )
 
-procedure(StartPythonServer() 
+procedure(StartPythonServer()
 	"Start the Skillbridge Python server"
   let(((server_id GetID()))
 	if(IsInstalled() then
@@ -90,7 +90,7 @@ Skillbridge->Initialize()
 ;define('VrtSkillbridgeTogglePythonServerLmgrCallback nil)
 
 ; Global functions required for library manager
-VrtSkillbridgeTogglePythonServerLmgrCallback = 
+VrtSkillbridgeTogglePythonServerLmgrCallback =
 	Import['Skillbridge]->TogglePythonServerLmgrCallback
-VrtSkillbridgeOpenDocumentationLmgrCallback = 
+VrtSkillbridgeOpenDocumentationLmgrCallback =
 	Import['Skillbridge]->OpenDocumentationLmgrCallback

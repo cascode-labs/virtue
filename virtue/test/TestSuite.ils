@@ -8,7 +8,7 @@ let(((Test Import['Test])
   procedure(RunDirectory(directory_path "t")
     "Run a directory of tests.  Loads each SKILL or SKILL++ file with a 'Test_'
      prefix and reports the results of each.
-  
+
      @brief Run a directory of test files with each containing a call to Test->RunFile
      @param directory_path Path to a directory of SKILL test scripts
      @return A test suite object"
@@ -21,8 +21,8 @@ let(((Test Import['Test])
     files = remove(".." files)
     when(files
       foreach(file files
-        when(Str->endsWith(file ".il") || 
-             Str->endsWith(file ".ils") && 
+        when(Str->endsWith(file ".il") ||
+             Str->endsWith(file ".ils") &&
              (Str->prefixp(file "test_") || Str->prefixp(file "Test_"))
           loadi(Path->Concat(directory_path file))
         )
@@ -78,7 +78,7 @@ let(((Test Import['Test])
     )
     function_count
   ))
-  
+
   procedure(FunctionPassCount(suite "l")
     let(((pass_count 0))
     foreachs(file suite->files

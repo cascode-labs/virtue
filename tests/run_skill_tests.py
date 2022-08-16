@@ -1,5 +1,5 @@
 """
-Run the SKILL tests from Python.  Makes it easy to run them from a 
+Run the SKILL tests from Python.  Makes it easy to run them from a
 python IDE.  Make sure the skillbridge server is running first.
 """
 

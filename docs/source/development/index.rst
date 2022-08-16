@@ -2,20 +2,20 @@
 Development
 ===========
 
-Thank you for your interest in contributing to Virtue.  Pull requests are 
+Thank you for your interest in contributing to Virtue.  Pull requests are
 welcome.  Please follow the following guidelines so we can efficiently merge
 them.
 
 SKILL Code Expectations
 -----------------------
 
-The following expectations are set to ensure the quality and consistency of 
+The following expectations are set to ensure the quality and consistency of
 Virtue's code.
 
-- Virtue code should be written using c-style function calls rather than 
+- Virtue code should be written using c-style function calls rather than
   lisp-style.
 - Each file should contain less than 200 lines of code.
-- Applications with gui elements should seperate the gui code from the 
+- Applications with gui elements should seperate the gui code from the
   underlying functionality.  The functionality should have a function that allows
   it to be called programmatically.  This make it easy to test and reuse the
   code.

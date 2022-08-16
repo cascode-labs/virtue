@@ -7,7 +7,7 @@ MaeExport = let(()
 
 procedure(ExportMaestroHistoryInfoTable(sessionName hsdb filePath "t")
   let(()
-  Toml->Write(BuildMaestroHistoryInfoTable(sessionName hsdb) 
+  Toml->Write(BuildMaestroHistoryInfoTable(sessionName hsdb)
               filePath)
 ))
 
@@ -40,7 +40,7 @@ procedure(TestInfoTable(sessionName testName "tt")
     let((table config test)
     "Reads a test's info into a table"
     table = makeTable(testName)
-    test = maeGetTestSession(testName ?session sessionName)    
+    test = maeGetTestSession(testName ?session sessionName)
     table["design_library"] = asiGetDesignLibName(test)
     table["design_cell"] = asiGetDesignCellName(test)
     table["design_view"] = asiGetDesignViewName(test)
@@ -77,6 +77,6 @@ list(nil
     'BuildMaestroHistoryInfoTable BuildMaestroHistoryInfoTable
 ))
 
-Module->New('MaeExport MaeExport 
+Module->New('MaeExport MaeExport
              ?project Import['Virtue])
 )

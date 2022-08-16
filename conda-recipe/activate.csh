@@ -1,13 +1,13 @@
 #!/bin/tcsh
 
-if (! $?VIRTUE_SKILL_PREFIX) then       
+if (! $?VIRTUE_SKILL_PREFIX) then
   echo 'Setting $VIRTUE_SKILL_PREFIX ='
   echo "  ${CONDA_PREFIX}/lib/skill"
   setenv "VIRTUE_SKILL_PREFIX" "${CONDA_PREFIX}/lib/skill"
 else
   if ("$var" == "")  then
       echo "variable is empty"
-  else 
+  else
       echo "variable contains $var"
   endif
 endif

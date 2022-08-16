@@ -1,5 +1,5 @@
 let((Lcv
-     (module_description 
+     (module_description
       "Select the lib, cell, view or history name from an ordered list of them.")
     )
 Lcv = let(()

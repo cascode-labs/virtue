@@ -12,7 +12,7 @@ procedure(Test_ensure()
 
 procedure(Test_setDiff()
   assert(List->setDiff('(1 2 3) '(2 3)) == '(1)) ; integers
-  assert(List->setDiff('(1 2 3) '(1 2 3)) == '()) 
+  assert(List->setDiff('(1 2 3) '(1 2 3)) == '())
   assert(List->setDiff('("A" "B" "CD" "E") '("A" "CD")) == '("B" "E")) ; strings
   assert(List->setDiff('("A" "B" "CD" "E") '("A" "B" "CD" "E")) == '())
 )

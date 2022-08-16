@@ -9,11 +9,11 @@ let((Project
 Project = let(((project_packages makeTable("virtue project packages")))
 
   procedure(New(project_package project_init_dir_path "lt")
-    "Adds a set of useful variables about the project to the project 
+    "Adds a set of useful variables about the project to the project
     package to the project package's data_table."
     let((package_table config_filepaths config_filepath)
     package_table = car(project_package)
-    config_filepaths = '("skill_project.toml" "../skill_project.toml" 
+    config_filepaths = '("skill_project.toml" "../skill_project.toml"
                          "pyproject.toml" "../pyproject.toml")
     foreachs(filepath config_filepaths
       filepath = Path->Concat(project_init_dir_path filepath)

@@ -37,9 +37,9 @@ def list_packages() -> Dict[str,Any]:
 def install() -> Dict[dict,Path]:
     """Installs the Virtue SKILL initialization files into the Virtue folder
     of the current Python environment.
-    
+
     Returns:
-        A dictionary with the paths to the created initialization files. 
+        A dictionary with the paths to the created initialization files.
     """
     init_paths = script_paths()
     _install_env_cdsinit_script(init_paths[".cdsinit"])
