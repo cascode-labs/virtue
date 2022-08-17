@@ -2,6 +2,7 @@
 **/.skillide.*
 *.ils~
 *.il~
+tests/lint_reports
 
 # Virtue environment initialization scripts
 virtue/virtue-environment.cdsinit.ils

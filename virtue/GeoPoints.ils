@@ -9,6 +9,7 @@
 ;  * dbConcatTransform
 
 let(((Geo Import('Geo))
+     (Dpl Import('Dpl))
     )
 
   procedure(ptOffset(P offset "ll")
@@ -29,11 +30,11 @@ let(((Geo Import('Geo))
     @param Multiplier Either a scalar to multiply with both the X and Y or
     an (X,Y) list containing seperate multipliers for each coordinate"
     cond(
-      (floatp(Multiplier) || skyMath->intp(Multiplier)
+      (floatp(Multiplier) || integerp(Multiplier)
         ptProductScalar(P Multiplier))
       (isLocation(Multiplier)
         ptProductVector(P Multiplier))
-      (else
+      ('t
         error("Multiplier type is not supported")))
   )
 
@@ -71,7 +72,7 @@ let(((Geo Import('Geo))
   procedure( ptNearestBoxSide(point box "ll")
     "Finds the nearest side of the box to the reference point
   	@return side A string, 'left', 'right', 'top', or 'bottom'"
-  	let( (x1 y1 x2 y2 x y d1 d2 d3 d4 minDist side)
+  	let((x1 y1 x2 y2 x y d1 d2 d3 d4 minDist side)
 
   	x1 = caar( box )
   	y1 = cadar( box )
@@ -81,7 +82,7 @@ let(((Geo Import('Geo))
   	x = xCoord( point )
   	y = yCoord( point )
 
-  	if( skyGeo->ptInBoxp(point box) then
+  	if( Geo->ptInBoxp(point box) then
   		d1 = x - x1 ; left distance
   		d2 = y - y1 ; bottom distance
   		d3 = x2 - x ; right distance
@@ -155,7 +156,7 @@ let(((Geo Import('Geo))
       )
   ))
 
-  Geo = Dpl->Concat(Geo list(nil
+  Geo = Dpl->Cat(Geo list(nil
   	'ptOffset ptOffset
   	'ptNeg ptNeg
   	'ptProduct ptProduct

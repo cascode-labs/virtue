@@ -31,9 +31,10 @@ List = let(()
     table->?
   ))
 
-  procedure(uniqueListOrdered(in "l") let((item out noAdd)
+  procedure(uniqueListOrdered(in "l")
     "Returns a list of items of the unique elements from the input list
      while keeping the order between the first unique elements"
+    let((out noAdd)
   	out = '()
   	foreach(item in
   		noAdd = member(item out)
@@ -48,12 +49,13 @@ List = let(()
   ; Obj Instance Lists ;
   ;;;;;;;;;;;;;;;;;;;;;;
 
-  procedure(getSlot(objList slotName "ls") let((obj out)
+  procedure(getSlot(objList slotName "ls")
     "Returns a list of the value of the given slot of each instance in the list
 
     @param objList A list of skill++ object instances
     @param slotName A symbol of the slot name
     "
+  let((out)
   	foreach(obj objList
   		out = tconc(out slotValue(obj slotName))
   	)
@@ -65,7 +67,7 @@ List = let(()
   ;;;;;;;;;;;;;;;;;;;;;
 
   procedure(assocKeys(assocList "l")
-  "Returns all the keys in the specified association list"
+    "Returns all the keys in the specified association list"
     mapcar( 'car assocList)
   )
 

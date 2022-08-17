@@ -80,16 +80,15 @@ procedure(WriteFile(filePath input "tg")
 ))
 
 procedure(PrintTable(file table @key (name nil))
-  let((key)
   when(name
     fprintf(file "\n[%s]\n" name))
   foreach( key table
     PrintKey(file key table[key] ?name name)
   )
-))
+)
 
 procedure(PrintAssocList(file assocList)
-  let((item key value)
+  let((key value)
   foreach( item assocList
     key = car(item)
     value = cadr(item)
@@ -98,7 +97,7 @@ procedure(PrintAssocList(file assocList)
 ))
 
 procedure(PrintKey(file key value @key name)
-  let(((subtables nil) subtableItem subtable_name)
+  let(((subtables nil) subtable_name)
   cond(
       (stringp(key) && !tablep(value)
         fprintf(file "%s = %L\n" key value))

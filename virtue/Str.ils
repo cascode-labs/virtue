@@ -29,24 +29,25 @@ procedure(trimWhiteSpace(in "t")
 		pcreReplace(pcreTrailingWhiteSpace in "" 0 )
 ))
 
-procedure(str2bool(input_string "t") let((val)
+procedure(str2bool(input_string "t")
 	"Converts a case-insensitive 'TRUE' or 'FALSE' string to a boolean
 	 ('t / nil) If it is not a boolean, the string is returned."
 	if(stringp(input_string) && (upperCase(input_string) == "TRUE") then
-		val = 't
+	  't
   else if(stringp(input_string) && (upperCase(input_string) == "FALSE") then
-		val = nil
+	  nil
   else
 	  error("%s is not a boolean, must be \"TRUE\" or \"FALSE\"
 		         (case insensitive)" input_string)
   ))
-))
+)
 
-procedure(convertNumber(in "t") let((splitString)
+procedure(convertNumber(in "t")
 	"Converts a string to a floating point number if it contains only
 	 numbers and a decimal point. Converts a string to an integer if it only
 	 contains numbers. Otherwise if it is non-numeric it returns the original
 	 string."
+  let((splitString)
 	splitString = parseString(in ".")
 	if(((length(splitString) == 2) && atoi(car(splitString)) && atoi(cadr(splitString))) then
 		atof(in)
@@ -57,8 +58,9 @@ procedure(convertNumber(in "t") let((splitString)
 	))
 ))
 
-procedure(convert(in "t") let((val)
+procedure(convert(in "t")
 	"Same as converNumber except it also handles boolean strings. see str2bool"
+  let((val)
 	val = convertNumber(in)
 	when(stringp(val)
 		val = str2bool(val))

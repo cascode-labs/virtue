@@ -36,7 +36,7 @@ Module = let(()
 
   procedure(LoadList(module_filepaths @key (root_path "") continue_on_error)
     "loads a list of filepaths."
-    let((filepath load_function)
+    let((load_function)
     if(continue_on_error then
       load_function = loadi
     else

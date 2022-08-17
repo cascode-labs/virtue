@@ -48,11 +48,11 @@ Geo = let(()
     @param Multiplier Either a scalar to multiply with both the X and Y or
     an (X,Y) list containing seperate multipliers for each coordinate"
     cond(
-      (floatp(Multiplier) || skyMath->intp(Multiplier)
+      (floatp(Multiplier) || integerp(Multiplier)
         ptProductScalar(P Multiplier))
       (isLocation(Multiplier)
         ptProductVector(P Multiplier))
-      (else
+      ('t
         error("Multiplier type is not supported")))
   )
 
@@ -100,7 +100,7 @@ Geo = let(()
   	x = xCoord( point )
   	y = yCoord( point )
 
-  	if( skyGeo->ptInBoxp(point box) then
+  	if(ptInBoxp(point box) then
   		d1 = x - x1 ; left distance
   		d2 = y - y1 ; bottom distance
   		d3 = x2 - x ; right distance

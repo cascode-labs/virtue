@@ -11,7 +11,7 @@ Dpl = let(()
 
   procedure(PropertyTable(input_dpl "l")
     "Convert a DPL to an association table"
-    let((property_list (idx 2) (table makeTable("dpl properties")))
+    let((property_list (table makeTable("dpl properties")))
     property_list = cdr(input_dpl)
 
     while(property_list

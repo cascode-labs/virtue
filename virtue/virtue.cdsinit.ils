@@ -27,7 +27,7 @@ Virtue = let(((module_description "SKILL++ Library and package manager")
   )
 
   procedure(Initialize()
-    let((dir_path preinit_packages Module Project virtue_packages lib)
+    let((dir_path preinit_packages Module Project virtue_packages)
     printf("\nInitializing Virtue SKILL++ Library\n")
 
     dir_path = GetCurrentFileDirectory()

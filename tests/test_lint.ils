@@ -1,0 +1,19 @@
+let(((Test Import['Test])
+     (Virtue Import['Virtue])
+    )
+
+procedure(test_lint_Str()
+  assert(sklint(
+    ?file "/prj/ids_dev/work_libs/mayberc/skill/virtue/virtue/Str.ils"
+    ?outputFile "/prj/ids_dev/work_libs/mayberc/skill/virtue/tests/lint_report.txt"
+    ?prefixes '(Vrt Import)
+  ))
+)
+
+Test->RunFile(list(nil
+  'test_lint_Str test_lint_Str
+  )
+  ?filepath Virtue->GetCurrentFilePath()
+)
+
+)

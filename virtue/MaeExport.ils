@@ -1,6 +1,7 @@
 ; Exports information about a Maestro view
 let((MaeExport
      (Module Import['Module])
+     (Toml Import['Toml])
     )
 
 MaeExport = let(()
@@ -61,7 +62,7 @@ procedure(TestInfoTable(sessionName testName "tt")
 ))
 
 procedure(BuildAllTestInfoTables(sessionName)
-    let((table)
+    let((table tests)
     tests = maeGetSetup(?typeName "tests"
                         ?enabled t
                         ?session sessionName)

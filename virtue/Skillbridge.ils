@@ -1,4 +1,5 @@
-let(((module_description "Skillbridge interface"))
+let((Skillbridge
+     (module_description "Skillbridge interface"))
 
 Skillbridge = let(()
 procedure(GetID()
@@ -86,8 +87,6 @@ Import['Module]->New('Skillbridge Skillbridge
 Skillbridge->Initialize()
 
 )
-
-;define('VrtSkillbridgeTogglePythonServerLmgrCallback nil)
 
 ; Global functions required for library manager
 VrtSkillbridgeTogglePythonServerLmgrCallback =

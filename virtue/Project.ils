@@ -1,6 +1,5 @@
 let((Project
      (module_description "Registers a SKILL project with Virtue")
-     (Str Import['Str])
      (Toml Import['Toml])
      (Module Import['Module])
      (Path Import['Path])
@@ -15,7 +14,7 @@ Project = let(((project_packages makeTable("virtue project packages")))
     package_table = car(project_package)
     config_filepaths = '("skill_project.toml" "../skill_project.toml"
                          "pyproject.toml" "../pyproject.toml")
-    foreachs(filepath config_filepaths
+    foreach(filepath config_filepaths
       filepath = Path->Concat(project_init_dir_path filepath)
       when(isFile(filepath)
         config_filepath = filepath)
