@@ -7,11 +7,13 @@ channels:
 
 dependencies:
   - python=3.9
+  - make = 4.3
   - conda
   - conda-build
   - conda-verify
   - mamba
   - boa
+  - anaconda-client
   - git
   - pytest = 7.1.2
   - pylint = 2.14.4

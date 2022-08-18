@@ -1,5 +1,5 @@
 # Virtue development environment
-name: virtue-dev
+name: virtuoso
 
 channels:
   - conda-forge
@@ -10,6 +10,7 @@ dependencies:
   - softworks
   - skillbridge = 1.2.18
   - python=3.9
+  - git
   - conda
   - mamba
-  - git
+  - pip
