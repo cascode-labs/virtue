@@ -37,7 +37,47 @@ A SKILL and Python Framework for automating IC design in
 - Seamless execution of SKILL from Python using
   [SkillBridge](https://unihd-cag.github.io/skillbridge/)
 
-## Example Test File
+## Example SKILL++ Package
+
+```scheme
+let((Str
+     (module_description "String functions")
+     (Module Import['Module])
+    )
+Str = let(()
+
+procedure(emptyp(in "g")
+	"Checks if the input is an empty string
+  @param Any type of object to be checked
+  @return A boolean, 't if it is an empty string, otherwise nil"
+	stringp(in) && strlen(in) == 0)
+
+procedure(str2bool(input_string "t")
+	"Converts a case-insensitive 'TRUE' or 'FALSE' string to a boolean
+	 ('t / nil) If it is not a boolean, the string is returned."
+	if(stringp(input_string) && (upperCase(input_string) == "TRUE") then
+	  't
+  else if(stringp(input_string) && (upperCase(input_string) == "FALSE") then
+	  nil
+  else
+	  error("%s is not a boolean, must be \"TRUE\" or \"FALSE\"
+		         (case insensitive)" input_string)
+  ))
+)
+
+list(nil
+  'emptyp emptyp
+  'str2bool str2bool
+))
+
+Module->New('Str Str
+             ?project Import['Virtue]
+             ?description module_description)
+
+)
+```
+
+## Example Test Script
 
 Note the package imports at the top
 
