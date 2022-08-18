@@ -71,7 +71,7 @@ def _install_env_cdsinit_script(filepath: Path) -> None:
     with filepath.open("w") as file:
         file.write((
             "printf(\"\\n---------------------------------------------------"
-            "--------------\n\")"
+            "--------------\\n\")\n"
             "printf(\"Initializing Virtue skill environment\\n\")\n"
             f"printf(\"  loading {filepath}\\n\")\n\n"
             "let((init_files)\n"
