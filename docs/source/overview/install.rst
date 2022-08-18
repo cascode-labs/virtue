@@ -10,9 +10,10 @@ it easy to use different versions of Python in each Conda environment.
    0. Install mambaforge if some form of conda or mamba isn't already installed
       using the `mambaforge installer <https://github.com/conda-forge/miniforge#mambaforge>`_.
 
-   1. Create a new environment named "virtuoso":
+   1. Create a new environment named "virtuoso".
 
-      This can be done using the environment definition from our anaconda cloud
+      This can be done using the environment definition from
+      `our anaconda cloud <https://anaconda.org/cascode-labs/virtuoso>`_:
 
       .. code-block:: bash
          :linenos:
