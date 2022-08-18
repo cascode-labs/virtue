@@ -6,6 +6,8 @@ help:
 	@echo "  'make build' will build both a wheel and sdist"
 	@echo "  'make build-wheel' will build just a wheel"
 	@echo "  'make build-sdist' will build just a sdist"
+	@echo "  'make upload-virtuoso-env' will upload the virtuoso environment"
+	@echo "    definition file to our anaconda cloud"
 	@echo "Install"
 	@echo "  'make install-conda-dev' will install a conda development environment"
 	@echo "Build documentation"
@@ -32,6 +34,12 @@ auto-build-docs: copy-data auto-build-docs-only
 build-wheel: copy-data build-wheel-only
 
 build-sdist: copy-data build-sdist-only
+
+upload-virtuoso-env:
+	anaconda upload -u cascode-labs virtuoso.yml \
+	  --description 'A \
+	  [Virtue environment](https://www.cascode-labs.org/virtue/) \
+	  for automating IC design'
 
 clean:
 	rm -rf dist

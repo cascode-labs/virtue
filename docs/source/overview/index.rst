@@ -66,15 +66,7 @@ Virtue is licensed under an MIT license.
     .. literalinclude:: ../_static/LICENSE
        :linenos:
 
-Projects built with Virtue
---------------------------------
-
-- `Softworks <https://github.com/cascode-labs/softworks>`_:
-  View types for software and documentation views
-- `Data-panels <https://github.com/cascode-labs/data-panels>`_:
-  Export data reports from simulation results to pptx slides
-
-Other Open-source SKILL Projects
+Other Open Source SKILL Projects
 --------------------------------
 
 - `skillbridge Python-SKILL interface <https://unihd-cag.github.io/skillbridge/>`_
