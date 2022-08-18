@@ -19,7 +19,9 @@ Project = let(((project_packages makeTable("virtue project packages")))
       when(isFile(filepath)
         config_filepath = filepath)
     )
-    unless(config_filepath
+    if(config_filepath then
+      package_table['project] = read_project_config(config_filepath)
+    else
       warn(strcat(
         "Could not read the pyproject.toml or skill-project.toml file!\n
         Please make sure it is located in the same directory as the\n
@@ -27,7 +29,6 @@ Project = let(((project_packages makeTable("virtue project packages")))
       ))
     )
 
-    package_table['project] = read_project_config(config_filepath)
     package_table['project]['project_root_path] = project_init_dir_path
     register_project(project_package)
     project_package
