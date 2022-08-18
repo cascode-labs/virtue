@@ -1,0 +1,52 @@
+let((Project
+     (module_description "Registers a SKILL project with Virtue")
+     (Toml Import['Toml])
+     (Module Import['Module])
+     (Path Import['Path])
+    )
+
+Project = let(((project_packages makeTable("virtue project packages")))
+
+  procedure(New(project_package project_init_dir_path "lt")
+    "Adds a set of useful variables about the project to the project
+    package to the project package's data_table."
+    let((package_table config_filepaths config_filepath)
+    package_table = car(project_package)
+    config_filepaths = '("skill_project.toml" "../skill_project.toml"
+                         "pyproject.toml" "../pyproject.toml")
+    foreach(filepath config_filepaths
+      filepath = Path->Concat(project_init_dir_path filepath)
+      when(isFile(filepath)
+        config_filepath = filepath)
+    )
+    if(config_filepath then
+      package_table['project] = read_project_config(config_filepath)
+    else
+      warn(strcat(
+        "Could not read the pyproject.toml or skill-project.toml file!\n
+        Please make sure it is located in the same directory as the\n
+        initialization file or the directory directly above it."
+      ))
+    )
+
+    package_table['project]['project_root_path] = project_init_dir_path
+    register_project(project_package)
+    project_package
+  ))
+
+  procedure(read_project_config(project_init_dir_path "t")
+    Toml->ReadFile(project_init_dir_path))
+
+  procedure(register_project(project_package "l")
+    project_packages[car(project_package)['symbol]] = project_package)
+
+  list(nil
+    'New New
+    'ProjectModules project_packages
+  )
+)
+
+Module->New('Project Project
+             ?project Import['Virtue]
+             ?description module_description)
+)
