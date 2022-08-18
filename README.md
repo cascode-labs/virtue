@@ -61,7 +61,7 @@ procedure(str2bool(input_string "t")
     nil
   else
     error("%s is not a boolean, must be \"TRUE\" or \"FALSE\"
-             (case insensitive)" input_string)
+           (case insensitive)" input_string)
   ))
 )
 
