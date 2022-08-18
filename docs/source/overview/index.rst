@@ -2,7 +2,7 @@
 Overview
 ========
 
-.. image:: ../../_static/logo/virtue_banner_with_tagline.png
+.. image:: ../_static/logo/virtue_banner_with_tagline.png
 
 .. image:: https://img.shields.io/github/v/release/cascode-labs/virtue?include_prereleases
    :alt: GitHub release (latest by date including pre-releases)
