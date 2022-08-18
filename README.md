@@ -47,21 +47,21 @@ let((Str
 Str = let(()
 
 procedure(emptyp(in "g")
-	"Checks if the input is an empty string
+  "Checks if the input is an empty string
   @param Any type of object to be checked
   @return A boolean, 't if it is an empty string, otherwise nil"
-	stringp(in) && strlen(in) == 0)
+  stringp(in) && strlen(in) == 0)
 
 procedure(str2bool(input_string "t")
-	"Converts a case-insensitive 'TRUE' or 'FALSE' string to a boolean
-	 ('t / nil) If it is not a boolean, the string is returned."
-	if(stringp(input_string) && (upperCase(input_string) == "TRUE") then
-	  't
+  "Converts a case-insensitive 'TRUE' or 'FALSE' string to a boolean
+   ('t / nil) If it is not a boolean, the string is returned."
+ if(stringp(input_string) && (upperCase(input_string) == "TRUE") then
+   't
   else if(stringp(input_string) && (upperCase(input_string) == "FALSE") then
-	  nil
+    nil
   else
-	  error("%s is not a boolean, must be \"TRUE\" or \"FALSE\"
-		         (case insensitive)" input_string)
+    error("%s is not a boolean, must be \"TRUE\" or \"FALSE\"
+             (case insensitive)" input_string)
   ))
 )
 
