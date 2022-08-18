@@ -9,6 +9,17 @@
 A SKILL and Python Framework for automating IC design in
 [Cadence Virtuoso](https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html).
 
+## Projects Built with Virtue
+
+- [Softworks](https://github.com/cascode-labs/softworks):
+  Software and documentation view types in the Cadence Virtuoso IC design environment.
+- [Data-panels](https://github.com/cascode-labs/data-panels):
+  Export rich data reports from simulation results to pptx slides and
+  xlsx tables
+- [Morpheus](https://github.com/cascode-labs/morpheus):
+  Generate Maestro test benches in a standard way compatible with an associated
+  data-panels report
+
 ## Features
 
 - A [SKILL standard library](https://www.cascode-labs.org/virtue/reference/skill_api/index.html) of "batteries included" modules
@@ -25,13 +36,6 @@ A SKILL and Python Framework for automating IC design in
   Python environments
 - Seamless execution of SKILL from Python using
   [SkillBridge](https://unihd-cag.github.io/skillbridge/)
-
-## Projects Built with Virtue
-
-- [Softworks](https://github.com/cascode-labs/softworks):
-  Software and documentation view types in the Cadence Virtuoso IC design environment.
-- [Data-panels](https://github.com/cascode-labs/data-panels):
-  Export rich data reports from simulation results to pptx slides
 
 ## Example Test File
 
