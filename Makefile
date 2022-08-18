@@ -1,11 +1,13 @@
 help:
+	@echo ""
 	@echo "Build a Virtue package or install Virtue for development"
 	@echo "  'make build' will build both a wheel and sdist"
 	@echo "  'make install-conda-dev' will install a conda development environment"
 	@echo "  'make clean' will clean up the work area"
-	@echo ""
+	@echo "   ---"
 	@echo "  'make build-wheel' will build just a wheel"
 	@echo "  'make build-sdist' will build just a sdist"
+	@echo ""
 
 .PHONY: help Makefile build install-dev clean
 
@@ -19,7 +21,6 @@ build-sdist: copy-data build-sdist-only
 
 copy-data:
 	cp -rf pyproject.toml virtue/pyproject.toml
-	@echo "copied pyproject"
 
 build-all:
 	flit build
@@ -37,5 +38,4 @@ build-sdist-only:
 	flit build --format wheel
 
 clean:
-	rm -rf virtue/pyproject.toml
 	rm -rf dist
