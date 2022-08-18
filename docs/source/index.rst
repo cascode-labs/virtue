@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. image:: _static/logo/virtue_banner_with_tagline.png
+.. image:: ../_static/logo/virtue_banner_with_tagline.png
 
 .. image:: https://img.shields.io/github/v/release/cascode-labs/virtue?include_prereleases
    :alt: GitHub release (latest by date including pre-releases)
@@ -22,6 +22,19 @@
    :target: https://choosealicense.com/licenses/mit/
 
 | Virtue is a SKILL and Python Framework for automating IC design in `Cadence Virtuoso <https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html>`_
+
+Projects built with Virtue
+--------------------------------
+
+- `Softworks <https://github.com/cascode-labs/softworks>`_:
+  Software and documentation view types in the Cadence Virtuoso IC design
+  environment.
+- `Data-panels <https://github.com/cascode-labs/data-panels>`_:
+  Export rich data reports from simulation results to pptx slides and
+  xlsx tables
+- `Morpheus <https://github.com/cascode-labs/data-panels>`_:
+  Generate Maestro test benches in a standard way compatible with an associated
+  data-panels report
 
 Features
 --------
