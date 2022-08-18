@@ -1,0 +1,19 @@
+let(()
+  procedure(GetCurrentFilePath()
+    simplifyFilename(get_filename(piport))
+  )
+
+  procedure(GetCurrentFileDirectory()
+    let((file_path)
+    file_path = GetCurrentFilePath()
+    strcat("/" buildString(reverse(cdr(reverse(parseString(file_path "/")))) "/"))
+  ))
+
+  procedure(LoadContext(context_name file_path "tt")
+    "Load a context and call its initialization function"
+    loadContext(file_path)
+    callInitProc(context_name)
+  )
+
+  LoadContext("virtue" strcat(GetCurrentFileDirectory() "/virtue.cxt"))
+)
