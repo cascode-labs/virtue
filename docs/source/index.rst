@@ -21,7 +21,12 @@
    :alt: PyPI - License
    :target: https://choosealicense.com/licenses/mit/
 
-| Virtue is a SKILL and Python Framework for automating IC design in `Cadence Virtuoso <https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html>`_
+| Virtue is a SKILL and Python Framework for automating IC design in `Cadence Virtuoso <https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html>`_ with the following goals:
+
+1. Bring the capabilities of skill to Python so (ideally) you don't have
+   to write skill code to do EDA in Python
+2. In those cases where you do need to write skill, make it pythonic
+
 
 Projects built with Virtue
 --------------------------------

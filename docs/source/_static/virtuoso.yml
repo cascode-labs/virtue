@@ -1,0 +1,16 @@
+# Virtue development environment
+name: virtuoso
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - virtue
+  - softworks
+  - skillbridge = 1.2.18
+  - python=3.9
+  - git
+  - conda
+  - mamba
+  - pip
