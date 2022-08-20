@@ -11,9 +11,9 @@ help:
 	@echo "Install"
 	@echo "  'make install-conda-dev' will install a conda development environment"
 	@echo "Build documentation"
-	@echo "  'make auto-build-docs' will continuosly rebuild the docs"
+	@echo "  'make auto-docs' will continuosly rebuild the docs"
 	@echo "     as they are updated"
-	@echo "  'make build-docs' will build the documentation once"
+	@echo "  'make docs' will build the documentation once"
 	@echo "Other tasks"
 	@echo "  'make clean' will clean up the work area"
 	@echo ""
@@ -27,9 +27,9 @@ build: copy-data build-all
 
 install-conda-dev: copy-data install-conda-dev-only install-pip-dev
 
-build-docs: copy-data build-docs-only
+docs: copy-data build-docs-only
 
-auto-build-docs: copy-data auto-build-docs-only
+auto-docs: copy-data auto-build-docs-only
 
 build-wheel: copy-data build-wheel-only
 
