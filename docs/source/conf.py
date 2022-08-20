@@ -108,7 +108,7 @@ html_context = {
     "github_user": "cascode-labs",
     "github_repo": "virtue",
     "github_version": "main",
-    "doc_path": "docs",
+    "doc_path": "docs/source",
 }
 
 html_baseurl = 'http://www.cascode-labs.org/virtue/'
