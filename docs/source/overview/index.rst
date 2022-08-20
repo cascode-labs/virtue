@@ -26,6 +26,11 @@ Overview
    to write skill code to do EDA in Python
 2. In those cases where you do need to write skill, make it pythonic
 
+.. admonition:: YouTube Video Explanation
+
+   I explain Virtue as a part of the Silicon Austria Labs (SAL) bootcamp:
+   `YouTube Video Explanation <https://www.youtube.com/watch?v=5GJbBLpHo6s&t=1s>`_
+
 
 Projects built with Virtue
 --------------------------------

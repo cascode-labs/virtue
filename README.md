@@ -7,7 +7,13 @@
 [![PyPI - License](https://img.shields.io/pypi/l/virtue-skill)](https://choosealicense.com/licenses/mit/)
 
 A SKILL and Python Framework for automating IC design in
-[Cadence Virtuoso](https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html).
+[Cadence Virtuoso](https://www.cadence.com/en_US/home/tools/custom-ic-analog-rf-design/circuit-design.html)
+with the following goals:
+
+1. Bring the capabilities of skill to Python so (ideally) you don't have
+   to write skill code to do EDA in Python
+2. In those cases where you do need to write skill, make it pythonic
+
 
 ## Projects Built with Virtue
 
@@ -19,6 +25,8 @@ A SKILL and Python Framework for automating IC design in
 - [Morpheus](https://github.com/cascode-labs/morpheus):
   Generate Maestro test benches in a standard way compatible with an associated
   data-panels report
+
+> [YouTube Video Explanation](https://www.youtube.com/watch?v=5GJbBLpHo6s&t=1s)
 
 ## Features
 

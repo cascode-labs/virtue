@@ -41,6 +41,11 @@ Projects built with Virtue
   Generate Maestro test benches in a standard way compatible with an associated
   data-panels report
 
+.. admonition:: YouTube Video Explanation
+
+   I explain Virtue as a part of the Silicon Austria Labs (SAL) bootcamp:
+   `YouTube Video Explanation <https://www.youtube.com/watch?v=5GJbBLpHo6s&t=1s>`_
+
 Features
 --------
 
