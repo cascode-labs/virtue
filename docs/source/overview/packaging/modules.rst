@@ -9,8 +9,8 @@ imported into a local lexical SKILL++ environment from the module Import
 table without affecting the top-level environment.  A module can be created
 as a DPL or a table.
 
-Impoort a Module
--------------------
+Import a Module
+----------------
 
 A module can be imported into the lexical environment of a SKILL++ let
 statement by defining a local variable to a module from the Package Import
@@ -20,7 +20,7 @@ Define a DPL Module
 -------------------
 
 A module can be created as a decomposed property list (DPL), similar to the
-`"SKILL++ packages" defined in the user manual <https://support.cadence.com/apex/techpubDocViewerPage?path=sklanguser/sklanguserIC6.1.8/sklanguserTOC.html#firstpage>`_`.
+`"SKILL++ packages" defined in the user manual <https://support.cadence.com/apex/techpubDocViewerPage?path=sklanguser/sklanguserIC6.1.8/sklanguserTOC.html#firstpage>`_.
 Public functions are defined as part of the DPL property list.  Private module
 variables are defined in the variable list of the named let function.
 Functions defined within the package's let statement but aren't in the DPL
