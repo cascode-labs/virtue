@@ -1,14 +1,22 @@
 Getting Started
 ================
 
-I would recommend using vs code to develop virtue.  It has many helpful 
+I would recommend using vs code to develop virtue.  It has many helpful
 extensions, including a skill code extension for syntax highlighting.
 
 Install a development version
 ------------------------------
 
-1. Make sure you have mambaforge (conda) installed
-2. Create a new Conda development environment
+1. Make sure you have
+2. `mambaforge <https://github.com/conda-forge/miniforge#mambaforge>`_
+   (conda) installed, if not you can install it:
+
+   .. code-block:: bash
+      :caption: Setup mambaforge
+
+      make install-conda-dev
+
+3. Create a new Conda development environment
 
    .. code-block:: bash
       :linenos:
@@ -16,7 +24,7 @@ Install a development version
 
       conda env create -f environment.yml
 
-3. Install virtue as an editable package.
+4. Install virtue as an editable package.
 
    .. code-block:: bash
       :linenos:
@@ -28,7 +36,7 @@ Install a development version
       virtue install
       pre-commit install
 
-4. Install the virtue SKILL environement by following the standard
+5. Install the virtue SKILL environement by following the standard
    installation instructions.
 
    .. code-block:: bash
@@ -39,7 +47,7 @@ Install a development version
       virtue install
       pre-commit install
 
-5. Install pre-commit git hooks
+6. Install pre-commit git hooks
 
    .. code-block:: bash
       :linenos:
@@ -48,22 +56,22 @@ Install a development version
 
       pre-commit install
 
-6. If you're using VS Code as your IDE, then install the extensions recommended
+7. If you're using VS Code as your IDE, then install the extensions recommended
    by the workspace.
 
 Writing Documentation
 ----------------------
 
-The documentation is built using the 
+The documentation is built using the
 `Sphinx static site generator <https://www.sphinx-doc.org/>`_
-and the 
+and the
 `pydata theme <https://pydata-sphinx-theme.readthedocs.io/en/stable/>`_.
 
 We use sphinx-autobuild to automatically rebuild the documentation whenever it
 changes.  To start the auto-build, open a new terminal in the project repo root
 directory and start it by calling the following.  If you're using a
-vs code integrated terminal then a box will popup asking you to open the 
-auto-built docs in a web browser.  Otherwise navigate to the indicated 
+vs code integrated terminal then a box will popup asking you to open the
+auto-built docs in a web browser.  Otherwise navigate to the indicated
 URL.
 
 .. code-block::

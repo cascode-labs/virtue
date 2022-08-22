@@ -89,10 +89,11 @@ Other Open Source SKILL Projects
    :hidden:
 
    install
-   standard_library
-   testing_framework
-   cli
    packaging/index
+   testing_framework
+   skillbridge
+   standard_library
+   cli
    conda
    toml
    release_notes

@@ -2,7 +2,7 @@ SKILL Test Framework
 ====================
 
 The Test module defines a testing framework modelled after the Python
-`PyTest <https://docs.pytest.org/en/7.1.x/>`_
+`PyTest <https://docs.pytest.org/en/7.1.x/>`_ tool.
 
 - The built-in assert is used for testing
 - test function names start with 'test\_'
