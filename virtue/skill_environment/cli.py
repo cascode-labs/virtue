@@ -17,24 +17,6 @@ app = typer.Typer()
 console = Console()
 
 
-
-def _version_callback(value: bool):
-    if value:
-        print(f"v{virtue.__version__}")
-        raise typer.Exit()
-
-@app.callback()
-def main(
-    version: Optional[bool] = typer.Option(
-        None, "--version", callback=_version_callback, is_eager=True,
-        help="""Prints the semantic version number prepended with 'v'
-                and exit"""
-    ),
-) -> None:
-    """Virtue SKILL package manager"""
-    pass
-
-
 @app.command()
 def info():
     """Prints information on the virtue environment"""

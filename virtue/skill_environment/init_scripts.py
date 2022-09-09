@@ -1,17 +1,12 @@
-
-import itertools
 from importlib.resources import files
 from pathlib import Path
-from typing import Dict, Tuple, Optional
+from typing import Dict, Optional
 
 import virtue
-from virtue.plugins.hookspecs import SKillPackageData
-from virtue.plugins.plugin_manager import plugin_manager
-
 from virtue.skill_package.get_metadata import get_metadata
 
 
-def init() -> Dict[str,Path]:
+def init() -> Dict[str,Optional[Path]]:
     """Initialializes the Virtue SKILL environment by creating the
     Virtuoso initialization files in the Virtue folder of the current
     Python environment.
@@ -26,29 +21,21 @@ def init() -> Dict[str,Path]:
         _install_data_reg_init_script(init_paths["data.reg"])
     return init_paths
 
-def _get_projects_dict()->Dict[str, SKillPackageData]:
-    return projects_data()
-
 
 def _get_cdsinit_script_path() -> Path:
     """The path to the SKILL environment initialization script"""
-    return files(virtue) / "virtue-environment.cdsinit.ils"
+    return Path(str(files(virtue) / "virtue-environment.cdsinit.ils"))
 
 def _get_data_reg_env_script_path() -> Optional[Path]:
     """The path to the SKILL environment initialization script"""
-    if len(_get_virtue_data_reg_paths()) > 0:
-        return files(virtue) / "virtue-environment.data.reg"
+    if len(get_metadata("data_reg_paths")) > 0:
+        return Path(str(files(virtue) / "virtue-environment.data.reg"))
     else:
         return None
 
-def _get_virtue_skill_initialization_paths() -> Tuple[Path]:
-    #init_paths = plugin_manager.hook.virtue_skill_initialization_paths()
-    init_paths = get_metadata("cdsinit_paths")
-    return tuple(itertools.chain(*init_paths))
-
 def _get_libmgr_env_script_path() -> Path:
     """The path to the library manager initialization script"""
-    return files(virtue) / "virtue-environment.cdsLibMgr.il"
+    return Path(str(files(virtue) / "virtue-environment.cdsLibMgr.il"))
 
 def _install_env_cdsinit_script(filepath: Path) -> None:
     with filepath.open("w") as file:
@@ -60,7 +47,7 @@ def _install_env_cdsinit_script(filepath: Path) -> None:
             "let((init_files)\n"
             "  init_files = '(\n"
         ))
-        for path in _get_virtue_skill_initialization_paths():
+        for path in get_metadata("cdsinit_paths"):
             file.write(f"    \"{path}\"\n")
         file.write(
             ("  )\n"
@@ -72,19 +59,12 @@ def _install_env_cdsinit_script(filepath: Path) -> None:
             "-----------\\n\\n\")")
         )
 
-def _get_virtue_data_reg_paths() -> Tuple[Path]:
-    paths = plugin_manager.hook.virtue_data_reg_paths()
-    return tuple(itertools.chain(*paths))
-
 def _install_data_reg_init_script(filepath: Path) -> None:
-    if len(_get_virtue_data_reg_paths()) > 0:
+    data_reg_paths = get_metadata("data_reg_paths")
+    if len(data_reg_paths) > 0:
         with filepath.open("w") as file:
-            for path in _get_virtue_data_reg_paths():
+            for path in data_reg_paths:
                 file.write(f"SOFTINCLUDE {path};\n")
-
-def _get_virtue_cdslibmgr_paths() -> Tuple[Path]:
-    paths = plugin_manager.hook.virtue_cdslibmgr_paths()
-    return tuple(itertools.chain(*paths))
 
 def _install_env_cdslibmgr_script(filepath: Path) -> None:
     with filepath.open("w") as file:
@@ -94,7 +74,7 @@ def _install_env_cdslibmgr_script(filepath: Path) -> None:
             "let((init_files)\n"
             "  init_files = '(\n"
         ))
-        for path in _get_virtue_cdslibmgr_paths():
+        for path in get_metadata("cdslibmgr_paths"):
             file.write(f"    \"{path}\"\n")
         file.write(
             ("  )\n"
@@ -105,7 +85,7 @@ def _install_env_cdslibmgr_script(filepath: Path) -> None:
             "\\n\")\n")
         )
 
-def script_paths() -> Dict[str, Path]:
+def script_paths() -> Dict[str, Optional[Path]]:
     return {
         ".cdsinit": _get_cdsinit_script_path(),
         "cdsLibMgr.il": _get_libmgr_env_script_path(),
