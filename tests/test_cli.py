@@ -12,7 +12,7 @@ def test_cli_version():
     assert f"v{virtue.__version__}" in result.stdout
 
 def test_cli_info():
-    result = runner.invoke(app, ["info"])
+    result = runner.invoke(app, ["env", "info"])
     assert result.exit_code == 0
     assert result.stdout != ""
 

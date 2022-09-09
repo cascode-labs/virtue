@@ -12,12 +12,10 @@ from rich.padding import Padding
 import virtue
 from virtue import api
 from virtue.skill_environment import init_scripts
-import virtue.skill_environment.cli
 
 app = typer.Typer()
 console = Console()
 
-app.add_typer(virtue.skill_environment.cli.app, name="env")
 
 
 def _version_callback(value: bool):
@@ -33,7 +31,7 @@ def main(
                 and exit"""
     ),
 ) -> None:
-    """Virtue command line interface"""
+    """Virtue SKILL package manager"""
     pass
 
 
@@ -69,7 +67,16 @@ def list_packages() -> None:
     console.print(table)
 
 
-
+@app.command()
+def init():
+    """Initialializes the Virtue SKILL environment by creating the
+    Virtuoso initialization files in the Virtue folder of the current
+    Python environment."""
+    init_file_paths = init_scripts.init()
+    _print_install_script_table(init_file_paths)
+    _print_install_cdsinit(init_file_paths)
+    _print_install_datareg(init_file_paths)
+    _print_install_cdslibmgr(init_file_paths)
 
 def _print_install_script_table(init_file_paths: Dict[str,Path]):
     print("\nSKILL environment initialization scripts installed:")

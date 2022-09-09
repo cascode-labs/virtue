@@ -32,17 +32,17 @@ Virtue = let(((module_description "SKILL++ Library and package manager")
 
     dir_path = GetCurrentFileDirectory()
 
-    loadi(strcat(dir_path "/Module.ils"))
+    loadi(strcat(dir_path "/skill_package/Module.ils"))
     Module = Import['Module]
     Virtue = Module->New('Virtue Import['Virtue]
       ?project Import['Virtue]
       ?description module_description)
 
     preinit_packages = list(
-      "Str.ils"
-      "Path.ils"
+      "data_types/Str.ils"
+      "skill_package/Path.ils"
       "Toml.ils"
-      "Project.ils"
+      "skill_package/Project.ils"
     )
     Module->LoadList(preinit_packages
       ?root_path dir_path
@@ -52,11 +52,11 @@ Virtue = let(((module_description "SKILL++ Library and package manager")
     Project->New(Virtue dir_path)
 
     virtue_packages = list(
-      "List.ils"
+      "data_types/List.ils"
     	"test/Test.ils"
     	"Geo.ils"
-      "Dpl.ils"
-      "Lcv.ils"
+      "data_types/Dpl.ils"
+      "data_types/Lcv.ils"
     	; "Sch.ils"
     	"MaeMaestro.ils"
       "MaeExport.ils"

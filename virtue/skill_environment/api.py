@@ -6,8 +6,8 @@ from importlib.metadata import metadata
 from pathlib import Path
 from typing import Any, Dict, Tuple, Optional
 import virtue
+from virtue.plugins.hookspecs import SKillPackageData
 from virtue.plugins.plugin_manager import plugin_manager
-
 
 def info() -> Dict[str, Any]:
     data = {
@@ -47,6 +47,10 @@ def install() -> Dict[dict,Path]:
     if init_paths["data.reg"] is not None:
         _install_data_reg_init_script(init_paths["data.reg"])
     return init_paths
+
+def _get_projects_dict()->Dict[str, SKillPackageData]:
+    return projects_data()
+
 
 def _get_cdsinit_script_path() -> Path:
     """The path to the SKILL environment initialization script"""
