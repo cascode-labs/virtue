@@ -42,14 +42,14 @@ Virtue = let(((module_description "SKILL++ Library and package manager")
       "data_types/Str.ils"
       "skill_package/Path.ils"
       "Toml.ils"
-      "skill_package/Project.ils"
+      "skill_package/Package.ils"
     )
     Module->LoadList(preinit_packages
       ?root_path dir_path
       ?continue_on_error 't)
 
-    Project = Import['Project]
-    Project->New(Virtue dir_path)
+    Package = Import['Package]
+    Package->New(Virtue dir_path)
 
     virtue_packages = list(
       "data_types/List.ils"
