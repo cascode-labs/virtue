@@ -1,5 +1,4 @@
-from os import environ
-from typing import Optional, Dict
+from typing import Dict
 from pathlib import Path
 
 import typer
@@ -9,9 +8,7 @@ from rich.table import Table
 from rich.syntax import Syntax
 from rich.padding import Padding
 
-import virtue
-from virtue import api
-from virtue.skill_environment import init_scripts
+from virtue.skill_environment import init_scripts, api
 
 app = typer.Typer()
 console = Console()
@@ -34,7 +31,7 @@ def info():
 
     print("")
     console.print(Padding(table,(0,2)))
-    _print_install_script_table(api.script_paths())
+    _print_install_script_table(init_scripts.script_paths())
 
 
 @app.command("list")

@@ -17,7 +17,7 @@ def test_cli_info():
     assert result.stdout != ""
 
 def test_cli_list():
-    result = runner.invoke(app, ["list"])
+    result = runner.invoke(app, ["env", "list"])
     assert result.exit_code == 0
     assert "Virtue Packages" in result.stdout
     assert "Python Package" in result.stdout

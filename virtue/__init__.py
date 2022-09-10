@@ -4,7 +4,7 @@ import pluggy
 from .LibUtility import *
 from .SchUtility import *
 from .ConfigUtility import *
-from .plugins.hookspecs import SKillPackageMetadata
+from .skill_package.metadata import SKillPackageMetadata
 
 __version__ = '0.3.2'
 

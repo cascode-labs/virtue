@@ -7,7 +7,7 @@ hookspec = pluggy.HookspecMarker("virtue")
 
 
 @hookspec
-def virtue_register_skill_package() -> SKillPackageData: # type: ignore
+def virtue_register_skill_package() -> SKillPackageMetadata: # type: ignore
     """ Registers a skill package with Virtue.
 
     The skill package will be loaded in Virtue's skill environment.

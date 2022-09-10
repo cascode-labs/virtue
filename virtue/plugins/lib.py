@@ -2,7 +2,7 @@ from importlib.resources import files
 from pathlib import Path
 from typing import Tuple
 import virtue
-from virtue import SKillPackageData
+from virtue import SKillPackageMetadata
 
 @virtue.hookimpl
 def virtue_register_skill_package():

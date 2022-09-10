@@ -21,21 +21,12 @@ def init() -> Dict[str,Optional[Path]]:
         _install_data_reg_init_script(init_paths["data.reg"])
     return init_paths
 
-
-def _get_cdsinit_script_path() -> Path:
-    """The path to the SKILL environment initialization script"""
-    return Path(str(files(virtue) / "virtue-environment.cdsinit.ils"))
-
 def _get_data_reg_env_script_path() -> Optional[Path]:
     """The path to the SKILL environment initialization script"""
     if len(get_metadata("data_reg_paths")) > 0:
         return Path(str(files(virtue) / "virtue-environment.data.reg"))
     else:
         return None
-
-def _get_libmgr_env_script_path() -> Path:
-    """The path to the library manager initialization script"""
-    return Path(str(files(virtue) / "virtue-environment.cdsLibMgr.il"))
 
 def _install_env_cdsinit_script(filepath: Path) -> None:
     with filepath.open("w") as file:
@@ -87,7 +78,9 @@ def _install_env_cdslibmgr_script(filepath: Path) -> None:
 
 def script_paths() -> Dict[str, Optional[Path]]:
     return {
-        ".cdsinit": _get_cdsinit_script_path(),
-        "cdsLibMgr.il": _get_libmgr_env_script_path(),
+        ".cdsinit":
+            Path(str(files(virtue) / "virtue-environment.cdsinit.ils")),
+        "cdsLibMgr.il":
+            Path(str(files(virtue) / "virtue-environment.cdsLibMgr.il")),
         "data.reg": _get_data_reg_env_script_path(),
     }

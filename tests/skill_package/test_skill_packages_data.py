@@ -3,11 +3,11 @@ from pathlib import Path
 import pytest
 
 from virtue.skill_package.get_metadata \
-    import skill_packages_data, get_metadata
+    import skill_packages_metadata, get_metadata
 
 
 def test_virtue_package_data():
-    data = skill_packages_data()
+    data = skill_packages_metadata()
     assert isinstance(data, dict)
     assert "virtue-skill" in data
     assert data["virtue-skill"]["skill_package_name"] == "Virtue"
