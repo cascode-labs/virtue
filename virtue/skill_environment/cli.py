@@ -1,12 +1,13 @@
 from typing import Dict
 from pathlib import Path
-
 import typer
 from rich import print
 from rich.console import Console
 from rich.table import Table
 from rich.syntax import Syntax
 from rich.padding import Padding
+from rich.markup import escape
+import toml
 
 from virtue.skill_environment import init_scripts, api
 
@@ -35,16 +36,51 @@ def info():
 
 
 @app.command("list")
-def list_packages() -> None:
+def list_packages(
+    verbose: bool = typer.Option(False, "--verbose","-v", help=
+        "Include additional package data such as init script paths"),
+    export_toml: bool = typer.Option(False, "--toml","-t", help=
+        "Print the full package list in TOML format"),
+    export_python: bool = typer.Option(False, "--python","-p", help=
+        "Prints the full package list in dict format")
+    ) -> None:
     """List the Virtue packages"""
-    packages = api.list_packages()
-    print("\n:package: [bold green]Virtue Packages[/bold green] ")
-    table = Table("Python Package", "SKILL Package", "Version")
-    for package_name, package in packages.items():
-        table.add_row(package_name, package["skill package"],
-                      package["version"])
-    console.print(table)
 
+    packages = api.list_packages()
+    if export_toml:
+        print(escape(toml.dumps(packages)))
+    elif export_python:
+        print(packages)
+    else:
+        _print_package_table(packages, verbose)
+
+
+def _print_package_table(packages: dict, verbose: bool):
+    column_names = {
+        "python_package_name": "Python Package",
+        "skill_package_name": "SKILL Package",
+        "version": "Version"
+    }
+    if verbose:
+        column_names.update({
+            "cdsinit_paths": ".cdsinit",
+            "cdslibmgr_paths": "cdsLibMgr.il",
+            "data_reg_paths": "data.reg",
+        })
+    display_names = column_names.values()
+    table = Table(*display_names,
+        title ="\n:package: [bold green]Virtue Packages[/bold green]",
+        title_style="")
+    """for column_header in display_names:
+        if column_header in [".cdsinit"]:
+            table.add_column(column_header,justify="center")
+        else:
+            table.add_column(column_header)"""
+    for package in packages.values():
+        package_filtered = {key: str(package[key]) for \
+                            key in column_names.keys() if key in package}
+        table.add_row(*package_filtered.values())
+    console.print(table)
 
 @app.command()
 def init():

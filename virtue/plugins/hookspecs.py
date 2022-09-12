@@ -1,9 +1,7 @@
-
 import pluggy
-from virtue.skill_package.metadata import SKillPackageMetadata
+from virtue.skill_package.metadata_data import SKillPackageMetadata
 
 hookspec = pluggy.HookspecMarker("virtue")
-
 
 
 @hookspec
@@ -13,7 +11,7 @@ def virtue_register_skill_package() -> SKillPackageMetadata: # type: ignore
     The skill package will be loaded in Virtue's skill environment.
 
     returns:
-        A dict containing the required package data keys from the
-        SKillPackageData TypedDict and, optionally, any of the
-        keys from SKillPackageOptionalData TypedDict.
+        A dict containing the required package metadata keys from the
+        SKillPackageMetadata TypedDict and, optionally, any of the
+        keys from SKillPackageOptionalMetadata TypedDict.
     """

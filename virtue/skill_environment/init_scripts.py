@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Dict, Optional
 
 import virtue
-from virtue.skill_package.get_metadata import get_metadata
+from virtue.skill_package.metadata import metadata
 
 
 def init() -> Dict[str,Optional[Path]]:
@@ -23,7 +23,7 @@ def init() -> Dict[str,Optional[Path]]:
 
 def _get_data_reg_env_script_path() -> Optional[Path]:
     """The path to the SKILL environment initialization script"""
-    if len(get_metadata("data_reg_paths")) > 0:
+    if len(metadata("data_reg_paths")) > 0:
         return Path(str(files(virtue) / "virtue-environment.data.reg"))
     else:
         return None
@@ -38,7 +38,7 @@ def _install_env_cdsinit_script(filepath: Path) -> None:
             "let((init_files)\n"
             "  init_files = '(\n"
         ))
-        for path in get_metadata("cdsinit_paths"):
+        for path in metadata("cdsinit_paths"):
             file.write(f"    \"{path}\"\n")
         file.write(
             ("  )\n"
@@ -51,7 +51,7 @@ def _install_env_cdsinit_script(filepath: Path) -> None:
         )
 
 def _install_data_reg_init_script(filepath: Path) -> None:
-    data_reg_paths = get_metadata("data_reg_paths")
+    data_reg_paths = metadata("data_reg_paths")
     if len(data_reg_paths) > 0:
         with filepath.open("w") as file:
             for path in data_reg_paths:
@@ -65,7 +65,7 @@ def _install_env_cdslibmgr_script(filepath: Path) -> None:
             "let((init_files)\n"
             "  init_files = '(\n"
         ))
-        for path in get_metadata("cdslibmgr_paths"):
+        for path in metadata("cdslibmgr_paths"):
             file.write(f"    \"{path}\"\n")
         file.write(
             ("  )\n"

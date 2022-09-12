@@ -1,9 +1,7 @@
-from unittest.mock import patch
-from pathlib import Path
 import pytest
 
-from virtue.skill_package.get_metadata \
-    import skill_packages_metadata, get_metadata
+from virtue.skill_package.metadata \
+    import skill_packages_metadata, metadata
 
 
 def test_virtue_package_data():
@@ -15,7 +13,7 @@ def test_virtue_package_data():
 @pytest.mark.parametrize("metadata_key",
     [("cdsinit_paths"), ("cdslibmgr_paths"), ("cds_dev_libraries"),
      ("python_package_name"), ("skill_package_name")])
-def test_get_metadata(metadata_key):
-    metadata = get_metadata(metadata_key)
-    assert isinstance(metadata, list)
-    assert len(metadata) > 0
+def test_metadata(metadata_key):
+    data = metadata(metadata_key)
+    assert isinstance(data, list)
+    assert len(data) > 0
