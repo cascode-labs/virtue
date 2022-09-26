@@ -85,9 +85,10 @@ Path = let(()
   )
 )
 
-Module->New('Path Path
-             ?project Import['Virtue]
-             ?description module_description)
+Module->New('Path
+            ?module Path
+            ?package Import['Virtue]
+            ?description module_description)
 
 )
 

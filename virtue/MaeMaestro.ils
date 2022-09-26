@@ -54,6 +54,7 @@ Maestro = let(()
   )
 )
 
-Module->New('Maestro Maestro
-             ?project Import['Virtue])
+Module->New('Maestro
+            ?module Maestro
+            ?package Import['Virtue])
 )

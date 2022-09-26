@@ -81,9 +81,10 @@ list(nil
 	'IsInstalled IsInstalled
 ))
 
-Import['Module]->New('Skillbridge Skillbridge
-                      ?project Import['Virtue]
-                      ?description module_description)
+Import['Module]->New('Skillbridge
+                     ?module Skillbridge
+                     ?package Import['Virtue]
+                     ?description module_description)
 Skillbridge->Initialize()
 
 )

@@ -27,7 +27,8 @@ Dpl = let(()
   )
 )
 
-Module->New('Dpl Dpl
-             ?project Import['Virtue]
-             ?description module_description)
+Module->New('Dpl
+            ?module Dpl
+            ?package Import['Virtue]
+            ?description module_description)
 )

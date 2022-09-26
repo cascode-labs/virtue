@@ -81,7 +81,8 @@ List = let(()
   )
 )
 
-Module->New('List List
-             ?project Import['Virtue]
+Module->New('List
+             ?module List
+             ?package Import['Virtue]
              ?description module_description)
 )

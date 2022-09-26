@@ -132,8 +132,9 @@ list(nil
   'prefixp prefixp
 ))
 
-Module->New('Str Str
-             ?project Import['Virtue]
-             ?description module_description)
+Module->New('Str
+						?module Str
+            ?package Import['Virtue]
+            ?description module_description)
 
 )

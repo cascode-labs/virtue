@@ -78,6 +78,7 @@ list(nil
     'BuildMaestroHistoryInfoTable BuildMaestroHistoryInfoTable
 ))
 
-Module->New('MaeExport MaeExport
-             ?project Import['Virtue])
+Module->New('MaeExport
+            ?module MaeExport
+            ?package Import['Virtue])
 )

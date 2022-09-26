@@ -79,7 +79,7 @@ list(nil
 ))
 
 Module->New('Str Str
-             ?project Import['Virtue]
+             ?package Import['Virtue]
              ?description module_description)
 
 )

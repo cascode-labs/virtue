@@ -273,7 +273,8 @@ Geo = let(()
   )
 )
 
-Import['Module]->New('Geo Geo
-                     ?project Import['Virtue]
+Import['Module]->New('Geo
+                     ?module Geo
+                     ?package Import['Virtue]
                      ?description module_description)
 )

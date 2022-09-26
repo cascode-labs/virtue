@@ -24,8 +24,9 @@ Test = let((current_suite)
   )
 )
 
-Module->New('Test Test
-             ?project Virtue
-             ?description module_description)
+Module->New('Test
+            ?module Test
+            ?package Virtue
+            ?description module_description)
 Test->Initialize()
 )
