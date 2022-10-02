@@ -1,0 +1,124 @@
+let((Module
+     (module_description "Virtue SKILL module tables")
+    )
+
+Module = let(()
+
+  procedure(IsModule(input "g")
+    tablep(input) && tablep(input['_module])
+  )
+
+  procedure(New(module_symbol
+                @key module package (description "") "sggt")
+    "Create a new SKILL module.
+    @param module_symbol A symbol of the module name
+    @param module The existing module table or a decomposed property list (DPL)
+    of functions to include as public functions.  'theEnvironment' be provided
+    to add add all the functions in the environment.
+    @param package The top-level package which defines this module
+    @brief Create a new SKILL module."
+    let((module_table metadata)
+
+    cond(
+      (tablep(module)
+        module_table = module)
+      ((listp(module) || !module)
+        module_table = makeTable(strcat(symbolToString(module_symbol) " module"))
+        when(listp(module)
+          AddFunctionsDpl(module_table module)))
+      ('t error("A module must be a DPL or a table"))
+    )
+
+    ; Add metadata
+    metadata = makeTable(strcat(symbolToString(module_symbol) " module metadata"))
+    metadata['symbol] = module_symbol
+    when(listp(module)
+      metadata['module_dpl] = module)
+    when(symbolp(package)
+      package = Import[package])
+    when(package
+      metadata['package] = package)
+    metadata['description] = description
+    module_table['__metadata__] = metadata
+
+    Import[module_symbol] = module_table
+    module_table
+  ))
+
+  procedure(LoadList(module_filepaths @key (root_path "") continue_on_error)
+    "loads a list of filepaths."
+    let((load_function)
+    if(continue_on_error then
+      load_function = loadi
+    else
+      load_function = load)
+    foreach(filepath module_filepaths
+      load_function(strcat(root_path "/" filepath))
+    )
+  ))
+
+  procedure(Method(method module_dpl "ul")
+    let((new_method)
+      procedure(new_method(@rest rest_args "g")
+        apply(method cons(module_dpl rest_args))
+      )
+    new_method
+  ))
+
+  procedure(AddMethod(object_dpl method_symbol method "lsu")
+    putprop(object_dpl Module->Method(method object_dpl) method_symbol)
+  )
+
+  procedure(GetModuleTable(module "g")
+    if(tablep(module) then
+      module['_module]
+    else
+      error("Input module must be a table")
+    )
+  )
+
+  procedure(AddFunction(module function_symbol function)
+    putprop(module function function_symbol)
+  )
+
+  procedure(AddFunctionsDpl(module functions_dpl "gl")
+    let((property_list)
+    property_list = cdr(functions_dpl)
+    while((length(property_list) >= 2)
+      AddFunction(module car(property_list) cadr(property_list))
+      property_list = cddr(property_list)
+    )
+  ))
+
+  /*
+  procedure(UninitializeModule(module "g")
+    if(symbolp(module) then
+      let((module_props)
+        module_props = module_Import[module]->?
+        when(
+
+        )
+      )
+      module = Import[module]
+      remove(module Import)
+    )
+  )
+  */
+
+  list(nil
+    'New New
+    'IsModule IsModule
+    'LoadList LoadList
+    'Method Method
+    'AddMethod AddMethod
+    'AddFunction AddFunction
+    'AddFunctionsDpl AddFunctionsDpl
+  )
+)
+
+Module->New('Module
+             ?module Module
+             ?package Import['Virtue]
+             ?description module_description)
+
+)

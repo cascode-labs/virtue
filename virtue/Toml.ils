@@ -122,7 +122,8 @@ list(nil
   'WriteFile WriteFile
 ))
 
-Module->New('Toml Toml
-             ?project Import['Virtue]
-             ?description module_description)
+Module->New('Toml
+            ?module Toml
+            ?package Import['Virtue]
+            ?description module_description)
 )

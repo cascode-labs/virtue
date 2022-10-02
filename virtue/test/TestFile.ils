@@ -86,6 +86,6 @@ procedure(FunctionPassCount(test_file "l")
   pass_count
 ))
 
-putprop(Test NewFile 'NewFile)
-putprop(Test RunFile 'RunFile)
+Module->AddFunction(Test 'NewFile NewFile)
+Module->AddFunction(Test 'RunFile RunFile)
 )

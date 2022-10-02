@@ -42,10 +42,10 @@ let(((Test Import['Test])
       'pass 't
       'ResetSuite ResetSuite
     )
-    Module->AddMethod('AddFile AddFile suite)
-    Module->AddMethod('ReportResult ReportResult suite)
-    Module->AddMethod('FunctionCount FunctionCount suite)
-    Module->AddMethod('FunctionPassCount FunctionPassCount suite)
+    Module->AddMethod(suite 'AddFile AddFile)
+    Module->AddMethod(suite 'ReportResult ReportResult)
+    Module->AddMethod(suite 'FunctionCount FunctionCount)
+    Module->AddMethod(suite 'FunctionPassCount FunctionPassCount)
     suite
   ))
 

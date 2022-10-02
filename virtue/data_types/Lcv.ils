@@ -30,7 +30,8 @@ list(nil
   'history history
 ))
 
-Import['Module]->New('Lcv Lcv
-  ?project Import['Virtue]
+Import['Module]->New('Lcv
+  ?module Lcv
+  ?package Import['Virtue]
   ?description module_description)
 )

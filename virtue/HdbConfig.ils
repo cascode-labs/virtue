@@ -37,7 +37,8 @@ list(nil
   'CreateConfigView CreateConfigView
 ))
 
-Module->New('Hdb Hdb
-             ?project Import['Virtue]
-             ?description module_description)
+Module->New('Hdb
+            ?module Hdb
+            ?package Import['Virtue]
+            ?description module_description)
 )
