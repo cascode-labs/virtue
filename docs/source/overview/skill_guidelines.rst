@@ -5,9 +5,9 @@ SKILL Code Expectations
 -----------------------
 
 The following expectations are set to ensure the quality and consistency of
-Virtue's code.
+Virtue SKILL package's code.
 
-- Virtue code should be written using c-style function calls rather than
+- SKILL code should be written using c-style function calls rather than
   lisp-style.
 - Each file should contain less than 200 lines of code.
 - Applications with gui elements should seperate the gui code from the
@@ -23,6 +23,8 @@ SKILL Training
 
 - `Writing Good SKILL Code Video <https://support.cadence.com/apex/ArticleAttachmentPortal?id=a1O0V000009MoibUAC&pageName=ArticleContent>`_
   by Andrew Beckett
+
+- `Cadence online training <https://www.cadence.com/en_US/home/training/all-courses/83018.html>`_
 
 SKILL Docstrings
 ----------------

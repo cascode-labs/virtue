@@ -66,7 +66,7 @@ by adding the name of the fixture function to a test case:
 .. dropdown:: TestFixtures.ils
     :open:
 
-    .. literalinclude:: ../_static/tests/test_TestFixtures.ils
+    .. literalinclude:: ../_static/tests/test/test_TestFixtures.ils
        :language: scheme
        :linenos:
 

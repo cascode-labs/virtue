@@ -72,6 +72,18 @@ it easy to use different versions of Python in each Conda environment.
 
    3. Pip install from source:
 
+   For a editable development installation that will include local updates:
+
+      .. code-block:: bash
+         :linenos:
+         :lineno-start: 1
+
+         # Remember to activate your virtual environment first
+         pip install -e .
+         virtue install
+
+   **OR**
+
    For a read-only installation:
 
       .. code-block:: bash
@@ -82,19 +94,6 @@ it easy to use different versions of Python in each Conda environment.
          # Remember to activate your virtual environment first
          pip install .
          virtue install
-
-   **OR**
-
-   For an editable installation that will include local updates:
-
-      .. code-block:: bash
-         :linenos:
-         :lineno-start: 1
-
-         # Remember to activate your virtual environment first
-         pip install -e .
-         virtue install
-
 
 Then Follow the instructions to add the Virtue SKILL environment initialization
 scripts to your Virtuoso initialization scripts.

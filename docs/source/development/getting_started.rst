@@ -4,8 +4,12 @@ Getting Started
 Development installation
 -------------------------
 
-1. Make sure you have mambaforge (conda) installed
-2. Create a new Conda development environment
+1. Make sure you have
+   `mambaforge <https://github.com/conda-forge/miniforge#mambaforge>`_
+   (`conda <https://docs.conda.io/en/latest/>`_) installed
+
+2. Create a new Conda development environment with all the Virtue dependencies
+   installed
 
    .. code-block:: bash
       :linenos:
@@ -22,19 +26,16 @@ Development installation
 
       conda activate virtue-dev
       pip install --no-deps -e .
-      virtue install
-      pre-commit install
 
-4. Install the virtue SKILL environement by following the standard
+4. Initiailize the virtue SKILL environement by following the standard
    installation instructions.
 
    .. code-block:: bash
       :linenos:
       :lineno-start: 5
-      :caption: create a conda development environment
+      :caption: Initialize the environment
 
-      virtue install
-      pre-commit install
+      virtue env init
 
 5. Install pre-commit git hooks
 

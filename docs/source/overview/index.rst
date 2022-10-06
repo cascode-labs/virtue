@@ -48,10 +48,6 @@ Projects built with Virtue
 Features
 --------
 
-- A :ref:`SKILL standard library` of "batteries included" modules
-- A :ref:`SKILL test framework` modeled after `pytest <https://docs.pytest.org/en/7.1.x/>`_
-- A :ref:`SKILL TOML config file reader and writer <TOML Config Files>`
-  for the `TOML standard <https://toml.io>`_
 - A SKILL code packaging system
 
   - Simple SKILL package installation from the Python environment
@@ -59,6 +55,10 @@ Features
   - Create :ref:`SKILL++ packages`
   - Import modules into a SKILL++ environment using the top-level "Import" table
 
+- A :ref:`SKILL test framework` modeled after `pytest <https://docs.pytest.org/en/7.1.x/>`_
+- A :ref:`SKILL standard library` of "batteries included" modules
+- A :ref:`SKILL TOML config file reader and writer <TOML Config Files>`
+  for the `TOML standard <https://toml.io>`_
 - SKILL environment manager using
   `Conda <https://docs.conda.io/en/latest/>`_ or
   `Pip <https://pip.pypa.io/en/stable/reference/build-system/pyproject-toml/>`_
@@ -89,10 +89,11 @@ Other Open Source SKILL Projects
    :hidden:
 
    install
-   standard_library
-   testing_framework
    cli
    packaging/index
+   testing_framework
+   skill_guidelines
+   standard_library
    conda
    toml
    release_notes
