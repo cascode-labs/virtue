@@ -55,7 +55,13 @@ def _install_data_reg_init_script(filepath: Path) -> None:
     if len(data_reg_paths) > 0:
         with filepath.open("w") as file:
             for path in data_reg_paths:
-                file.write(f"SOFTINCLUDE {path};\n")
+                if isinstance(path,str) or isinstance(path, Path):
+                    path = str(path)
+                    file.write(f"SOFTINCLUDE {path};\n")
+                elif isinstance(path, tuple) or isinstance(path, list):
+                    for path_item in path:
+                        path_item = str(path_item)
+                        file.write(f"SOFTINCLUDE {path_item};\n")
 
 def _install_env_cdslibmgr_script(filepath: Path) -> None:
     with filepath.open("w") as file:
