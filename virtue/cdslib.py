@@ -11,10 +11,10 @@ def include_cdslib(cds_path, include_file_path, soft=True):
     else:
         line = "INCLUDE" + include_file_path
     with open(cds_path,"w") as file:
-        if _contains_line(file):
+        if _contains_line(file, line):
             return False
         else:
-            printf(file,line)
+            print(line, file=file)
             return True
 
 def add_library(cds_path, library_name, library_path):
@@ -30,7 +30,7 @@ def add_library(cds_path, library_name, library_path):
         if _contains_library_name(file, library_name):
             return False
         else:
-            printf(file, "DEFINE %s %s\n", library_name, library_path)
+            print("DEFINE %s %s\n", library_name, library_path, file=file)
             return True
 
 def _contains_line(file, line):
