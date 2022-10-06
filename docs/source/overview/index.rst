@@ -96,4 +96,5 @@ Other Open Source SKILL Projects
    standard_library
    conda
    toml
+   skillbridge
    release_notes
