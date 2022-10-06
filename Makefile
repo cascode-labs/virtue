@@ -54,7 +54,7 @@ build-docs-only:
 	cd docs; make html
 
 auto-build-docs-only:
-	cd docs;exec autobuild.sh
+	cd docs; ./autobuild.sh
 
 install-conda-dev-only:
 	conda env create -f environment.yml
@@ -67,3 +67,8 @@ build-wheel-only:
 
 build-sdist-only:
 	flit build --format wheel
+
+install-conda-base:
+	wget "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh"
+	exec Mambaforge-Linux-x86_64.sh
+	conda install -n base mamba anaconnda-client
