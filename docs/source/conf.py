@@ -42,6 +42,7 @@ extensions = [
     "sphinx_github_changelog",
     'sphinx_sitemap',
     'sphinx.ext.autosectionlabel',
+    'sphinx.ext.autodoc',
     'sphinx_click',
 ]
 

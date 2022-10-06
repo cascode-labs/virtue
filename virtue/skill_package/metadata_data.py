@@ -3,6 +3,8 @@ from typing import Tuple, Dict, TypedDict
 
 
 class SKillPackageOptionalMetadata(TypedDict, total=False):
+    """Optional SKILL package metadata"""
+
     cdsinit_paths: Tuple[Path]
     """Paths to .cdsinit initialization files which will be loaded into the
     main SKILL environment."""

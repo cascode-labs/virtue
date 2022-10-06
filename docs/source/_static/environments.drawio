@@ -1,0 +1,28 @@
+<mxfile host="65bd71144e">
+    <diagram id="EOCRdpOPGBgw27xxcP-3" name="Page-1">
+        <mxGraphModel dx="785" dy="366" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="4" value="Shell (Conda)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="240" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Top" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="390" y="210" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="Python (Conda / Venv" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="300" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="SKILL (Virtuoso" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="360" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Bottom" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="395" y="400" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="&lt;h1 style=&quot;font-size: 16px;&quot;&gt;Environment Hierarchy&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=16;align=center;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="180" width="200" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

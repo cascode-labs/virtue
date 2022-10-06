@@ -1,8 +1,10 @@
 Skillbridge
 ============
+
 Virtue includes support for the
 `skillbridge <https://unihd-cag.github.io/skillbridge/>`_
 library for running SKILL code in a Virtuoso session from Python.
+It communicates between SKILL and Python using IPC and a TCP port.
 
 Menu
 -----
@@ -24,3 +26,4 @@ The workspace ID is based on environment variables and is defined as
 workspace_id = "${PRJ_ID}-${USER}"
 
 Where $PRJ_ID is the name of the current project.
+

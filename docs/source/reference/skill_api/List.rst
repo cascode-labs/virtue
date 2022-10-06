@@ -12,6 +12,6 @@ A list manipulation module.
 
 .. dropdown:: List.ils sourcecode
 
-    .. literalinclude:: ../../_static/src/List.ils
+    .. literalinclude:: ../../_static/src/data_types/List.ils
        :language: scheme
        :linenos:

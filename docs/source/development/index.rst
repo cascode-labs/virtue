@@ -18,4 +18,3 @@ member of cascod-labs.
    :hidden:
 
    getting_started
-   skill_guidelines

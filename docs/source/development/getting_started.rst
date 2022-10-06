@@ -4,19 +4,17 @@ Getting Started
 I would recommend using vs code to develop virtue.  It has many helpful
 extensions, including a skill code extension for syntax highlighting.
 
-Install a development version
-------------------------------
-
 1. Make sure you have
-2. `mambaforge <https://github.com/conda-forge/miniforge#mambaforge>`_
-   (conda) installed, if not you can install it:
+   `mambaforge <https://github.com/conda-forge/miniforge#mambaforge>`_
+   (`conda <https://docs.conda.io/en/latest/>`_) installed.  If not you can install it:
 
    .. code-block:: bash
       :caption: Setup mambaforge
 
       make install-conda-dev
 
-3. Create a new Conda development environment
+2. Create a new Conda development environment with all the Virtue dependencies
+   installed
 
    .. code-block:: bash
       :linenos:
@@ -33,19 +31,17 @@ Install a development version
 
       conda activate virtue-dev
       pip install --no-deps -e .
-      virtue install
-      pre-commit install
 
-5. Install the virtue SKILL environement by following the standard
+
+4. Initiailize the virtue SKILL environement by following the standard
    installation instructions.
 
    .. code-block:: bash
       :linenos:
       :lineno-start: 5
-      :caption: create a conda development environment
+      :caption: Initialize the environment
 
-      virtue install
-      pre-commit install
+      virtue env init
 
 6. Install pre-commit git hooks
 
