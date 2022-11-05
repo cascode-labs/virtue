@@ -1,4 +1,5 @@
 {
+    "python.defaultInterpreterPath": "/space/${env:USER}/envs/mambaforge/envs/virtue-dev/bin/python",
     "editor.rulers": [79],
     "[skill]": {
         "editor.insertSpaces": true,
