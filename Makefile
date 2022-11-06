@@ -18,24 +18,25 @@ help:
 	@echo "  'make clean' will clean up the work area"
 	@echo ""
 
-.PHONY: help build build-wheel build-sdist \
-		install-conda-dev auto-build-docs build-docs clean \
-		copy-data build-all build-docs-only auto-build-docs-only \
-		install-conda-dev-only install-pip-dev build-wheel-only build-sdist-only
+SHELL = /bin/tcsh
+.PHONY: help clean \
+		build \
+		install-dev  \
+		docs docs-single \
+		install-conda
+.ONESHELL:
 
-build: copy-data build-all
+install-dev:
+	mamba env create -f environment.yml
+	conda activate ids-dev
+	pip install --no-deps -e .
 
-install-conda-dev: copy-data install-conda-dev-only install-pip-dev
+build:
+	flit build
 
-docs: copy-data build-docs-only
-
-auto-docs: copy-data auto-build-docs-only
-
-build-wheel: copy-data build-wheel-only
-
-build-sdist: copy-data build-sdist-only
-
-upload-virtuoso-env:
+release:
+	make clean
+	make build
 	anaconda upload -u cascode-labs virtuoso.yml \
 	  --description 'A \
 	  [Virtue environment](https://www.cascode-labs.org/virtue/) \
@@ -44,31 +45,13 @@ upload-virtuoso-env:
 clean:
 	rm -rf dist
 
-copy-data:
-	cp -rf pyproject.toml virtue/pyproject.toml
-
-build-all:
-	flit build
-
-build-docs-only:
-	cd docs; make html
-
-auto-build-docs-only:
+docs:
 	cd docs; ./autobuild.sh
 
-install-conda-dev-only:
-	conda env create -f environment.yml
+docs-single:
+	cd docs; make html
 
-install-pip-dev:
-	pip install --no-deps -e .
-
-build-wheel-only:
-	flit build --format wheel
-
-build-sdist-only:
-	flit build --format wheel
-
-install-conda-base:
+install-conda:
 	wget "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh"
 	exec Mambaforge-Linux-x86_64.sh
-	conda install -n base mamba anaconnda-client
+	conda install -n base mamba anaconda-client
