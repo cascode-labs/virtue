@@ -12,6 +12,16 @@ procedure(Test_PathConcat()
          "/absolute/path/to/a/file.txt")
 )
 
+procedure(Test_PathCat()
+  assert(Path->Cat("/absolute" "path" "to" "a" "directory") ==
+         "/absolute/path/to/a/directory")
+  assert(Path->Cat("" "absolute" "path" "to" "a" "directory") ==
+         "/absolute/path/to/a/directory")
+  assert(Path->Cat("/absolute" "path" "to" "a" "file.txt") ==
+         "/absolute/path/to/a/file.txt")
+)
+
+
 Test->RunFile(list(nil
   'Test_PathConcat Test_PathConcat
   )
