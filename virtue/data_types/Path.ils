@@ -81,6 +81,7 @@ Path = let(()
   list(nil
     'Concat Concat
     'Cat Concat
+    'FileName FileName
     'CopyCallback CopyCallback
   )
 )

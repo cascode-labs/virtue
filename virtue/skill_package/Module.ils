@@ -78,7 +78,15 @@ Module = let(()
   )
 
   procedure(AddFunction(module function_symbol function)
+    "Deprecated, use AddItem instead.  Adds a function to the module."
     putprop(module function function_symbol)
+  )
+
+  procedure(AddItem(module item_symbol item)
+    "Add an item to the module table with the given item_symbol
+     as the key.  The item can be of any type, for example a function or
+     submodule."
+    putprop(module item item_symbol)
   )
 
   procedure(AddFunctionsDpl(module functions_dpl "gl")
@@ -112,6 +120,7 @@ Module = let(()
     'Method Method
     'AddMethod AddMethod
     'AddFunction AddFunction
+    'AddItem AddItem
     'AddFunctionsDpl AddFunctionsDpl
   )
 )
