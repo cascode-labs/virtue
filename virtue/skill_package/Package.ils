@@ -4,6 +4,8 @@ let((Package
 
 Package = let(((PackageModules makeTable("virtue package modules")))
 
+
+  
   procedure(New(module project_init_dir_path "gt")
     "Adds a set of useful variables about the project to the
     package's data_table."
@@ -17,9 +19,15 @@ Package = let(((PackageModules makeTable("virtue package modules")))
   procedure(register_package(module "g")
     PackageModules[module['__metadata__]['symbol]] = module)
 
+  procedure(GetPackageMetadata(package_in "g")
+    "Returns the package's metadata table."
+    package_in['__metadata__]
+  )
+
   list(nil
     'New New
     'PackageModules PackageModules
+    'GetPackageMetadata GetPackageMetadata
   )
 )
 
