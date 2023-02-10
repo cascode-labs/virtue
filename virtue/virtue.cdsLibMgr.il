@@ -13,6 +13,9 @@ lmgrCreateMenuItem( "SkillBridgeToggle" "toggle"
    '(("label" "Start SkillBridge Server" )
      ("callback" ("VrtSkillbridgeTogglePythonServerLmgrCallback")) ))
 lmgrAddMenuItems("VirtueMenu" "" '("SkillBridgeToggle"))
+unless(getShellEnvVar("VIRTUE_SKILLBRIDGE")
+  lmgrSensitizeMenuItems('("SkillBridgeToggle") nil)
+)
 
 lmgrCreateMenuItem("HelpSeperator" "separator" nil)
 
@@ -28,4 +31,4 @@ lmgrAddMenuItems("VirtueMenu" "" '("VirtueHelpMenu"))
 
 lmgrAddMenuItems("menuBar" "L" '("VirtueMenu"))
 
-printf("Done, Initialized ids-skill menu items\n")
+printf("Done, Initialized Virtue menu items\n")
