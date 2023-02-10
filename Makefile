@@ -33,6 +33,7 @@ install-dev:
 
 build:
 	flit build
+	cp -r virtue dist/virtue
 
 release:
 	make clean
