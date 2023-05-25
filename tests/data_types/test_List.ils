@@ -1,6 +1,6 @@
-let(((List Import['List])
-     (Test Import['Test])
-     (Virtue Import['Virtue])
+let(((List VrtImport['List])
+     (Test VrtImport['Test])
+     (Virtue VrtImport['Virtue])
     )
 
 procedure(Test_ensure()

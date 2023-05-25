@@ -1,7 +1,9 @@
-from typing import Dict
+from typing import Dict, Union
+from pathlib import Path
 from importlib.metadata import metadata as python_metadata
 from virtue.plugins.plugin_manager import plugin_manager
 from virtue.skill_package.metadata_data import SKillPackageMetadata
+import toml
 
 
 def skill_packages_metadata()->Dict[str, SKillPackageMetadata]:
@@ -32,3 +34,6 @@ def metadata(data_key):
         if data_key in package_data:
             output.append(package_data[data_key])
     return output
+
+def read_metadata(project_toml_filepath: Union[str, Path]) -> dict:
+    return toml.load(str(project_toml_filepath))

@@ -8,8 +8,8 @@
 ;  * dbTransformPointList
 ;  * dbConcatTransform
 
-let(((Geo Import('Geo))
-     (Dpl Import('Dpl))
+let(((Geo VrtImport('Geo))
+     (Dpl VrtImport('Dpl))
     )
 
   procedure(ptOffset(P offset "ll")

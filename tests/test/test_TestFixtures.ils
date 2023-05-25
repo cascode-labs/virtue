@@ -1,5 +1,5 @@
-let(((Test Import['Test])
-     (Virtue Import['Virtue])
+let(((Test VrtImport['Test])
+     (Virtue VrtImport['Virtue])
     )
 
 procedure(test_TempDirectory(TempDirectory)

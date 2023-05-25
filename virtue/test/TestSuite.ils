@@ -1,7 +1,7 @@
-let(((Test Import['Test])
-     (Str Import['Str])
-     (Module Import['Module])
-     (Path Import['Path])
+let(((Test VrtImport['Test])
+     (Str VrtImport['Str])
+     (Module VrtImport['Module])
+     (Path VrtImport['Path])
      current_suite
     )
 

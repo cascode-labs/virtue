@@ -1,6 +1,6 @@
-let(((Lcv Import['Lcv])
-     (Test Import['Test])
-     (Virtue Import['Virtue])
+let(((Lcv VrtImport['Lcv])
+     (Test VrtImport['Test])
+     (Virtue VrtImport['Virtue])
     )
 
 procedure(lcv_list()

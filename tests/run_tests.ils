@@ -1,7 +1,7 @@
 let((dir_path
-     (Test Import['Test])
-     (Virtue Import['Virtue])
-     (Str Import['Str])
+     (Test VrtImport['Test])
+     (Virtue VrtImport['Virtue])
+     (Str VrtImport['Str])
     )
 
 dir_path = Virtue->GetCurrentFileDirectory()

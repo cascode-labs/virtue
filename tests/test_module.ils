@@ -1,6 +1,6 @@
 let((dut_package
-     (Module Import['Module])
-     (Test Import['Test])
+     (Module VrtImport['Module])
+     (Test VrtImport['Test])
     )
 
 procedure(ModuleCat(package string_arg)

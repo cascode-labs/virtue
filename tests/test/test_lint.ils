@@ -1,12 +1,12 @@
-let(((Test Import['Test])
-     (Virtue Import['Virtue])
+let(((Test VrtImport['Test])
+     (Virtue VrtImport['Virtue])
     )
 
 procedure(test_lint_Str()
   assert(sklint(
     ?file "/prj/ids_dev/work_libs/mayberc/skill/virtue/virtue/Str.ils"
     ?outputFile "/prj/ids_dev/work_libs/mayberc/skill/virtue/tests/lint_report.txt"
-    ?prefixes '(Vrt Import)
+    ?prefixes '(Vrt VrtImport)
   ))
 )
 

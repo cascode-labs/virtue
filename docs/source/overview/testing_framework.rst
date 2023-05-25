@@ -20,9 +20,9 @@ doesn't throw an error.
     .. code-block:: scheme
        :linenos:
 
-        let(((Str Import['Str])
-            (Test Import['Test])
-            (Virtue Import['Virtue])
+        let(((Str VrtImport['Str])
+            (Test VrtImport['Test])
+            (Virtue VrtImport['Virtue])
             )
 
         procedure(Test_emptyp()

@@ -1,6 +1,6 @@
-let(((Path Import['Path])
-     (Test Import['Test])
-     (Virtue Import['Virtue])
+let(((Path VrtImport['Path])
+     (Test VrtImport['Test])
+     (Virtue VrtImport['Virtue])
     )
 
 procedure(Test_PathConcat()

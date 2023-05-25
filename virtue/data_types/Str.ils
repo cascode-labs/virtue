@@ -1,6 +1,6 @@
 let((Str
      (module_description "String functions")
-     (Module Import['Module])
+     (Module VrtImport['Module])
     )
 Str = let(()
 
@@ -134,7 +134,7 @@ list(nil
 
 Module->New('Str
 						?module Str
-            ?package Import['Virtue]
+            ?package VrtImport['Virtue]
             ?description module_description)
 
 )

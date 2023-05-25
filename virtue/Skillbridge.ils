@@ -81,9 +81,9 @@ list(nil
 	'IsInstalled IsInstalled
 ))
 
-Import['Module]->New('Skillbridge
+VrtImport['Module]->New('Skillbridge
                      ?module Skillbridge
-                     ?package Import['Virtue]
+                     ?package VrtImport['Virtue]
                      ?description module_description)
 Skillbridge->Initialize()
 
@@ -91,6 +91,6 @@ Skillbridge->Initialize()
 
 ; Global functions required for library manager
 VrtSkillbridgeTogglePythonServerLmgrCallback =
-	Import['Skillbridge]->TogglePythonServerLmgrCallback
+	VrtImport['Skillbridge]->TogglePythonServerLmgrCallback
 VrtSkillbridgeOpenDocumentationLmgrCallback =
-	Import['Skillbridge]->OpenDocumentationLmgrCallback
+	VrtImport['Skillbridge]->OpenDocumentationLmgrCallback

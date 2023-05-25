@@ -35,13 +35,13 @@ Module = let(()
     when(listp(module)
       metadata['module_dpl] = module)
     when(symbolp(package)
-      package = Import[package])
+      package = VrtImport[package])
     when(package
       metadata['package] = package)
     metadata['description] = description
     module_table['__metadata__] = metadata
 
-    Import[module_symbol] = module_table
+    VrtImport[module_symbol] = module_table
     module_table
   ))
 
@@ -102,13 +102,13 @@ Module = let(()
   procedure(UninitializeModule(module "g")
     if(symbolp(module) then
       let((module_props)
-        module_props = module_Import[module]->?
+        module_props = module_VrtImport[module]->?
         when(
 
         )
       )
-      module = Import[module]
-      remove(module Import)
+      module = VrtImport[module]
+      remove(module VrtImport)
     )
   )
   */
@@ -127,7 +127,7 @@ Module = let(()
 
 Module->New('Module
              ?module Module
-             ?package Import['Virtue]
+             ?package VrtImport['Virtue]
              ?description module_description)
 
 )

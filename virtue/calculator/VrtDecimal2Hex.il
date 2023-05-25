@@ -47,3 +47,4 @@ procedure(VrtAnalog2Hex_noprefix(@rest inputs)
    Warning!: inputing 8 0s gives '0' rather than '00' which can be a problem when the number of 
              bits needs to be maintained such as when using this to process the lower 8 bits of a number that is more than 8 bits long"
   Decimal2Hex(apply('Analog2Decimal inputs) nil)
+)

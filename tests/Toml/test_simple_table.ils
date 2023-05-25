@@ -1,5 +1,5 @@
-let(((List Import['Toml])
-     (Test Import['Test])
+let(((List VrtImport['Toml])
+     (Test VrtImport['Test])
     )
 
 procedure(Test_read_table()
@@ -71,7 +71,7 @@ Test->RunFile(list(nil
   'Test_write_table Test_write_table
   'Test_table_write_association_list Test_table_write_association_list
   )
-  ?filepath Import['Virtue]->GetCurrentFilePath()
+  ?filepath VrtImport['Virtue]->GetCurrentFilePath()
 )
 
 )

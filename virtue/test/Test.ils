@@ -1,6 +1,6 @@
 let((Test
-     (Virtue Import['Virtue])
-     (Module Import['Module])
+     (Virtue VrtImport['Virtue])
+     (Module VrtImport['Module])
      (module_description "SKILL Test framework modeled after PyTest")
     )
 

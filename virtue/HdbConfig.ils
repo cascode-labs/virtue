@@ -1,6 +1,6 @@
 let((Hdb
      (module_description "Hierarchy database functions for config views")
-     (Module Import['Module])
+     (Module VrtImport['Module])
     )
 
 Hdb = let(()
@@ -39,6 +39,6 @@ list(nil
 
 Module->New('Hdb
             ?module Hdb
-            ?package Import['Virtue]
+            ?package VrtImport['Virtue]
             ?description module_description)
 )

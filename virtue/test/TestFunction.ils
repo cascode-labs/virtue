@@ -1,5 +1,5 @@
-let(((Test Import['Test])
-     (Module Import['Module])
+let(((Test VrtImport['Test])
+     (Module VrtImport['Module])
     )
 
 procedure(NewFunction(symbol function_object "su")

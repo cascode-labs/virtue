@@ -1,6 +1,8 @@
 ; Define the iport table as a global in both SKILL and SKILL++
-inSkill(Import = makeTable("Virtue Module Import Table"))
-importSkillVar(Import)
+inSkill(VrtImport = makeTable("Virtue package import table containing just the latest version of each package"))
+importSkillVar(VrtImport)
+inSkill(Packages = makeTable("Virtue package import table containing all package versions"))
+importSkillVar(Packages)
 
 let((Virtue)
 
@@ -33,10 +35,10 @@ Virtue = let(((module_description "SKILL++ Library and package manager")
     dir_path = GetCurrentFileDirectory()
 
     loadi(strcat(dir_path "/skill_package/Module.ils"))
-    Module = Import['Module]
+    Module = VrtImport['Module]
     Virtue = Module->New('Virtue
-      ?module Import['Virtue]
-      ?package Import['Virtue]
+      ?module VrtImport['Virtue]
+      ?package VrtImport['Virtue]
       ?description module_description)
 
     preinit_packages = list(
@@ -48,7 +50,7 @@ Virtue = let(((module_description "SKILL++ Library and package manager")
     Module->LoadList(preinit_packages
       ?root_path dir_path
       ?continue_on_error 't)
-    Import['Package]->New(Virtue dir_path)
+    VrtImport['Package]->New(Virtue dir_path)
 
     virtue_packages = list(
       "data_types/List.ils"
@@ -72,7 +74,7 @@ Virtue = let(((module_description "SKILL++ Library and package manager")
   ))
 
   list(nil
-    'Import Import
+    'VrtImport VrtImport
     'Initialize Initialize
     'GetCurrentFilePath GetCurrentFilePath
     'GetCurrentFileDirectory GetCurrentFileDirectory
@@ -80,10 +82,10 @@ Virtue = let(((module_description "SKILL++ Library and package manager")
     'OpenDocumentationLmgrCallback OpenDocumentationLmgrCallback
 ))
 
-Import['Virtue] = Virtue
+VrtImport['Virtue] = Virtue
 Virtue->Initialize()
 )
 
 ; Global functions required for library manager
 VrtOpenDocumentationLmgrCallback =
-	Import['Virtue]->OpenDocumentationLmgrCallback
+	VrtImport['Virtue]->OpenDocumentationLmgrCallback

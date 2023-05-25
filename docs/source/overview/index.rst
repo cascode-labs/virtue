@@ -53,7 +53,7 @@ Features
   - Simple SKILL package installation from the Python environment
   - Define :ref:`SKILL++ modules`
   - Create :ref:`SKILL++ packages`
-  - Import modules into a SKILL++ environment using the top-level "Import" table
+  - Import modules into a SKILL++ environment using the top-level "VrtImport" table
 
 - A :ref:`SKILL test framework` modeled after `pytest <https://docs.pytest.org/en/7.1.x/>`_
 - A :ref:`SKILL standard library` of "batteries included" modules

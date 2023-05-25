@@ -1,6 +1,6 @@
 let((Path
      (module_description "String file and directory path functions")
-     (Module Import['Module])
+     (Module VrtImport['Module])
     )
 
 Path = let(()
@@ -88,10 +88,10 @@ Path = let(()
 
 Module->New('Path
             ?module Path
-            ?package Import['Virtue]
+            ?package VrtImport['Virtue]
             ?description module_description)
 
 )
 
 ; Global functions required for library manager
-VrtPathCopyCallback = Import['Path]->CopyCallback
+VrtPathCopyCallback = VrtImport['Path]->CopyCallback

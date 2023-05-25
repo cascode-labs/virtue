@@ -2,8 +2,8 @@ let((Toml
      (module_description "Reads and writes
         Tom's Obvious Markup Language (.toml) configuration
         files. https://toml.io/en/")
-     (Str Import['Str])
-     (Module Import['Module])
+     (Str VrtImport['Str])
+     (Module VrtImport['Module])
     )
 
 Toml = let(()
@@ -124,6 +124,6 @@ list(nil
 
 Module->New('Toml
             ?module Toml
-            ?package Import['Virtue]
+            ?package VrtImport['Virtue]
             ?description module_description)
 )

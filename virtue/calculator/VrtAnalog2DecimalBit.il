@@ -1,5 +1,6 @@
 procedure(VrtAnalog2DecimalBit(in)
-  "Converts an analog input into a digital 1 or 0 in decimal format."
+  "Converts an analog input into a digital 1 or 0 in decimal format.
+   The theshold for a 1 is > 0.9v"
   if(in > 0.9 then
     1
   else

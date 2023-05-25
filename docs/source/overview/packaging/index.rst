@@ -7,7 +7,7 @@ Pip.  Then a SKILL environment is created within the Python environment using
 the "virtue env install" command.
 
 Virtue packages can then contain SKILL moduels which organize SKILL code.
-Then these modules can be accessed from the global "Import" table
+Then these modules can be accessed from the global "VrtImport" table
 without cluttering the global namespace. This system allows many modules
 to be defined without naming collisions.  It also allows new tools to be
 easily added to the SKILL environment.  Each module consists of a SKILL

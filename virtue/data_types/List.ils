@@ -1,6 +1,6 @@
 let((List
      (module_description "List functions")
-     (Module Import['Module])
+     (Module VrtImport['Module])
     )
 
 List = let(()
@@ -83,6 +83,6 @@ List = let(()
 
 Module->New('List
              ?module List
-             ?package Import['Virtue]
+             ?package VrtImport['Virtue]
              ?description module_description)
 )

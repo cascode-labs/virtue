@@ -1,6 +1,6 @@
-let(((Dpl Import['Dpl])
-     (Test Import['Test])
-     (Virtue Import['Virtue])
+let(((Dpl VrtImport['Dpl])
+     (Test VrtImport['Test])
+     (Virtue VrtImport['Virtue])
      (example_dpl list(nil 'key1 "value1" 'key3 "value2"))
     )
 

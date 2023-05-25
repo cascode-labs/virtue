@@ -1,5 +1,5 @@
-let(((Test Import['Test])
-     (Module Import['Module])
+let(((Test VrtImport['Test])
+     (Module VrtImport['Module])
     )
 
 procedure(NewFile(path @optional test_functions_dpl "tl")
