@@ -36,7 +36,7 @@ with the following goals:
   for the [TOML standard](https://toml.io)
 - A SKILL package manager
   - Define [SKILL++ modules](https://www.cascode-labs.org/virtue/overview/packaging/modules.html)
-  - Import modules into a SKILL++ lexical scope using the top-level "Import" table
+  - Import modules into a SKILL++ lexical scope using the top-level "VrtImport" table
   - Create [SKILL++ packages](https://www.cascode-labs.org/virtue/overview/packaging/skill_packages.html)
 - SKILL environment manager using
   [Conda](https://docs.conda.io/en/latest/) or
@@ -50,7 +50,7 @@ with the following goals:
 ```scheme
 let((Str
      (module_description "String functions")
-     (Module Import['Module])
+     (Module VrtImport['Module])
     )
 Str = let(()
 
@@ -79,7 +79,7 @@ list(nil
 ))
 
 Module->New('Str Str
-             ?package Import['Virtue]
+             ?package VrtImport['Virtue]
              ?description module_description)
 
 )
@@ -90,9 +90,9 @@ Module->New('Str Str
 Note the package imports at the top
 
 ``` scheme
-let(((Str Import['Str])
-     (Test Import['Test])
-     (Virtue Import['Virtue])
+let(((Str VrtImport['Str])
+     (Test VrtImport['Test])
+     (Virtue VrtImport['Virtue])
     )
 
 procedure(Test_emptyp()

@@ -32,8 +32,7 @@ install-dev:
 	pip install --no-deps -e .
 
 build:
-	flit build
-	cp -r virtue dist/virtue
+	exec build.sh
 
 release:
 	make clean
