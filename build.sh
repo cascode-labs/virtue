@@ -13,10 +13,12 @@ ln -s "virtue/virtue.cdsLibMgr.il" "$DIST_PATH/virtue.cdsLibMgr.il"
 
 # Build Python package
 flit build
-mv "dist/virtue-skill-${VERSION:1}.tar.gz" "$DIST_PATH/"
-
+mkdir "$DIST_PATH/pkgs"
+mv "dist/virtue-skill-${VERSION:1}.tar.gz" "$DIST_PATH/pkgs/"
+mv "dist/virtue_skill-${VERSION:1}-py3-none-any.whl" "$DIST_PATH/pkgs/"
 # Build executable
-#pyInstaller
+#pyinstaller -F -n virtue virtue/cli.py
+#mv dist/virtue "$DIST_PATH/"
 
 echo "  build saved to $DIST_PATH"
 echo "  build complete!"
