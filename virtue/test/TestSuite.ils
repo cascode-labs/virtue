@@ -12,7 +12,7 @@ let(((Test VrtImport['Test])
      @brief Run a directory of test files with each containing a call to Test->RunFile
      @param directory_path Path to a directory of SKILL test scripts
      @return A test suite object"
-    let((files file test_file_path test_files success suite)
+    let((files file file_path test_files success suite)
     ResetSuite()
     current_suite = NewSuite(?path directory_path)
   	files = getDirFiles(directory_path)
@@ -21,10 +21,14 @@ let(((Test VrtImport['Test])
     files = remove(".." files)
     when(files
       foreach(file files
+        file_path = Path->Concat(directory_path file)
         when(Str->endsWith(file ".il") ||
              Str->endsWith(file ".ils") &&
              (Str->prefixp(file "test_") || Str->prefixp(file "Test_"))
-          loadi(Path->Concat(directory_path file))
+          loadi(file_path)
+        )
+        when(isDir(file_path)
+          RunDirectory(file_path)
         )
       )
     )

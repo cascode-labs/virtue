@@ -1,0 +1,35 @@
+INFO (REP008): Program SKILL Lint started on Jun  8 06:58:01 2023.
+INFO (PREFIXES): Using prefixes: (Vrt VrtImport)
+INFO (STRICT): Using strict checking of global variables.
+HINT (STRLEN1): /prj/ids_dev/work_libs/mayberc/skill/virtue/virtue/data_types/Str.ils, line 9 (emptyp) : Inefficient use of strlen (strlen(in) == 0). Change to in == "".
+HINT (EQUAL3): /prj/ids_dev/work_libs/mayberc/skill/virtue/virtue/data_types/Str.ils, line 9 (emptyp) : You can replace == 0 with zerop : (strlen(in) == 0)
+SUGGEST (APPEND1): /prj/ids_dev/work_libs/mayberc/skill/virtue/virtue/data_types/Str.ils, line 17 (split) : Consider use of cons or tconc rather than append/append1: 
+                   append1(out substring(inTmp 1 (nextC - 1)))
+SUGGEST (APPEND1): /prj/ids_dev/work_libs/mayberc/skill/virtue/virtue/data_types/Str.ils, line 20 (split) : Consider use of cons or tconc rather than append/append1: 
+                   append1(out inTmp)
+HINT (IF6): /prj/ids_dev/work_libs/mayberc/skill/virtue/virtue/data_types/Str.ils, line 37 (str2bool) : Remove the 'then nil' part and convert to an 'unless': if((stringp(input_string) && (upperCase(input_string) == "FALSE")) then nil ...)
+HINT (EQUAL2): /prj/ids_dev/work_libs/mayberc/skill/virtue/virtue/data_types/Str.ils, line 54 (convertNumber) : You can replace == 1 with onep : (length(splitString) == 1)
+HINT (EQUAL3): /prj/ids_dev/work_libs/mayberc/skill/virtue/virtue/data_types/Str.ils, line 92 (startsWith) : You can replace == 0 with zerop : (strncmp(string prefix strlen(prefix)) == 0)
+HINT (IF7): /prj/ids_dev/work_libs/mayberc/skill/virtue/virtue/data_types/Str.ils, line 92 (startsWith) : Remove the 'else nil' part, and convert to a 'when': if((strncmp(string prefix strlen(prefix)) == 0) then substring(string (strlen(prefix) + 1) strlen(string)) ...)
+HINT (IF7): /prj/ids_dev/work_libs/mayberc/skill/virtue/virtue/data_types/Str.ils, line 103 (endsWith) : Remove the 'else nil' part, and convert to a 'when': if((substring(string (- (\& \& \&)) length(suffix)) == suffix) then substring(string 1 (length(string) - length(suffix))) ...)
+HINT (IF6): /prj/ids_dev/work_libs/mayberc/skill/virtue/virtue/data_types/Str.ils, line 101 (endsWith) : Remove the 'then nil' part and convert to an 'unless': if((length(suffix) > length(string)) then nil ...)
+HINT (IF7): /prj/ids_dev/work_libs/mayberc/skill/virtue/virtue/data_types/Str.ils, line 113 (prefixp) : Remove the 'else nil' part, and convert to a 'when': if(((strlen(string) >= strlen(prefix)) && (substring(string 1 (\& \& \&)) == prefix)) then 't ...)
+INFO (IQ): IQ score is 100 (best is 100).
+INFO (IQ1): IQ score is based on 0 error messages, 0 general warning messages, and 1 top level forms.
+INFO (REP110): Total enhancement     : 0.
+INFO (REP110): Total external global : 0.
+INFO (REP110): Total package global  : 0.
+INFO (REP110): Total warning global  : 0.
+INFO (REP110): Total error global    : 0.
+INFO (REP110): Total unused vars     : 0.
+INFO (REP110): Total next release    : 0.
+INFO (REP110): Total alert           : 0.
+INFO (REP110): Total hint            : 9.
+INFO (REP110): Total suggestion      : 2.
+INFO (REP110): Total internal alert  : 0.
+INFO (REP110): Total information     : 16.
+INFO (REP110): Total warning         : 0.
+INFO (REP110): Total error           : 0.
+INFO (REP110): Total internal error  : 0.
+INFO (REP110): Total fatal error     : 0.
+INFO (REP009): Program SKILL Lint finished on Jun  8 06:58:01 2023 with status PASS.

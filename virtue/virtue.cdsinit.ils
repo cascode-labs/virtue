@@ -61,9 +61,6 @@ Virtue = let(((module_description "SKILL++ Library and package manager")
     	; "Sch.ils"
     	"MaeMaestro.ils"
       "MaeExport.ils"
-    	; "skillBridgeMenuItems.il"
-    	; "filePathFromLCV.il"
-      ; "SchNets.il"
       "HdbConfig.ils"
       "Skillbridge.ils"
     )
