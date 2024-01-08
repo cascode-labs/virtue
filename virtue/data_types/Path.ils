@@ -82,6 +82,13 @@ Path = let(()
     'Concat Concat
     'Cat Concat
     'FileName FileName
+    'Folder Folder
+    'RemoveExtension RemoveExtension
+    'UpdateExtension UpdateExtension
+    'FileExtension FileExtension
+    'Exists Exists
+    'ExistsFile ExistsFile
+    'FileExists ExistsFile
     'CopyCallback CopyCallback
   )
 )
