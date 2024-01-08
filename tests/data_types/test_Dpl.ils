@@ -1,7 +1,8 @@
 let(((Dpl VrtImport['Dpl])
      (Test VrtImport['Test])
      (Virtue VrtImport['Virtue])
-     (example_dpl list(nil 'key1 "value1" 'key3 "value2"))
+     (example_dpl list(nil 'key1 "value1" 'key2 "value2"))
+     (example_dpl2 list(nil 'key3 "value3" 'key4 "value4"))
     )
 
 procedure(test_PropertyTable()
@@ -13,9 +14,40 @@ procedure(test_PropertyTable()
   assert(table['key2] == "value2")
 ))
 
+procedure(test_Cat()
+  let((ans)
+  ans = Dpl->Cat(example_dpl example_dpl2)
+  assert(listp(ans))
+  assert(length(ans) == 4)
+  assert(ans->key1 == "value1")
+  assert(ans->key2 == "value2")
+  assert(ans->key3 == "value3")
+  assert(ans->key4 == "value4")
+))
+
+procedure(test_lint_Dpl()
+  assert(sklint(
+    ?file "/prj/ids_dev/work_libs/mayberc/skill/virtue/virtue/data_types/Dpl.ils"
+    ?outputFile "/prj/ids_dev/work_libs/mayberc/skill/virtue/test/lint_report_Dpl.txt"
+    ?prefixes '(Vrt VrtImport)
+  ))
+)
+
+procedure(test_lint_test_Dpl()
+  createDirHier("/prj/ids_dev/work_libs/mayberc/skill/virtue/test/data_types") 
+  assert(sklint(
+    ?file "/prj/ids_dev/work_libs/mayberc/skill/virtue/tests/data_types/test_Dpl.ils"
+    ?outputFile "/prj/ids_dev/work_libs/mayberc/skill/virtue/test/lint_report_test_Dpl.txt"
+    ?prefixes '(Vrt VrtImport)
+  ))
+)
 
 Test->RunFile(list(nil
+
   'test_PropertyTable test_PropertyTable
+  'test_Cat test_Cat
+  'test_lint_Dpl test_lint_Dpl
+  'test_lint_test_Dpl test_lint_test_Dpl
   )
   ?filepath Virtue->GetCurrentFilePath()
 )

@@ -4,7 +4,7 @@ rds
 **/.skillide.*
 *.ils~
 *.il~
-tests/lint_reports
+test/
 
 # Virtue environment initialization scripts
 virtue/virtue-environment.cdsinit.ils

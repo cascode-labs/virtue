@@ -1,0 +1,104 @@
+let(((Path VrtImport['Path])
+     (Test VrtImport['Test])
+     (Virtue VrtImport['Virtue])
+    )
+
+; Fixtures
+; --------
+
+procedure(directory_path()
+  Path->Concat("/absolute" "path" "to" "a" "directory") 
+)
+
+procedure(file_path()
+  Path->Concat("/absolute" "path" "to" "a" "file.txt")
+)
+
+Test->Fixtures['directory_path] = directory_path
+Test->Fixtures['file_path] = file_path
+
+; Tests
+; -----
+
+procedure(Test_PathConcat()
+  assert(Path->Concat("/absolute" "path" "to" "a" "directory") ==
+         "/absolute/path/to/a/directory")
+  assert(Path->Concat("" "absolute" "path" "to" "a" "directory") ==
+         "/absolute/path/to/a/directory")
+  assert(Path->Concat("/absolute" "path" "to" "a" "file.txt") ==
+         "/absolute/path/to/a/file.txt")
+)
+
+procedure(Test_PathCat()
+  assert(Path->Cat("/absolute" "path" "to" "a" "directory") ==
+         "/absolute/path/to/a/directory")
+  assert(Path->Cat("" "absolute" "path" "to" "a" "directory") ==
+         "/absolute/path/to/a/directory")
+  assert(Path->Cat("/absolute" "path" "to" "a" "file.txt") ==
+         "/absolute/path/to/a/file.txt")
+)
+
+procedure(Test_FileName(file_path directory_path)
+  assert(Path->FileName(file_path) == "file.txt")
+  assert(Path->FileName(directory_path) == "directory")
+)
+
+procedure(Test_Folder(file_path directory_path)
+  assert(Path->FileName(file_path) == "/absolute/path/to/a")
+  assert(Path->FileName(directory_path) == "/absolute/path/to/a")
+)
+
+procedure(Test_RemoveExtension(file_path)
+  assert(Path->RemoveExtension(file_path) == "/absolute/path/to/a/file")
+  assert(Path->RemoveExtension(directory_path) == "/absolute/path/to/a/directory")
+  assert(Path->RemoveExtension("file.ext") == "file")
+)
+
+procedure(Test_UpdateExtension(file_path)
+  assert(Path->UpdateExtension(file_path "new") == "/absolute/path/to/a/file.new")
+  assert(Path->UpdateExtension(directory_path "new") == "/absolute/path/to/a/directory.new")
+  assert(Path->UpdateExtension("file.ext" "new") == "file.new")
+)
+
+procedure(Test_FileExtension(file_path)
+  assert(Path->FileExtension(file_path) == "txt")
+  assert(Path->FileExtension(directory_path) == "")
+  assert(Path->FileExtension("file.ext") == "ext")
+  assert(Path->FileExtension("file.myext") == "myext")
+)
+
+procedure(Test_lint_Path(lint_settings)
+  assert(sklint(
+    ?file Path->Cat(lint_settings->testsDir 
+      "data_types/Path.ils")
+    ?outputFile Path->Cat(lint_settings->outputDir 
+      "lint_report_Path.txt")
+    ?prefixes lint_settings->prefixes
+  ))
+)
+
+procedure(Test_lint_Test_Path(lint_settings)
+  assert(sklint(
+    ?file Path->Cat(lint_settings->testsDir 
+      "data_types/test_Path.ils")
+    ?outputFile Path->Cat(lint_settings->outputDir 
+      "lint_report_test_Path.txt")
+    ?prefixes lint_settings->prefixes
+  ))
+)
+
+Test->RunFile(list(nil
+  'Test_PathConcat Test_PathConcat
+  'Test_PathCat Test_PathCat
+  'Test_FileName Test_FileName
+  'Test_Folder Test_Folder
+  'Test_RemoveExtension Test_RemoveExtension
+  'Test_UpdateExtension Test_UpdateExtension
+  'Test_FileExtension Test_FileExtension
+  'Test_lint_Path Test_lint_Path
+  'Test_lint_Test_Path Test_lint_Test_Path
+  )
+  ?filepath Virtue->GetCurrentFilePath()
+)
+
+)

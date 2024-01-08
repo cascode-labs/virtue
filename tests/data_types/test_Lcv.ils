@@ -3,6 +3,8 @@ let(((Lcv VrtImport['Lcv])
      (Virtue VrtImport['Virtue])
     )
 
+; Fixtures
+
 procedure(lcv_list()
   list("lib_name" "cell_name" "view_name")
 )
@@ -13,6 +15,8 @@ procedure(lcvh_list()
 
 Test->Fixtures['lcv_list] = lcv_list
 Test->Fixtures['lcvh_list] = lcvh_list
+
+; Tests
 
 procedure(Test_lib(lcv_list, lcvh_list)
   assert(Lcv->lib(lcv_list) == "lib_name")
@@ -33,10 +37,30 @@ procedure(Test_history(lcvh_list)
   assert(Lcv->view(lcvh_list) == "history_name")
 )
 
+procedure(Test_lint_Lcv()
+  assert(sklint(
+    ?file "/prj/ids_dev/work_libs/mayberc/skill/virtue/virtue/data_types/Lcv.ils"
+    ?outputFile "/prj/ids_dev/work_libs/mayberc/skill/virtue/test/lint_report_Lcv.txt"
+    ?prefixes '(Vrt VrtImport)
+  ))
+)
+
+procedure(Test_lint_Test_Lcv()
+  assert(sklint(
+    ?file "/prj/ids_dev/work_libs/mayberc/skill/virtue/tests/data_types/test_Lcv.ils"
+    ?outputFile "/prj/ids_dev/work_libs/mayberc/skill/virtue/test/lint_report_test_Lcv.txt"
+    ?prefixes '(Vrt VrtImport)
+  ))
+)
+
+
 Test->RunFile(list(nil
   'Test_lib Test_lib
   'Test_cell Test_cell
   'Test_view Test_view
+  'Test_history Test_history
+  'Test_lint_Lcv Test_lint_Lcv
+  'Test_lint_Test_Lcv Test_lint_Test_Lcv
   )
   ?filepath Virtue->GetCurrentFilePath()
 )

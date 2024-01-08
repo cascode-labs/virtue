@@ -43,12 +43,30 @@ procedure(Test_assocKeys()
   assert(!List->assocKeys(nil))
 )
 
+procedure(Test_lint_List()
+  assert(sklint(
+    ?file "/prj/ids_dev/work_libs/mayberc/skill/virtue/virtue/data_types/List.ils"
+    ?outputFile "/prj/ids_dev/work_libs/mayberc/skill/virtue/test/lint_report_List.txt"
+    ?prefixes '(Vrt VrtImport)
+  ))
+)
+
+procedure(Test_lint_test_List()
+  assert(sklint(
+    ?file "/prj/ids_dev/work_libs/mayberc/skill/virtue/tests/data_types/test_List.ils"
+    ?outputFile "/prj/ids_dev/work_libs/mayberc/skill/virtue/test/lint_report_test_List.txt"
+    ?prefixes '(Vrt VrtImport)
+  ))
+)
+
 Test->RunFile(list(nil
   'Test_ensure Test_ensure
   'Test_setDiff Test_setDiff
   'Test_uniqueList Test_uniqueList
   'Test_uniqueListOrdered Test_uniqueListOrdered
   'Test_assocKeys Test_assocKeys
+  'Test_lint_List Test_lint_List
+  'Test_lint_test_List Test_lint_test_List
   )
   ?filepath Virtue->GetCurrentFilePath()
 )

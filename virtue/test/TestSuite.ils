@@ -5,7 +5,7 @@ let(((Test VrtImport['Test])
      current_suite
     )
 
-  procedure(RunDirectory(directory_path "t")
+  procedure(RunDirectory(directory_path @optional (recurse nil) "tg")
     "Run a directory of tests.  Loads each SKILL or SKILL++ file with a 'Test_'
      prefix and reports the results of each.
 
@@ -13,8 +13,10 @@ let(((Test VrtImport['Test])
      @param directory_path Path to a directory of SKILL test scripts
      @return A test suite object"
     let((files file file_path test_files success suite)
-    ResetSuite()
-    current_suite = NewSuite(?path directory_path)
+    unless(recurse
+      ResetSuite()
+      current_suite = NewSuite(?path directory_path)
+    )
   	files = getDirFiles(directory_path)
     files = remove("run_tests.ils" files)
     files = remove("." files)
@@ -28,13 +30,15 @@ let(((Test VrtImport['Test])
           loadi(file_path)
         )
         when(isDir(file_path)
-          RunDirectory(file_path)
+          RunDirectory(file_path 't)
         )
       )
     )
-    current_suite->ReportResult()
-    suite = current_suite
-    Test->ResetSuite()
+    unless(recurse
+      current_suite->ReportResult()
+      suite = current_suite
+      Test->ResetSuite()
+    )
     suite
   ))
 

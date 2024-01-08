@@ -88,13 +88,12 @@ procedure(Test_prefixp()
     assert(!Str->prefixp("no" "pre"))
 )
 
-procedure(Test_PathConcat()
-  assert(Path->Concat("/absolute" "path" "to" "a" "directory") ==
-         "/absolute/path/to/a/directory")
-  assert(Path->Concat("" "absolute" "path" "to" "a" "directory") ==
-         "/absolute/path/to/a/directory")
-  assert(Path->Concat("/absolute" "path" "to" "a" "file.txt") ==
-         "/absolute/path/to/a/file.txt")
+procedure(Test_lint_Str(lint_settings)
+    assert(lint_settings->RunLint("../virtue/Str.ils"))
+)
+
+procedure(Test_lint_test_Str(lint_settings)
+    assert(lint_settings->RunLint("data_types/test_Str.ils"))
 )
 
 Test->RunFile(list(nil
@@ -110,6 +109,8 @@ Test->RunFile(list(nil
   'Test_startsWith Test_startsWith
   'Test_endsWith Test_endsWith
   'Test_prefixp Test_prefixp
+  'Test_lint_Str Test_lint_Str
+  'Test_lint_test_Str Test_lint_test_Str
   )
   ?filepath Virtue->GetCurrentFilePath()
 )

@@ -1,9 +1,50 @@
 let((dir_path
      (Test VrtImport['Test])
+     (Path VrtImport['Path])
      (Virtue VrtImport['Virtue])
-     (Str VrtImport['Str])
     )
 
-dir_path = Virtue->GetCurrentFileDirectory()
-Test->RunDirectory(dir_path)
+
+  dir_path = Virtue->GetCurrentFileDirectory()
+  dir_path = Path->Cat(dir_path)
+
+  ; Shared Test Fixtures
+  ; --------------------
+
+  procedure(lint_settings()
+    "Test"
+    let(((outputDir  simplifyFilename(Path->Cat(dir_path "../test")))
+         (prefixes '(Vrt VrtImport))
+        )
+
+    
+    createDirHier(Path->Cat(outputDir "data_types"))
+
+    procedure(RunLint(relativeFilePath)
+      "Run lint on a file relative to the tests directory"
+      ; funcall is necessary since sklint is an nlambda function and 
+      ;  selectively evaluates the args in the function rather than 
+      ;  within the lexical env before the function call.
+      funcall(sklint
+        ?file Path->Cat(dir_path relativeFilePath)
+        ?outputFile Path->Cat(outputDir strcat(
+          "lint_report_" 
+          Path->RemoveExtension(Path->FileName(relativeFilePath))
+          ".txt"))
+        ?prefixes prefixes
+      )
+    )
+
+    list(nil
+        'RunLint RunLint
+        'outputDir outputDir
+        'prefixes prefixes
+        'testsDir dir_path
+        )
+  ))
+
+  Test->Fixtures['lint_settings] = lint_settings
+
+  Test->RunDirectory(Path->Cat(dir_path "data_types"))
+  ;Test->RunDirectory(dir_path)
 )
