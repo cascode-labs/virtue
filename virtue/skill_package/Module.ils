@@ -5,7 +5,8 @@ let((Module
 Module = let(()
 
   procedure(IsModule(input "g")
-    tablep(input) && tablep(input['_module])
+    "returns 't if the input is a Virtue module"
+    tablep(input) && tablep(input['__metadata__])
   )
 
   procedure(New(module_symbol
@@ -13,8 +14,8 @@ Module = let(()
     "Create a new SKILL module.
     @param module_symbol A symbol of the module name
     @param module The existing module table or a decomposed property list (DPL)
-    of functions to include as public functions.  'theEnvironment' be provided
-    to add add all the functions in the environment.
+    of functions to include as public functions.  'theEnvironment' can be 
+    provided to add add all the functions in the environment.
     @param package The top-level package which defines this module
     @brief Create a new SKILL module."
     let((module_table metadata)
@@ -69,9 +70,10 @@ Module = let(()
     putprop(object_dpl Module->Method(method object_dpl) method_symbol)
   )
 
-  procedure(GetModuleTable(module "g")
+  procedure(GetModuleMetadata(module "g")
+    "Returns a table of metadata about the module."
     if(tablep(module) then
-      module['_module]
+      module['__metadata__]
     else
       error("Input module must be a table")
     )
@@ -97,21 +99,6 @@ Module = let(()
       property_list = cddr(property_list)
     )
   ))
-
-  /*
-  procedure(UninitializeModule(module "g")
-    if(symbolp(module) then
-      let((module_props)
-        module_props = module_VrtImport[module]->?
-        when(
-
-        )
-      )
-      module = VrtImport[module]
-      remove(module VrtImport)
-    )
-  )
-  */
 
   list(nil
     'New New
