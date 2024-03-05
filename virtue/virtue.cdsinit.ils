@@ -10,10 +10,13 @@ Virtue = let(((module_description "SKILL++ Library and package manager")
              )
 
   procedure(GetCurrentFilePath()
+    "Gets the path to the skill file currently being loaded"
     simplifyFilename(get_filename(piport))
   )
 
   procedure(GetCurrentFileDirectory()
+    "Gets the path to the directory containing the skill file currently being 
+    loaded"
     let((file_path)
     file_path = GetCurrentFilePath()
     strcat("/" buildString(reverse(cdr(reverse(parseString(file_path "/")))) "/"))
@@ -58,6 +61,7 @@ Virtue = let(((module_description "SKILL++ Library and package manager")
     	"Geo.ils"
       "data_types/Dpl.ils"
       "data_types/Lcv.ils"
+      "data_types/Time.ils"
     	; "Sch.ils"
     	"MaeMaestro.ils"
       "MaeExport.ils"
