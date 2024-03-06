@@ -1,16 +1,10 @@
-from os import environ
-from typing import Optional, Dict
-from pathlib import Path
+from typing import Optional
 
 import typer
 from rich import print
 from rich.console import Console
-from rich.table import Table
-from rich.syntax import Syntax
-from rich.padding import Padding
 
 import virtue
-from virtue.skill_environment import init_scripts
 import virtue.skill_environment.cli
 
 app = typer.Typer()

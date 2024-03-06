@@ -6,7 +6,8 @@ DIST_PATH="dist/$VERSION"
 echo "Building IDS-skill"
 echo "  building version $VERSION"
 rm -rf "$DIST_PATH"
-mkdir -p "$DIST_PATH"
+mkdir -p "$DIST_PATH/bin"
+ln -sf "$VERSION" dist/latest
 
 # Copy in SKILL Code
 cp -rf virtue "$DIST_PATH/"
@@ -19,8 +20,8 @@ mkdir "$DIST_PATH/pkgs"
 mv "dist/virtue_skill-${VERSION:1}.tar.gz" "$DIST_PATH/pkgs/"
 mv "dist/virtue_skill-${VERSION:1}-py3-none-any.whl" "$DIST_PATH/pkgs/"
 # Build executable
-#pyinstaller -F -n virtue virtue/cli.py
-#mv dist/virtue "$DIST_PATH/"
+pyinstaller -F -n virtue virtue/cli.py
+mv dist/virtue "$DIST_PATH/bin/"
 
 echo "  build saved to $DIST_PATH"
 echo "  build complete!"
