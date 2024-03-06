@@ -8,6 +8,7 @@ dependencies = [
    "typer >= 0.6.1, < 1.0.0",
    "rich >= 12.5.1, < 13.0.0",
    "pluggy >= 1.0.0, < 2.0.0",
+   "toml == 0.10.2",
 ]
 authors = [
    {name="Curtis Mayberry", email="Curtisma3@gmail.com"},
@@ -59,13 +60,17 @@ name = "virtue"
 
 [project.optional-dependencies]
 optional = ["softworks", "skillbridge"]
-test = [
-    "pytest >=7.1.2",
-    "pylint >= 2.14.4",
-    "mypy >= 0.961",
-]
-dev = ["pre-commit == 2.20.0"]
-doc = [
+dev = [
+   "pre-commit == 2.20.0",
+   # Build
+   "flit == 3.7.1",
+   "pip == 22.2.2",
+   "pyinstaller == 5.11.0",
+   # Testing
+   "pytest >=7.1.2",
+   "pylint >= 2.14.4",
+   "mypy >= 0.961",
+   # Docs
    "sphinx == 4.5.0",
    "pydata-sphinx-theme == 0.9.0",
    "sphinx-panels == 0.6.0",

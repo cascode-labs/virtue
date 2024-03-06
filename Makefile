@@ -32,7 +32,7 @@ install-dev:
 	pip install --no-deps -e .
 
 build:
-	exec build.sh
+	exec scripts/build
 
 release:
 	make clean

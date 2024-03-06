@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# (Re)Setup a new development environment
+rm -rf ./.venv
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/rds/prod/tools/python/3.10.7/lib
+/rds/prod/tools/python/3.10.7/bin/python3 -m venv .venv
+source .venv/bin/activate
+pip install -e .[dev]

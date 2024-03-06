@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 VERSION=$(virtue --version)
 DIST_PATH="dist/$VERSION"
 echo "Building IDS-skill"
