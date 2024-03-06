@@ -42,12 +42,28 @@ procedure(Test_lint_test_Time(lint_settings)
     assert(lint_settings->RunLint("data_types/test_Time.ils"))
 )
 
+
+procedure(Test_DateStringIsoUTC()
+  let(((value Time->DateStringIsoUTC()))
+  assert(stringp(value))
+  assert(strlen(value) == 10)
+))
+
+procedure(Test_TimeStringIsoUTC()
+  let(((value Time->TimeStringIsoUTC()))
+  assert(stringp(value))
+  assert(strlen(value) == 8)
+))
+
 Test->RunFile(list(nil
   'Test_IntTimeTable Test_IntTimeTable
   'Test_IsoDateString Test_IsoDateString
   'Test_IsoTimeString Test_IsoTimeString
+  'Test_CurrentDatetimeIsoUTC Test_CurrentDatetimeIsoUTC
   'Test_lint_Time Test_lint_Time
   'Test_lint_test_Time Test_lint_test_Time
+  'Test_DateStringIsoUTC Test_DateStringIsoUTC
+  'Test_TimeStringIsoUTC Test_TimeStringIsoUTC
   )
   ?filepath Virtue->GetCurrentFilePath()
 )

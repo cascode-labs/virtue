@@ -24,16 +24,29 @@ Time = let(()
   ))
 
   procedure(IsoDateString(@optional (timeString getCurrentTime()) "t")
-    "The local date as a string in ISO 8601 format, YYYY-MM-DD"
-    let(((time IntTimeTable()))
+    "The date in the local time zone as a string in ISO 8601 format, YYYY-MM-DD"
+    let(((time IntTimeTable(timeString)))
     sprintf(nil "%.4d-%.2d-%.2d" time["year"] time["month"] time["day"])
   ))
 
   procedure(IsoTimeString(@optional (timeString getCurrentTime()) "t")
-    "The local time as a string in ISO 8601 format, 'YYYY-MM-DD'"
-    let(((time IntTimeTable()))
+    "The time in the local time zone as a string in ISO 8601 format, 'hh:mm:ss'"
+    let(((time IntTimeTable(timeString)))
     sprintf(nil "%.2d:%.2d:%.2d" time["hour"] time["min"] time["sec"])
   ))
+
+
+  procedure(DateStringIsoUTC(@optional (isoTimeString CurrentDatetimeIsoUTC()) "t")
+    "The date in the UTC time zone.
+     Returns a string in ISO 8601 format, YYYY-MM-DD"
+    substring(isoTimeString 1 10)
+  )
+
+  procedure(TimeStringIsoUTC(@optional (isoTimeString CurrentDatetimeIsoUTC()) "t")
+    "The time in the UTC time zone.
+     Returns a string in ISO 8601 format, hh:mm:ss"
+    substring(isoTimeString 12 8)
+  )
 
   procedure(CurrentDatetimeIsoUTC()
     "The UTC datetime as a string in ISO 8601 format, 'YYYY-MM-DD hh:mm:ss' 
@@ -49,6 +62,8 @@ Time = let(()
     'IsoDateString IsoDateString
     'IsoTimeString IsoTimeString
     'CurrentDatetimeIsoUTC CurrentDatetimeIsoUTC
+    'DateStringIsoUTC DateStringIsoUTC
+    'TimeStringIsoUTC TimeStringIsoUTC
   ))
   
   Module->New('Time
