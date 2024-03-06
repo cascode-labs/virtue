@@ -12,7 +12,7 @@ Menu
 Skillbridge can be started from the Virtue menu in the library manager.
 Once it is running, it can be shutdown by toggling the same menu item.
 
-.. image:: ../../_static/virtue_menu.png
+.. image:: ../_static/virtue_menu.png
    :alt: Virtue library manager menu
 
 Workspace ID

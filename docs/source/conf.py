@@ -38,7 +38,7 @@ master_doc = 'index'
 # ones.
 extensions = [
     'sphinx_copybutton',
-    'sphinx_panels',
+    'sphinx_design',
     "sphinx_github_changelog",
     'sphinx_sitemap',
     'sphinx.ext.autosectionlabel',

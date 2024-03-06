@@ -69,16 +69,15 @@ dev = [
    # Testing
    "pytest >=7.1.2",
    "pylint >= 2.14.4",
-   "mypy >= 0.961",
+   "ruff >= 0.3.0",
    # Docs
-   "sphinx == 4.5.0",
-   "pydata-sphinx-theme == 0.9.0",
-   "sphinx-panels == 0.6.0",
-   "sphinx_copybutton == 0.5.0",
-   "sphinx-autobuild == 2021.3.14",
-   "sphinx-github-changelog == 1.2.0",
+   "pydata-sphinx-theme == 0.15.2",
+   "sphinx_design == 0.5.0",
+   "sphinx_copybutton == 0.5.2",
+   "sphinx-autobuild == 2024.2.4",
+   "sphinx-github-changelog == 1.2.1",
    "sphinx-sitemap == 2.2.0",
-   "sphinx-click == 4.3.0",
+   "sphinx-click == 5.1.0",
 ]
 
 [tool.virtue.build]

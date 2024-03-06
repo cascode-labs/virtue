@@ -5,95 +5,97 @@ I would recommend using Conda to install Virtue and any related packages.
 This will install both virtue and Python into a virtual environments and makes
 it easy to use different versions of Python in each Conda environment.
 
-.. tabbed:: Conda **(recommended)**
+.. tab-set:: 
+    
+    .. tab-item:: Label1Conda **(recommended)**
 
-   0. Install mambaforge if some form of conda or mamba isn't already installed
-      using the `mambaforge installer <https://github.com/conda-forge/miniforge#mambaforge>`_.
+      0. Install mambaforge if some form of conda or mamba isn't already installed
+         using the `mambaforge installer <https://github.com/conda-forge/miniforge#mambaforge>`_.
 
-   1. Create a new environment named "virtuoso".
+      1. Create a new environment named "virtuoso".
 
-      This can be done using the environment definition from
-      `our anaconda cloud <https://anaconda.org/cascode-labs/virtuoso>`_:
+         This can be done using the environment definition from
+         `our anaconda cloud <https://anaconda.org/cascode-labs/virtuoso>`_:
 
-      .. code-block:: bash
-         :linenos:
-         :lineno-start: 1
+         .. code-block:: bash
+            :linenos:
+            :lineno-start: 1
 
-         conda env create cascode-labs/virtuoso
+            conda env create cascode-labs/virtuoso
+
+         **OR**
+
+         If you want to edit the packages to be installed you can download
+         the virtuoso environment definition file,
+         `virtuoso.yml, <../_static/virtuoso.yml>`_, and create the env
+         from the downloaded file:
+
+         .. code-block:: bash
+            :linenos:
+            :lineno-start: 1
+
+            conda env create -f virtuoso.yml
+
+      2. Activate the newly created Conda environment and then
+         install the Virtue SKILL environment into its Python environment.
+
+
+         .. code-block:: bash
+            :linenos:
+            :lineno-start: 2
+
+            conda activate virtuoso
+            virtue install
+
+
+    .. tab-item:: Pip / venv
+
+      You can install Virtue using pip from the `virtue-skill PyPi package <https://pypi.org/project/virtue-skill/>`_
+
+      0. You'll need to have Python and pip installed and it's recommended to create
+         a new new virtual environment for virtuoso before installing virtue.
+
+      1. Install Virtue using Pip.  skillbridge and softworks are both optional
+         recommendations to be installed with virtue.
+
+         .. code-block:: bash
+
+            # Remember to activate your virtual environment first
+            pip install virtue-skill skillbridge softworks
+            virtue install
+
+    .. tab-item:: Source
+
+      1. You'll need to have either Conda or Python and pip installed.  It's
+         recommended to create a new Conda or venv virtual environment for virtuoso
+         before installing virtue.
+
+      2. Clone the repo from GitHub
+
+      3. Pip install from source:
+
+      For a editable development installation that will include local updates:
+
+         .. code-block:: bash
+            :linenos:
+            :lineno-start: 1
+
+            # Remember to activate your virtual environment first
+            pip install -e .
+            virtue install
 
       **OR**
 
-      If you want to edit the packages to be installed you can download
-      the virtuoso environment definition file,
-      `virtuoso.yml, <../_static/virtuoso.yml>`_, and create the env
-      from the downloaded file:
+      For a read-only installation:
 
-      .. code-block:: bash
-         :linenos:
-         :lineno-start: 1
-
-         conda env create -f virtuoso.yml
-
-   2. Activate the newly created Conda environment and then
-      install the Virtue SKILL environment into its Python environment.
+         .. code-block:: bash
+            :linenos:
+            :lineno-start: 1
 
 
-      .. code-block:: bash
-         :linenos:
-         :lineno-start: 2
-
-         conda activate virtuoso
-         virtue install
-
-
-.. tabbed:: Pip / venv
-
-   You can install Virtue using pip from the `virtue-skill PyPi package <https://pypi.org/project/virtue-skill/>`_
-
-   0. You'll need to have Python and pip installed and it's recommended to create
-      a new new virtual environment for virtuoso before installing virtue.
-
-   1. Install Virtue using Pip.  skillbridge and softworks are both optional
-      recommendations to be installed with virtue.
-
-      .. code-block:: bash
-
-         # Remember to activate your virtual environment first
-         pip install virtue-skill skillbridge softworks
-         virtue install
-
-.. tabbed:: Source
-
-   1. You'll need to have either Conda or Python and pip installed.  It's
-      recommended to create a new Conda or venv virtual environment for virtuoso
-      before installing virtue.
-
-   2. Clone the repo from GitHub
-
-   3. Pip install from source:
-
-   For a editable development installation that will include local updates:
-
-      .. code-block:: bash
-         :linenos:
-         :lineno-start: 1
-
-         # Remember to activate your virtual environment first
-         pip install -e .
-         virtue install
-
-   **OR**
-
-   For a read-only installation:
-
-      .. code-block:: bash
-         :linenos:
-         :lineno-start: 1
-
-
-         # Remember to activate your virtual environment first
-         pip install .
-         virtue install
+            # Remember to activate your virtual environment first
+            pip install .
+            virtue install
 
 Then Follow the instructions to add the Virtue SKILL environment initialization
 scripts to your Virtuoso initialization scripts.
