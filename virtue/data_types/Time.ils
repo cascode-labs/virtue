@@ -1,0 +1,58 @@
+let((Time
+  (module_description "Time functions")
+  (Module VrtImport['Module])
+  (Str VrtImport['Str])
+ )
+Time = let(()
+
+  procedure(IntTimeTable(@optional (timeString getCurrentTime()) "t")
+    "A table with the local date and time broken out into integer parameters"
+    let(((timeTable makeTable(timeString))
+        (time timeToTm(stringToTime(timeString))))
+      timeTable["string"] = timeString         ; The original input as a string
+      timeTable["year"] = 1900 + time->tm_year ; year (int)
+      timeTable["month"] = 1 + time->tm_mon    ; month [1, 12] (int)
+      timeTable["day"]  = time->tm_mday        ; day of the month: [1, 31] (int)
+      timeTable["hour"]  = time->tm_hour       ; hours after midnight: [0, 23] (int)
+      timeTable["min"]  = time->tm_min         ; minutes after the hour: [0, 59] (int)
+      timeTable["sec"]  = time->tm_sec         ; seconds after the minute: [0, 61] (int)
+      timeTable["weekday"]  = time->tm_wday    ; days since Sunday: [0, 6] (int)
+      timeTable["yearday"]  = time->tm_yday    ; days since January: [0, 365] (int)
+      timeTable["isdst"]  = time->tm_isdst     ; daylight saving time flag: <0,0,>0
+      ; timeTable["zone"] = system("date +'%Z")  ; TODO: Time Zone 
+      timeTable
+  ))
+
+  procedure(IsoDateString(@optional (timeString getCurrentTime()) "t")
+    "The local date as a string in ISO 8601 format, YYYY-MM-DD"
+    let(((time IntTimeTable()))
+    sprintf(nil "%.4d-%.2d-%.2d" time["year"] time["month"] time["day"])
+  ))
+
+  procedure(IsoTimeString(@optional (timeString getCurrentTime()) "t")
+    "The local time as a string in ISO 8601 format, 'YYYY-MM-DD'"
+    let(((time IntTimeTable()))
+    sprintf(nil "%.2d:%.2d:%.2d" time["hour"] time["min"] time["sec"])
+  ))
+
+  procedure(CurrentDatetimeIsoUTC()
+    "The UTC datetime as a string in ISO 8601 format, 'YYYY-MM-DD hh:mm:ss' 
+     A space seperates the date and time"
+    let((child_id out)
+    child_id = ipcBeginProcess("date --utc +'%Y-%m-%d %T'")
+    out = Str->trimWhiteSpace(ipcReadProcess(child_id 1))
+    out
+  ))
+
+  list(nil
+    'IntTimeTable IntTimeTable
+    'IsoDateString IsoDateString
+    'IsoTimeString IsoTimeString
+    'CurrentDatetimeIsoUTC CurrentDatetimeIsoUTC
+  ))
+  
+  Module->New('Time
+              ?module Time
+              ?package VrtImport['Virtue]
+              ?description module_description)
+)

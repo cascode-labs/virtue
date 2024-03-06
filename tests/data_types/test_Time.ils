@@ -1,0 +1,55 @@
+let(((Time VrtImport['Time])
+     (Test VrtImport['Test])
+     (Virtue VrtImport['Virtue])
+     (example_time "Feb 23 10:54:12 2024")
+    )
+
+procedure(Test_IntTimeTable()
+  let(((timeTable Time->IntTimeTable()))
+  assert(timeTable["string"] == example_time)
+  assert(timeTable["year"] == 2024)
+  assert(timeTable["month"] == 2)
+  assert(timeTable["day"]  == 23)
+  assert(timeTable["hour"]  == 10)
+  assert(timeTable["min"]  == 54)
+  assert(timeTable["sec"]  == 12)
+  assert(timeTable["weekday"]  == 5)
+  assert(timeTable["yearday"]  == 54)
+  assert(timeTable["isdst"]  == 0)
+))
+
+procedure(Test_IsoDateString()
+  assert(IsoDateString(example_time) 
+    == "2024-02-23")
+)
+
+procedure(Test_IsoTimeString()
+  assert(IsoTimeString(example_time) 
+    == "10:54:12")
+)
+
+procedure(Test_CurrentDatetimeIsoUTC()
+  let(((value Time->CurrentDatetimeIsoUTC()))
+  assert(stringp(value))
+  assert(strlen(value) == 19)
+))
+
+procedure(Test_lint_Time(lint_settings)
+    assert(lint_settings->RunLint("../virtue/data_types/Time.ils"))
+)
+
+procedure(Test_lint_test_Time(lint_settings)
+    assert(lint_settings->RunLint("data_types/test_Time.ils"))
+)
+
+Test->RunFile(list(nil
+  'Test_IntTimeTable Test_IntTimeTable
+  'Test_IsoDateString Test_IsoDateString
+  'Test_IsoTimeString Test_IsoTimeString
+  'Test_lint_Time Test_lint_Time
+  'Test_lint_test_Time Test_lint_test_Time
+  )
+  ?filepath Virtue->GetCurrentFilePath()
+)
+
+)
