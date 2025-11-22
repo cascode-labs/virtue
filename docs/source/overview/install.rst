@@ -141,9 +141,9 @@ user's.
    :name: install_cdsLibMgr-il
 
    when(getShellEnvVar("VIRTUE_SKILL_PREFIX")
-        && isFile(strcat(env(VIRTUE_SKILL_PREFIX) "/virtue/virtue-environment.cdsLibMgr.il"))
+        && isFile(strcat(getShellEnvVar(VIRTUE_SKILL_PREFIX) "/virtue/virtue-environment.cdsLibMgr.il"))
       printf("virtue-environment.cdsLibMgr.il...\n")
-      loadi(strcat(env(VIRTUE_SKILL_PREFIX) "/virtue/virtue-environment.cdsLibMgr.il"))
+      loadi(strcat(getShellEnvVar(VIRTUE_SKILL_PREFIX) "/virtue/virtue-environment.cdsLibMgr.il"))
    )
 
 .. _install_view_types:
