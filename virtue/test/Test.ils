@@ -26,7 +26,7 @@ Test = let((current_suite)
 
 Module->New('Test
             ?module Test
-            ?package Virtue
+            ?parent Virtue
             ?description module_description)
 VrtImport['Test] = Test
 Test->Initialize()
