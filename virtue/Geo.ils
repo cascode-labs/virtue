@@ -275,6 +275,7 @@ Geo = let(()
 
 VrtImport['Module]->New('Geo
                      ?module Geo
-                     ?package VrtImport['Virtue]
+                     ?parent VrtImport['Virtue]
                      ?description module_description)
+VrtImport['Geo] = Geo
 )

@@ -95,7 +95,7 @@ Path = let(()
 
 Module->New('Path
             ?module Path
-            ?package VrtImport['Virtue]
+            ?parent VrtImport['Virtue]
             ?description module_description)
 VrtImport['Path] = Path
 )

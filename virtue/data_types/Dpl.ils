@@ -29,7 +29,7 @@ Dpl = let(()
 
 Module->New('Dpl
             ?module Dpl
-            ?package VrtImport['Virtue]
+            ?parent VrtImport['Virtue]
             ?description module_description)
 VrtImport['Dpl] = Dpl
 )

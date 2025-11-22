@@ -39,6 +39,7 @@ list(nil
 
 Module->New('Hdb
             ?module Hdb
-            ?package VrtImport['Virtue]
+            ?parent VrtImport['Virtue]
             ?description module_description)
+VrtImport['Hdb] = Hdb
 )

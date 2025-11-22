@@ -83,8 +83,9 @@ list(nil
 
 VrtImport['Module]->New('Skillbridge
                      ?module Skillbridge
-                     ?package VrtImport['Virtue]
+                     ?parent VrtImport['Virtue]
                      ?description module_description)
+VrtImport['Skillbridge] = Skillbridge
 Skillbridge->Initialize()
 
 )

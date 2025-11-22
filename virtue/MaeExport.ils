@@ -1,5 +1,5 @@
-; Exports information about a Maestro view
 let((MaeExport
+     (module_description "Exports information about a Maestro view")
      (Module VrtImport['Module])
      (Toml VrtImport['Toml])
     )
@@ -80,5 +80,7 @@ list(nil
 
 Module->New('MaeExport
             ?module MaeExport
-            ?package VrtImport['Virtue])
+            ?parent VrtImport['Virtue]
+            ?description module_description)
+VrtImport['MaeExport] = MaeExport
 )

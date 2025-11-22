@@ -1,8 +1,8 @@
 let((Maestro
+		 (module_description "Skill Functions for Maestro views")
      (Module VrtImport['Module])
     )
 
-; Skill Functions for Maestro views
 Maestro = let(()
 
   procedure(ExportCellImage(lib cell view filepath) let((win (out nil))
@@ -56,5 +56,7 @@ Maestro = let(()
 
 Module->New('Maestro
             ?module Maestro
-            ?package VrtImport['Virtue])
+            ?parent VrtImport['Virtue]
+						?description module_description)
+VrtImport['Maestro] = Maestro
 )

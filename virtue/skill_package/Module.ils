@@ -10,13 +10,14 @@ Module = let(()
   )
 
   procedure(New(module_symbol
-                @key module (package nil) (description "") "sggt")
+                @key module (parent nil) (description "") "sggt")
     "Create a new SKILL module.
     @param module_symbol A symbol of the module name
     @param module The existing module table or a decomposed property list (DPL)
     of functions to include as public functions.  'theEnvironment' can be 
     provided to add add all the functions in the environment.
-    @param package The top-level package which defines this module
+    @param parent The parent module or package to contain this module, if any.
+    @param description A brief description of the module.
     @brief Create a new SKILL module."
     let((module_table metadata)
 
@@ -35,11 +36,11 @@ Module = let(()
     metadata['symbol] = module_symbol
     when(listp(module)
       metadata['module_dpl] = module)
-    when(symbolp(package)
-      package = VrtImport[package])
-    when(package
-      metadata['package] = package
-      AddItem(package module_symbol module_table))
+    when(symbolp(parent)
+      parent = VrtImport[parent])
+    when(parent
+      metadata['parent] = parent
+      AddItem(parent module_symbol module_table))
     metadata['description] = description
     module_table['__metadata__] = metadata
 
@@ -115,7 +116,7 @@ Module = let(()
 
 Module->New('Module
              ?module Module
-             ?package VrtImport['Virtue]
+             ?parent VrtImport['Virtue]
              ?description module_description)
 VrtImport['Module] = Module
 )

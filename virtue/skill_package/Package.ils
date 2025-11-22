@@ -38,7 +38,7 @@ Package = let(((PackageModules makeTable("virtue package modules")))
 
 VrtImport['Module]->New('Package
              ?module Package
-             ?package VrtImport['Virtue]
+             ?parent VrtImport['Virtue]
              ?description module_description)
 VrtImport['Package] = Package
 )

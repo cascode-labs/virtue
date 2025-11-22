@@ -83,7 +83,7 @@ List = let(()
 
 Module->New('List
              ?module List
-             ?package VrtImport['Virtue]
+             ?parent VrtImport['Virtue]
              ?description module_description)
 VrtImport['List] = List
 )

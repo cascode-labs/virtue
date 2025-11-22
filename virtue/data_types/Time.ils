@@ -68,7 +68,7 @@ Time = let(()
   
   Module->New('Time
               ?module Time
-              ?package VrtImport['Virtue]
+              ?parent VrtImport['Virtue]
               ?description module_description)
   VrtImport['Time] = Time
 )

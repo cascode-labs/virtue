@@ -124,6 +124,7 @@ list(nil
 
 Module->New('Toml
             ?module Toml
-            ?package VrtImport['Virtue]
+            ?parent VrtImport['Virtue]
             ?description module_description)
+VrtImport['Toml] = Toml
 )

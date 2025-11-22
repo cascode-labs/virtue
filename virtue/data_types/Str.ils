@@ -134,7 +134,7 @@ list(nil
 
 Module->New('Str
 						?module Str
-            ?package VrtImport['Virtue]
+            ?parent VrtImport['Virtue]
             ?description module_description)
 VrtImport['Str] = Str
 )
