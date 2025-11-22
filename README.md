@@ -79,7 +79,7 @@ list(nil
 ))
 
 Module->New('Str Str
-             ?package VrtImport['Virtue]
+             ?parent VrtImport['Virtue]
              ?description module_description)
 
 )
