@@ -6,6 +6,14 @@ from virtue.cli import app
 runner = CliRunner()
 
 
+def test_cli_no_args():
+    result = runner.invoke(app)
+    assert result.exit_code == 0
+    assert result.stdout != ""
+    assert "Options" in result.stdout
+    assert "Commands" in result.stdout
+    assert "Usage:" in result.stdout
+
 def test_cli_version():
     result = runner.invoke(app, ["--version"])
     assert result.exit_code == 0
