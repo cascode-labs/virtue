@@ -7,10 +7,13 @@ from rich.console import Console
 import virtue
 import virtue.skill_environment.cli
 
-app = typer.Typer()
+app = typer.Typer(
+    context_settings={"help_option_names": ["-h", "--help"]},
+    no_args_is_help=True)
 console = Console()
 
-app.add_typer(virtue.skill_environment.cli.app, name="env")
+app.add_typer(virtue.skill_environment.cli.app, name="env", 
+              help="Manage the Virtue SKILL environment")
 
 
 def _version_callback(value: bool):
@@ -26,10 +29,10 @@ def main(
                 and exit"""
     ),
 ) -> None:
-    """Virtue command line interface"""
+    """Virtue SKILL standard library"""
     pass
 
-typer_click_object = typer.main.get_command(app)
+# typer_click_object = typer.main.get_command(app)
 
 if __name__ == "__main__":
     app()

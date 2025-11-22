@@ -10,7 +10,7 @@ Module = let(()
   )
 
   procedure(New(module_symbol
-                @key module package (description "") "sggt")
+                @key module (package nil) (description "") "sggt")
     "Create a new SKILL module.
     @param module_symbol A symbol of the module name
     @param module The existing module table or a decomposed property list (DPL)
@@ -38,11 +38,12 @@ Module = let(()
     when(symbolp(package)
       package = VrtImport[package])
     when(package
-      metadata['package] = package)
+      metadata['package] = package
+      AddItem(package module_symbol module_table))
     metadata['description] = description
     module_table['__metadata__] = metadata
 
-    VrtImport[module_symbol] = module_table
+    
     module_table
   ))
 
@@ -116,5 +117,5 @@ Module->New('Module
              ?module Module
              ?package VrtImport['Virtue]
              ?description module_description)
-
+VrtImport['Module] = Module
 )

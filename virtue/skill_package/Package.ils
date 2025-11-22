@@ -1,23 +1,27 @@
 let((Package
      (module_description "Registers a SKILL project with Virtue")
+     (Module VrtImport['Module])
     )
 
 Package = let(((PackageModules makeTable("virtue package modules")))
 
-  procedure(New(module project_init_dir_path "gt")
-    "Adds a set of useful variables about the project to the
-    package's data_table."
-    let((package_table config_filepaths config_filepath)
+  procedure(New(module_symbol
+                @key module (description "") project_init_dir_path "sggtt")
+    "Register a new package.  This adds a set of useful variables about the project to the
+    package's metadata."
+    let((config_filepaths config_filepath)
 
+    module = Module->New(module_symbol
+                         ?module module
+                         ?description description)
+    module['__metadata__]['package] = module
     module['__metadata__]['project_root_path] = project_init_dir_path
     register_package(module)
     module
   ))
 
   procedure(register_package(module "g")
-    
     PackageModules[module['__metadata__]['symbol]] = module
-    Packages[module['__metadata__]['symbol]] = module
   )
 
   procedure(GetPackageMetadata(package_in "g")
@@ -36,5 +40,5 @@ VrtImport['Module]->New('Package
              ?module Package
              ?package VrtImport['Virtue]
              ?description module_description)
-
+VrtImport['Package] = Package
 )

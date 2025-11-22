@@ -85,4 +85,5 @@ Module->New('List
              ?module List
              ?package VrtImport['Virtue]
              ?description module_description)
+VrtImport['List] = List
 )

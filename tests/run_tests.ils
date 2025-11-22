@@ -44,7 +44,7 @@ let((dir_path
   ))
 
   Test->Fixtures['lint_settings] = lint_settings
-
+  
   Test->RunDirectory(Path->Cat(dir_path "data_types"))
   ;Test->RunDirectory(dir_path)
 )

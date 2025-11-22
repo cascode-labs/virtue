@@ -1,8 +1,6 @@
 ; Define the iport table as a global in both SKILL and SKILL++
 inSkill(VrtImport = makeTable("Virtue package import table containing just the latest version of each package"))
 importSkillVar(VrtImport)
-inSkill(Packages = makeTable("Virtue package import table containing all package versions"))
-importSkillVar(Packages)
 
 let((Virtue)
 
@@ -37,12 +35,12 @@ Virtue = let(((module_description "SKILL++ Library and package manager")
 
     dir_path = GetCurrentFileDirectory()
 
-    loadi(strcat(dir_path "/skill_package/Module.ils"))
+    load(strcat(dir_path "/skill_package/Module.ils"))
     Module = VrtImport['Module]
-    Virtue = Module->New('Virtue
-      ?module VrtImport['Virtue]
-      ?package VrtImport['Virtue]
-      ?description module_description)
+    ; Virtue = Module->New('Virtue
+    ;   ?module VrtImport['Virtue]
+    ;   ?package VrtImport['Virtue]
+    ;   ?description module_description)
 
     preinit_packages = list(
       "data_types/Str.ils"
@@ -53,7 +51,11 @@ Virtue = let(((module_description "SKILL++ Library and package manager")
     Module->LoadList(preinit_packages
       ?root_path dir_path
       ?continue_on_error 't)
-    VrtImport['Package]->New(Virtue dir_path)
+
+    Virtue = VrtImport['Package]->New('Virtue
+      ?module VrtImport['Virtue]
+      ?description module_description
+      ?project_init_dir_path dir_path)
 
     virtue_packages = list(
       "data_types/List.ils"

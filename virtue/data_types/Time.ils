@@ -70,4 +70,5 @@ Time = let(()
               ?module Time
               ?package VrtImport['Virtue]
               ?description module_description)
+  VrtImport['Time] = Time
 )

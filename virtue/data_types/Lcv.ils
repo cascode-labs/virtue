@@ -34,4 +34,5 @@ VrtImport['Module]->New('Lcv
   ?module Lcv
   ?package VrtImport['Virtue]
   ?description module_description)
+VrtImport['Lcv] = Lcv
 )

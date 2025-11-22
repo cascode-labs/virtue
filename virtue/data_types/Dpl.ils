@@ -31,4 +31,5 @@ Module->New('Dpl
             ?module Dpl
             ?package VrtImport['Virtue]
             ?description module_description)
+VrtImport['Dpl] = Dpl
 )

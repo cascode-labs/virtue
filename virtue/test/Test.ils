@@ -28,5 +28,6 @@ Module->New('Test
             ?module Test
             ?package Virtue
             ?description module_description)
+VrtImport['Test] = Test
 Test->Initialize()
 )

@@ -136,5 +136,5 @@ Module->New('Str
 						?module Str
             ?package VrtImport['Virtue]
             ?description module_description)
-
+VrtImport['Str] = Str
 )

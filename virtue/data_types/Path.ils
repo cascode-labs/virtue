@@ -97,7 +97,7 @@ Module->New('Path
             ?module Path
             ?package VrtImport['Virtue]
             ?description module_description)
-
+VrtImport['Path] = Path
 )
 
 ; Global functions required for library manager
