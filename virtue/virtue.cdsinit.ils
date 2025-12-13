@@ -37,10 +37,6 @@ Virtue = let(((module_description "SKILL++ Library and package manager")
 
     load(strcat(dir_path "/skill_package/Module.ils"))
     Module = VrtImport['Module]
-    ; Virtue = Module->New('Virtue
-    ;   ?module VrtImport['Virtue]
-    ;   ?parent VrtImport['Virtue]
-    ;   ?description module_description)
 
     preinit_packages = list(
       "data_types/Str.ils"

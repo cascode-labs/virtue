@@ -34,6 +34,7 @@ Module = let(()
     ; Add metadata
     metadata = makeTable(strcat(symbolToString(module_symbol) " module metadata"))
     metadata['symbol] = module_symbol
+    metadata['is_package] = nil
     when(listp(module)
       metadata['module_dpl] = module)
     when(symbolp(parent)

@@ -5,20 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [v0.8.0]
 
 ### Added
 
-- Initial SKILL docstring extraction Python functions 
+- Initial SKILL docstring extraction Python functions
+- 'is_package Module metadata parameter
 
 ### Changed
 
 - Modules don't add themselves to VrtImport when created
 - Module->New "package" parameter renamed to "parent"
 - Modules add themselves to a provided parent module
-- Package New function interface updated to be similar to Module->New.  You 
+- Package->New function interface updated to be similar to Module->New.  You 
   don't need to create a new module before creating a package.  Package->New 
-  will create the package's module.  Packages are addded to VrtImport
+  will create the package's module.  Packages are addded to VrtImport.
 
 ## [0.7.0] - 2022-08-07
 
